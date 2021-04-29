@@ -1,0 +1,53 @@
+<div class="sidebar-logo ">
+    <a class="sidebar-logo img">
+        <img src="../assets/img/logo.png" alt="logo">
+        <h1>Banavan S.A.</h1>
+    </a>
+</div>
+
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <li nz-menu-item>
+        <i nz-icon nzType="user"></i>
+        <span><a  [routerLink]="['/personal']" routerLinkActive="router-link-active" >Personal</a></span>
+    </li>
+    <li nz-submenu nzTitle="Finca" nzIcon="dashboard">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="table" nzTheme="outline"></i>
+                <a>Lote</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="bg-colors" nzTheme="outline"></i>
+                <a routerLink="/color">Color</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="schedule" nzTheme="outline"></i>
+                <a>Semana</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="message" nzTheme="outline"></i>
+                <a>Motivo</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Solicitud" nzIcon="mail">
+        <ul>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="team" nzTheme="outline"></i>
+                <a>Personal</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <i nz-icon nzType="scissor" nzTheme="outline"></i>
+                <a>Cosecha</a>
+            </li>
+        </ul>
+    </li>
+    <li nz-menu-item>
+        <i nz-icon nzType="container"></i>
+        <span> <a [routerLink]="['/inventario']" routerLinkActive="router-link-active" ></a>Inventario</span>
+    </li>
+    <li nz-menu-item>
+        <i nz-icon nzType="save"></i>
+        <span><a [routerLink]="['/respaldo']" routerLinkActive="router-link-active" ></a> Respaldo</span>
+    </li>
+</ul>
