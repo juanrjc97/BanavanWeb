@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import{WelcomeModule} from './pages/welcome.module'
+import { WelcomeRoutingModule } from './pages/welcome-routing.module';
+
 
 
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
-    WelcomeModule
+    WelcomeRoutingModule
   ],
   exports: [RouterModule]
 })

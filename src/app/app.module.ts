@@ -12,6 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { WelcomeModule } from './pages/welcome.module';
 
 
 registerLocaleData(es);
@@ -25,6 +26,7 @@ registerLocaleData(es);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    WelcomeModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

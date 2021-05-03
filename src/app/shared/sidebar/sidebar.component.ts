@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from 'src/app/services/sidebar.service';
 import { ToggleService } from '../../services/toggle/toggle.service';
 
 
@@ -8,9 +9,12 @@ import { ToggleService } from '../../services/toggle/toggle.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  
   isCollapsed = false;
-
-  constructor(private  serviceToggle:ToggleService) { }
+  menuItems: any[];
+  constructor(private  serviceToggle:ToggleService, private sidebarService: SidebarService) {
+    this.menuItems = sidebarService.menu;
+   }
 
   ngOnInit(): void {
     this.serviceToggle.updateStateSide$.subscribe((value)=>{

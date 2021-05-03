@@ -15,6 +15,13 @@ import { PersonalComponent } from './personal/personal.component';
 import { SharedModule } from '../shared/shared.module';
 import { RespaldoComponent } from './respaldo/respaldo.component';
 import { InventarioComponent } from './inventario/inventario.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { LoteComponent } from './lote/lote.component';
+import { ColorComponent } from './color/color.component';
+import { SemanaComponent } from './semana/semana.component';
+import { MotivoComponent } from './motivo/motivo.component';
+import { CosechaComponent } from './cosecha/cosecha.component';
+import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 
 @NgModule({
   imports: [
@@ -26,14 +33,21 @@ import { InventarioComponent } from './inventario/inventario.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
 
   ],
   declarations: [
     WelcomeComponent,
     PersonalComponent,
     RespaldoComponent,
-    InventarioComponent
+    InventarioComponent,
+    LoteComponent,
+    ColorComponent,
+    SemanaComponent,
+    MotivoComponent,
+    CosechaComponent,
+    SolpersonalComponent
 
   ],
   exports: [WelcomeComponent],
