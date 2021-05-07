@@ -1,1 +1,35 @@
-<p>color works!</p>
+<h1>Lista de Cintas</h1>
+<div class="my-4">
+    <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Cinta</button>
+</div>
+
+<nz-table #basicTable [nzData]="listOfCinta">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cinta</th>
+            <th>Código</th>
+            <th>Muestra</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.nombre }}</td>
+            <td>{{ data.codigo }}</td>
+            <td>{{ data.codigo }}</td>
+            <td>
+                <nz-button-group>
+                    <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                </nz-button-group>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar Cinta" [nzFooter]=null (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <app-crear-color></app-crear-color>
+    </ng-container>
+</nz-modal>

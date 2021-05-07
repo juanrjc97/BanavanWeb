@@ -2,6 +2,14 @@ import { NgModule } from '@angular/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 
@@ -23,19 +31,28 @@ import { MotivoComponent } from './motivo/motivo.component';
 import { CosechaComponent } from './cosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 
+import { CrearPersonalComponent } from '../components/personal/crear-personal/crear-personal.component'
+import { CrearColorComponent } from '../components/color/crear-color/crear-color.component'
+
 @NgModule({
   imports: [
     WelcomeRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzTableModule,
+    NzButtonModule,
+    NzModalModule,
+    NzIconModule,
+    NzFormModule,
+    NzSelectModule,
+    NzGridModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SharedModule,
-    AppRoutingModule
-
+    AppRoutingModule,
   ],
   declarations: [
     WelcomeComponent,
@@ -47,11 +64,13 @@ import { SolpersonalComponent } from './solpersonal/solpersonal.component';
     SemanaComponent,
     MotivoComponent,
     CosechaComponent,
-    SolpersonalComponent
+    SolpersonalComponent,
 
+    CrearPersonalComponent,
+    CrearColorComponent,
   ],
   exports: [WelcomeComponent],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class WelcomeModule { }
+export class WelcomeModule {}
