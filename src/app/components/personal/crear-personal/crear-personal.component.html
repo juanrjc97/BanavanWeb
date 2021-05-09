@@ -1,28 +1,28 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nombre">Nombres</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombres</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los nombres!">
             <input nz-input id="nombre" formControlName="nombre" />
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="apellido">Apellidos</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="apellido">Apellidos</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los apellidos!">
             <input nz-input id="apellido" formControlName="apellido" />
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cedula">Cedula</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cedula">Cedula</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa la cedula!">
             <input nz-input id="cedula" formControlName="cedula" />
         </nz-form-control>
     </nz-form-item>
     
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="rol">Rol</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="rol">Rol</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona el rol!">
             <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un rol" id="rol" formControlName="rol" [(ngModel)]="selectedValue">
                 <nz-option nzLabel="Gerente" nzValue="gerente"></nz-option>
@@ -35,23 +35,21 @@
 
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired nzTooltipTitle="¿Qué quieres que te llamen otros?">
-            <span>Usuario</span>
-        </nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="nickname" nzRequired>Usuario</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa tu usuario!">
             <input nz-input id="nickname" formControlName="nickname" />
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Contraseña</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Contraseña</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor escribe tu contraseña!">
             <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmar Contraseña</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmar Contraseña</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
             <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
             <ng-template #errorTpl let-control>
@@ -67,8 +65,8 @@
 
 
     <nz-form-item nz-row class="register-area">
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <button nz-button nzType="primary">Registrar</button>
+        <nz-form-control [nzSpan]="14" [nzOffset]="10">
+            <button nz-button nzType="primary">Registrar Personal</button>
         </nz-form-control>
     </nz-form-item>
 

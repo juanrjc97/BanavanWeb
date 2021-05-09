@@ -33,6 +33,7 @@ import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 
 import { CrearPersonalComponent } from '../components/personal/crear-personal/crear-personal.component'
 import { CrearColorComponent } from '../components/color/crear-color/crear-color.component'
+import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { CrearColorComponent } from '../components/color/crear-color/crear-color
 
     CrearPersonalComponent,
     CrearColorComponent,
+    ModificarColorSemanaComponent,
   ],
   exports: [WelcomeComponent],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
