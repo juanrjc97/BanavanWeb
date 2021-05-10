@@ -1,1 +1,33 @@
-<p>semana works!</p>
+<h1>Lista de las Semanas Laborables </h1>
+<div class="my-4">
+    <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Cambiar color de la semana</button>
+</div>
+
+<nz-table #basicTable [nzData]="listOfWeeks">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Numero de Semana</th>
+            <th>Cinta</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.semana }}</td>
+            <td>{{ data.cinta }}</td>
+            <td>
+                <nz-button-group>
+                    <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                </nz-button-group>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Cambiar color de las semanas" [nzFooter]=null (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <app-modificar-color-semana></app-modificar-color-semana>
+    </ng-container>
+</nz-modal>

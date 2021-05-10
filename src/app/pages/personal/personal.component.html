@@ -1,1 +1,42 @@
-<p>personal works!</p>
+<h1>Lista de Personal</h1>
+<div class="my-4">
+    <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Personal</button>
+</div>
+
+<nz-table #basicTable [nzData]="listOfPersonal">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Cédula</th>
+            <th>Rol</th>
+            <th>Activo</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.nombres }}</td>
+            <td>{{ data.apellidos }}</td>
+            <td>{{ data.cedula }}</td>
+            <td>{{ data.rol }}</td>
+            <td>{{ data.activo }}</td>
+            <td>{{ data.username }}</td>
+            <td>
+                <nz-button-group>
+                    <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                    <button nz-button nzDanger><i nz-icon [nzType] =" data.activo =='Si' ? 'user-delete' : 'user-add' " nzTheme="outline"></i></button>
+                </nz-button-group>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar Personal" [nzFooter]=null (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <app-crear-personal></app-crear-personal>
+    </ng-container>
+</nz-modal>

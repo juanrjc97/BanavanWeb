@@ -16,6 +16,7 @@ const routes: Routes = [
 
   { path: 'dashboard', component: WelcomeComponent , 
     children: [
+    //{ path: '', loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)},
     { path: '', component: PersonalComponent},
     { path: 'inventario', component: InventarioComponent},
     { path: 'respaldo', component: RespaldoComponent},
