@@ -23,6 +23,13 @@ import { MotivoComponent } from './motivo/motivo.component';
 import { CosechaComponent } from './cosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 
+//para la tabla 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzInputModule } from 'ng-zorro-antd/input';
+
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -34,7 +41,12 @@ import { SolpersonalComponent } from './solpersonal/solpersonal.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ScrollingModule,
+    DragDropModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    NzInputModule
 
   ],
   declarations: [
