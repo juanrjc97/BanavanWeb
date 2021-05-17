@@ -1,0 +1,88 @@
+<nz-table #editRowTable nzBordered [nzData]="listOfData" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th nzWidth="10%">id</th>
+            <th nzWidth="15%">Semana</th>
+            <th nzWidth="30%">Cinta</th>
+            <th nzWidth="10%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of editRowTable.data">
+            <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+                <td>{{ data.id }}</td>
+                <td>{{ data.Semana }}</td>
+                <td>{{ data.Cinta }}</td>
+                <td><a (click)="startEdit(data.id)">Edit</a></td>
+            </ng-container>
+            <ng-template #editTemplate>
+                <td></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.Semana" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.Cinta" /></td>
+                <td>
+                    <a (click)="saveEdit(data.id)" class="save">Save</a>
+                    <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</nz-table>
+
+typescript 
+public  size = 20;
+
+  editCache: { [key: number]: { edit: boolean; data: ItemData } } = {};
+  listOfData: ItemData[] = [];
+
+  constructor() { }
+
+
+  ngOnInit(): void {
+    const data = [];
+    for (let i = 0; i < 20; i++) {
+      data.push({
+        id: i,
+        Semana: `Edrward ${i}`,
+        Cinta: `London Park no. ${i}`
+      });
+    }
+    this.listOfData = data;
+    this.updateEditCache();
+  }
+
+
+  startEdit(id: number): void {
+    this.editCache[id].edit = true;
+  }
+
+  cancelEdit(id: number): void {
+    const index = this.listOfData.findIndex(item => item.id === id);
+    this.editCache[id] = {
+      data: { ...this.listOfData[index] },
+      edit: false
+    };
+  }
+
+  saveEdit(id: number): void {
+    const index = this.listOfData.findIndex(item => item.id === id);
+    Object.assign(this.listOfData[index], this.editCache[id].data);
+    this.editCache[id].edit = false;
+  }
+
+  updateEditCache(): void {
+    this.listOfData.forEach(
+      item => {
+      this.editCache[item.id] = {
+        edit: false,
+        data: { ...item } // con los 3 puntos se genera un copia completa del objeto al cual se le
+                          // esta iterando (crea otro elemento igual) es como una copia sin referencia 
+                          //al objeto anterior 
+      };
+    });
+  }
+
+
+  <nz-space [nzSize]="size">
+    <h1 *nzSpaceItem> Inventario Semanal</h1>
+    <button *nzSpaceItem nz-button nzType="primary" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Personal</button>
+</nz-space>

@@ -1,1 +1,138 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files
+
+nz-header {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0;
+}
+
+nz-content {
+    margin: 0 16px;
+    max-height: 720px;
+    line-height: 120px;
+}
+
+nz-layout {
+    height: 720px;
+}
+
+nz-table {
+    max-height: 520px;
+    line-height: 120px;
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+}
+
+nz-footer {
+    text-align: center;
+}
+
+
+*/
+
+
+/*
+esta si vale nz-header {
+    background: #fff;
+    padding: 0;
+}
+
+nz-content {
+    margin: 0 16px;
+}
+
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+}
+
+
+padding: 20px 24px;
+*/
+
+.app-header {
+    height: 50px;
+    padding: 10;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+}
+
+.trigger:hover {
+    color: #1890ff;
+}
+
+.header-trigger {
+    height: 64px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s, padding 0s;
+}
+
+.sidebar-logo {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: #001529;
+    transition: all .3s;
+}
+
+.sidebar-logo img {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    vertical-align: middle;
+}
+
+.sidebar-logo h1 {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+}
+
+.logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+nz-header {
+    background: #fff;
+    padding: 0;
+}
+
+nz-content {
+    margin: 0 16px;
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+    margin-top: 20px;
+}
+
+nz-footer {
+    text-align: center;
+}
+
+.toRight {
+    top: 10px;
+    right: 18px;
+}
+
+.inputaSize {
+    width: 250px
+}

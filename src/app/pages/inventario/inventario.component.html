@@ -1,29 +1,38 @@
-<nz-table #editRowTable nzBordered [nzData]="listOfData" nzTableLayout="fixed">
+<nz-space [nzSize]="size">
+    <h1 *nzSpaceItem> Inventario Semanal</h1>
+</nz-space>
+<div>
+    <nz-input-group nzCompact [formGroup]="semanafb">
+        <nz-select formControlName="rango">
+            <nz-option [nzLabel]="'Between'" [nzValue]="'Between'"></nz-option>
+            <nz-option [nzLabel]="'Except'" [nzValue]="'Except'"></nz-option>
+        </nz-select>
+        <input formControlName="minimo" type="number" nz-input placeholder="Minimum" style="width:100px; text-align: center;" />
+        <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
+        <input formControlName="maximo" type="number" nz-input placeholder="Maximum" style="width:100px; text-align: center;" />
+        <button nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
+    </nz-input-group>
+</div>
+
+<nz-table #TableData nzBordered [nzData]="listOfData" nzTableLayout="fixed">
     <thead>
         <tr>
-            <th nzWidth="10%">id</th>
-            <th nzWidth="15%">Semana</th>
-            <th nzWidth="30%">Cinta</th>
-            <th nzWidth="10%">Action</th>
+            <th nzWidth="20%">Semana</th>
+            <th nzWidth="20%">enfundado</th>
+            <th nzWidth="20%">Cosechado</th>
+            <th nzWidth="20%">Cantidad Perdida</th>
+            <th nzWidth="20%">Fecha Inicial</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of editRowTable.data">
-            <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
-                <td>{{ data.id }}</td>
-                <td>{{ data.Semana }}</td>
-                <td>{{ data.Cinta }}</td>
-                <td><a (click)="startEdit(data.id)">Edit</a></td>
-            </ng-container>
-            <ng-template #editTemplate>
-                <td></td>
-                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.Semana" /></td>
-                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.Cinta" /></td>
-                <td>
-                    <a (click)="saveEdit(data.id)" class="save">Save</a>
-                    <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
-                </td>
-            </ng-template>
+        <tr *ngFor="let data of TableData.data">
+
+            <td>{{ data.Semana }}</td>
+            <td>{{ data.enfundado }}</td>
+            <td>{{ data.Cosechado }}</td>
+            <td>{{data.CPerdida}} </td>
+            <td>{{data.fecha}} </td>
+
         </tr>
     </tbody>
 </nz-table>

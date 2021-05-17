@@ -1,10 +1,9 @@
-<div class="sidebar-logo ">
-    <a class="sidebar-logo img">
-        <img src="../assets/img/logo.png" alt="logo">
-        <h1>Banavan S.A.</h1>
-    </a>
+<div class="sidebar-logo">
+    <img src="../assets/img/logo.png">
+    <h1 class="sidebar-logo h1">Banavan S.A.</h1>
 </div>
-<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+<ul nz-menu nzTheme="dark" nzMode="inline">
+    <!-- [nzInlineCollapsed]="isCollapsed"-->
     <li nz-menu-item>
         <i nz-icon nzType="user"></i>
         <span><a  [routerLink]="['/dashboard']" routerLinkActive="active" >Personal</a></span>
@@ -25,8 +24,15 @@
             </li>
         </ul>
     </li>
+</ul>
 
-    <!-- SubmeniNodinamico  
+
+
+
+<!-- SubmeniNodinamico 
+    
+    
+    
       <li nz-submenu nzTitle="Finca" nzIcon="dashboard">
         <ul>
             <li nz-menu-item nzMatchRouter>
@@ -60,5 +66,3 @@
         </ul>
     </li>
  -->
-
-</ul>

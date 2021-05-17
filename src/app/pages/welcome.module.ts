@@ -9,6 +9,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
@@ -41,6 +42,9 @@ import { CrearPersonalComponent } from '../components/personal/crear-personal/cr
 import { CrearColorComponent } from '../components/color/crear-color/crear-color.component'
 import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
 
+
+
+
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -64,7 +68,8 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
     DragDropModule,
     NzTableModule,
     NzPopconfirmModule,
-    NzInputModule
+    NzInputModule,
+    NzSpaceModule
 
   ],
   declarations: [

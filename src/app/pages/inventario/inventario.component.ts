@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //para la tabla 
 interface ItemData {
-  id: number;
-  Semana: string;
-  Cinta: string;
+  Semana: number;
+  enfundado: number;
+  Cosechado: number;
+  CPerdida: number;
+  fecha: string;
 }
 
 @Component({
@@ -16,55 +19,56 @@ interface ItemData {
 
 export class InventarioComponent implements OnInit {
 
-  editCache: { [key: number]: { edit: boolean; data: ItemData } } = {};
-  listOfData: ItemData[] = [];
+  public  size = 20;
+  public formSummitted = false;
+  public semanafb: FormGroup = this.fb.group({
+    rango: ['Between', Validators.required],
+    minimo: ['', [Validators.required]],
+    maximo: [ '', [Validators.required]],
+  }) ;   
 
-  constructor() { }
-
+  public listOfData: ItemData[] = [];
+  public dataFiltrada: ItemData[] =[];
+  constructor( private fb: FormBuilder) { 
+   
+  }
 
   ngOnInit(): void {
     const data = [];
     for (let i = 0; i < 20; i++) {
       data.push({
-        id: i,
-        Semana: `Edrward ${i}`,
-        Cinta: `London Park no. ${i}`
+        Semana: i,
+        enfundado: i+10,
+        Cosechado: i+15,
+        CPerdida: i+20,
+        fecha: '20-2-2021'
       });
     }
     this.listOfData = data;
-    this.updateEditCache();
   }
 
+  buscarSemana(){
+    if (!this.semanafb.valid) {
+      return;
+    }
+    if (this.semanafb.get('rango')?.value ==='Between') {
+         this.dataFiltrada =  this.listOfData.splice(1,5);
+          console.log(this.dataFiltrada);
+    }else{
+      let temp: ItemData[] = this.listOfData.splice(0,1);
+      let temp2: ItemData[] = this.listOfData.splice(5,this.listOfData.length );
+     // this.dataFiltrada.unshift(temp);
 
-  startEdit(id: number): void {
-    this.editCache[id].edit = true;
+      
+      // this.listOfData.filter(1,5);
+      console.log(this.listOfData );
+    }
+    this.formSummitted = true;
+    
+
   }
 
-  cancelEdit(id: number): void {
-    const index = this.listOfData.findIndex(item => item.id === id);
-    this.editCache[id] = {
-      data: { ...this.listOfData[index] },
-      edit: false
-    };
-  }
-
-  saveEdit(id: number): void {
-    const index = this.listOfData.findIndex(item => item.id === id);
-    Object.assign(this.listOfData[index], this.editCache[id].data);
-    this.editCache[id].edit = false;
-  }
-
-  updateEditCache(): void {
-    this.listOfData.forEach(
-      item => {
-      this.editCache[item.id] = {
-        edit: false,
-        data: { ...item } // con los 3 puntos se genera un copia completa del objeto al cual se le
-                          // esta iterando (crea otro elemento igual) es como una copia sin referencia 
-                          //al objeto anterior 
-      };
-    });
-  }
+ 
 
 
 
