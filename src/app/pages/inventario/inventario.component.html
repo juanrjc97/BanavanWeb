@@ -1,20 +1,25 @@
-<nz-space [nzSize]="size">
-    <h1 *nzSpaceItem> Inventario Semanal</h1>
-</nz-space>
-<div>
-    <nz-input-group nzCompact [formGroup]="semanafb">
+<h1> Inventario Semanal</h1>
+
+<div nz-space [nzSize]="size">
+    <nz-input-group *nzSpaceItem nzCompact [formGroup]="semanafb">
         <nz-select formControlName="rango">
             <nz-option [nzLabel]="'Between'" [nzValue]="'Between'"></nz-option>
-            <nz-option [nzLabel]="'Except'" [nzValue]="'Except'"></nz-option>
+            <!--  <nz-option [nzLabel]="'Except'" [nzValue]="'Except'"></nz-option>-->
         </nz-select>
         <input formControlName="minimo" type="number" nz-input placeholder="Minimum" style="width:100px; text-align: center;" />
         <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
         <input formControlName="maximo" type="number" nz-input placeholder="Maximum" style="width:100px; text-align: center;" />
-        <button nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
     </nz-input-group>
+
+    <button *nzSpaceItem nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
+    <button *nzSpaceItem [hidden]="semanafb.invalid" nz-button (click)="resetData()" type="submit" nzType="primary"><i nz-icon nzType="close" nzTheme="outline"></i></button>
+    <br>
+    <br>
 </div>
 
-<nz-table #TableData nzBordered [nzData]="listOfData" nzTableLayout="fixed">
+
+<nz-table #TableData nzBordered [nzPageSize]="5" [nzData]="listOfData" nzTableLayout="fixed">
+
     <thead>
         <tr>
             <th nzWidth="20%">Semana</th>

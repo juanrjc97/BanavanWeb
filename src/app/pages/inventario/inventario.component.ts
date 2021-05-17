@@ -20,7 +20,7 @@ interface ItemData {
 export class InventarioComponent implements OnInit {
 
   public  size = 20;
-  public formSummitted = false;
+  public formSummitted = true;
   public semanafb: FormGroup = this.fb.group({
     rango: ['Between', Validators.required],
     minimo: ['', [Validators.required]],
@@ -47,27 +47,46 @@ export class InventarioComponent implements OnInit {
     this.listOfData = data;
   }
 
-  buscarSemana(){
-    if (!this.semanafb.valid) {
+  buscarSemana(){ 
+    if (!this.semanafb.valid ||
+        this.semanafb.get('minimo')?.value === this.semanafb.get('maximo')?.value
+        || this.semanafb.get('minimo')?.value <0 
+        || this.semanafb.get('maximo')?.value <0
+        || this.semanafb.get('maximo')?.value > this.listOfData.length) {
       return;
     }
     if (this.semanafb.get('rango')?.value ==='Between') {
-         this.dataFiltrada =  this.listOfData.splice(1,5);
-          console.log(this.dataFiltrada);
-    }else{
-      let temp: ItemData[] = this.listOfData.splice(0,1);
-      let temp2: ItemData[] = this.listOfData.splice(5,this.listOfData.length );
-     // this.dataFiltrada.unshift(temp);
-
-      
-      // this.listOfData.filter(1,5);
-      console.log(this.listOfData );
+        if (this.semanafb.get('maximo')?.value < this.listOfData.length ) {
+          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value,
+          this.semanafb.get('maximo')?.value + 1);
+          this.semanafb.disable();
+          return;
+        }else{
+          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value,
+          this.semanafb.get('maximo')?.value);
+          this.semanafb.disable();
+          return;
+        }
+             
     }
-    this.formSummitted = true;
-    
-
   }
 
+  resetData():void{
+      this.semanafb.enable()
+      this.semanafb.setValue( {'rango':'Between','minimo':'','maximo':'' }) ;
+      const data = [];
+      for (let i = 0; i < 20; i++) {
+        data.push({
+          Semana: i,
+          enfundado: i+10,
+          Cosechado: i+15,
+          CPerdida: i+20,
+          fecha: '20-2-2021'
+        });
+      }
+      this.listOfData = data;
+      
+  }
  
 
 
