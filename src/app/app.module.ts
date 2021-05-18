@@ -13,20 +13,23 @@ import es from '@angular/common/locales/es';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomeModule } from './pages/welcome.module';
-
+//import { LoginComponent } from './login/login.component';
+import {LoginModule} from '../app/login/login.module';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
     AppComponent,
+    //LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    WelcomeModule
+    WelcomeModule,
+    LoginModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]
