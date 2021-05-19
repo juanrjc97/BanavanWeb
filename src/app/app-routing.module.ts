@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WelcomeRoutingModule } from './pages/welcome-routing.module';
-
-
-
+import { LoginRoutingModule } from './login/login-routing.module';
 
 const routes: Routes = [
-
   { path:'' , redirectTo: '/welcome', pathMatch:'full' },
 ];
 
@@ -16,7 +13,8 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
-    WelcomeRoutingModule
+    WelcomeRoutingModule,
+    LoginRoutingModule
   ],
   exports: [RouterModule]
 })

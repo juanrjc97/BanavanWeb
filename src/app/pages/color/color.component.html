@@ -17,11 +17,12 @@
         <tr *ngFor="let data of basicTable.data">
             <td>{{ data.id }}</td>
             <td>{{ data.nombre }}</td>
-            <td>{{ data.codigo }}</td>
-            <td style="background-color: #fafa">{{ data.codigo }}</td>
+            <td>{{ data.codigo }}</td>            
+            <td [style.background-color]= "data.codigo"></td>
             <td>
                 <nz-button-group>
                     <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                    <button nz-button nzDanger><i nz-icon nzType ="delete" nzTheme="outline"></i></button>
                 </nz-button-group>
             </td>
         </tr>

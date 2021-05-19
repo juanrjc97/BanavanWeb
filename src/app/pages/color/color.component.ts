@@ -27,6 +27,31 @@ export class ColorComponent implements OnInit {
       id: 3,
       nombre: 'Verde',
       codigo: ' #33ff4f',
+    },
+    {
+      id: 4,
+      nombre: 'Blanco',
+      codigo: ' #ffff',
+    },
+    {
+      id: 5,
+      nombre: 'Negro',
+      codigo: ' #000000',
+    },
+    {
+      id: 6,
+      nombre: 'Lila',
+      codigo: ' #8c004b',
+    },
+    {
+      id: 7,
+      nombre: 'Rojo',
+      codigo: ' #FF0000',
+    },
+    {
+      id: 8,
+      nombre: 'Café',
+      codigo: ' #a18262',
     }
   ];
 

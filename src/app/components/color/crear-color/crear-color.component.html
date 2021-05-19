@@ -1,26 +1,16 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombre del color</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingrese el nombre">
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombre de la cinta</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingrese el nombre de la cinta">
             <input nz-input id="nombre" formControlName="nombre" />
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="codigo">Codigo</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor seleccione el codigo hexadecimal">
-            <input nz-input id="codigo" formControlName="codigo" />
-        </nz-form-control>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="codigo">Codigo</nz-form-label>        
+        <color-chrome (onChange)="handleChange($event)"></color-chrome>
     </nz-form-item>
-
-    <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="muestra">Muestra</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Aqui se muestra un boton con el color escogido">
-            <input nz-input id="muestra" formControlName="muestra" />
-        </nz-form-control>
-    </nz-form-item>
-    
 
     <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="14" [nzOffset]="10">

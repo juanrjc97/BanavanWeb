@@ -11,6 +11,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 
+import { ColorChromeModule } from 'ngx-color/chrome'; //Para seleccionar el color
+
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 
@@ -70,7 +72,8 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
     NzTableModule,
     NzPopconfirmModule,
     NzInputModule,
-    NzSpaceModule
+    NzSpaceModule,
+    ColorChromeModule
 
   ],
   declarations: [
