@@ -1,17 +1,7 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <h1>Año 2021</h1>
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="anio">Seleccionar anio:</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona un anio!">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un anio" id="anio" formControlName="anio" [(ngModel)]="selectedValue">
-                <nz-option nzLabel="2020" nzValue="1"></nz-option>
-                <nz-option nzLabel="2021" nzValue="2"></nz-option>
-                <nz-option nzLabel="2022" nzValue="3"></nz-option>
-            </nz-select>
-        </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="semana">Seleccionar semana inicial:</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="semana">Seleccionar semana inicial</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona una semana!">
             <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona una semana" id="semana" formControlName="semana" [(ngModel)]="selectedValueSemana">
                 <nz-option nzLabel="1" nzValue="1"></nz-option>
@@ -24,7 +14,7 @@
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cinta">Seleccionar cinta:</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona una cinta!">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona una semana" id="cinta" formControlName="cinta" [(ngModel)]="selectedValueCinta">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona una cinta" id="cinta" formControlName="cinta" [(ngModel)]="selectedValueCinta">
                 <nz-option nzLabel="Rojo" nzValue="1"></nz-option>
                 <nz-option nzLabel="Amarillo" nzValue="2"></nz-option>
                 <nz-option nzLabel="Azul" nzValue="3"></nz-option>
