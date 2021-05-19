@@ -10,17 +10,17 @@
     </li>
     <li nz-menu-item>
         <i nz-icon nzType="container"></i>
-        <span> <a [routerLink]="['inventario']" routerLinkActive="router-link-active" ></a>Inventario</span>
+        <span> <a [routerLink]="['inventario']" routerLinkActive="active" ></a>Inventario</span>
     </li>
     <li nz-menu-item>
         <i nz-icon nzType="save"></i>
-        <span><a [routerLink]="['respaldo']" routerLinkActive="router-link-active" ></a> Respaldo</span>
+        <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
     <li nz-submenu nzTitle="{{item.title}}" *ngFor="let item of menuItems" nzIcon="{{item.icon}}">
         <ul>
             <li nz-menu-item nzMatchRouter *ngFor="let submenuItem of item.submenu">
                 <i nz-icon nzType="{{submenuItem.icon}}" nzTheme="outline"></i>
-                <a [routerLink]="submenuItem.path" routerLinkActive="active">{{submenuItem.title}}</a>
+                <a [routerLink]="submenuItem.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{submenuItem.title}}</a>
             </li>
         </ul>
     </li>

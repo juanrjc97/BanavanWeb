@@ -22,7 +22,7 @@ export class InventarioComponent implements OnInit {
   public  size = 20;
   public formSummitted = true;
   public semanafb: FormGroup = this.fb.group({
-    rango: ['Between', Validators.required],
+    rango: ['Entre', Validators.required],
     minimo: ['', [Validators.required]],
     maximo: [ '', [Validators.required]],
   }) ;   
@@ -55,7 +55,7 @@ export class InventarioComponent implements OnInit {
         || this.semanafb.get('maximo')?.value > this.listOfData.length) {
       return;
     }
-    if (this.semanafb.get('rango')?.value ==='Between') {
+    if (this.semanafb.get('rango')?.value ==='Entre') {
         if (this.semanafb.get('maximo')?.value < this.listOfData.length ) {
           this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value,
           this.semanafb.get('maximo')?.value + 1);
@@ -73,7 +73,7 @@ export class InventarioComponent implements OnInit {
 
   resetData():void{
       this.semanafb.enable()
-      this.semanafb.setValue( {'rango':'Between','minimo':'','maximo':'' }) ;
+      this.semanafb.setValue( {'rango':'Entre','minimo':'','maximo':'' }) ;
       const data = [];
       for (let i = 0; i < 20; i++) {
         data.push({

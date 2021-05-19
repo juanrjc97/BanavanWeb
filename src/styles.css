@@ -136,3 +136,7 @@ nz-footer {
 .inputaSize {
     width: 450px
 }
+
+.cursor {
+    cursor: pointer;
+}

@@ -86,3 +86,6 @@ public  size = 20;
     <h1 *nzSpaceItem> Inventario Semanal</h1>
     <button *nzSpaceItem nz-button nzType="primary" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Personal</button>
 </nz-space>
+
+-PARA CREAR UN COMPONENTE E IMPORTAR EN UN MODULO ESPECIFICO  
+-- ng g c components/lote --module pages/welcome

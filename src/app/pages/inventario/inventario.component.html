@@ -3,12 +3,12 @@
 <div nz-space [nzSize]="size">
     <nz-input-group *nzSpaceItem nzCompact [formGroup]="semanafb">
         <nz-select formControlName="rango">
-            <nz-option [nzLabel]="'Between'" [nzValue]="'Between'"></nz-option>
+            <nz-option [nzLabel]="'Entre'" [nzValue]="'Entre'"></nz-option>
             <!--  <nz-option [nzLabel]="'Except'" [nzValue]="'Except'"></nz-option>-->
         </nz-select>
-        <input formControlName="minimo" type="number" nz-input placeholder="Minimum" style="width:100px; text-align: center;" />
+        <input formControlName="minimo" type="number" nz-input placeholder="Minimo" style="width:100px; text-align: center;" />
         <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
-        <input formControlName="maximo" type="number" nz-input placeholder="Maximum" style="width:100px; text-align: center;" />
+        <input formControlName="maximo" type="number" nz-input placeholder="Maximo" style="width:100px; text-align: center;" />
     </nz-input-group>
 
     <button *nzSpaceItem nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th nzWidth="20%">Semana</th>
-            <th nzWidth="20%">enfundado</th>
+            <th nzWidth="20%">Enfundado</th>
             <th nzWidth="20%">Cosechado</th>
             <th nzWidth="20%">Cantidad Perdida</th>
             <th nzWidth="20%">Fecha Inicial</th>

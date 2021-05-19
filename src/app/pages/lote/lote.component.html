@@ -1,1 +1,61 @@
-<p>lote works!</p>
+<h1> Visulizar Lotes </h1>
+<div>
+    <button (click)="showModal()" nz-button [nzType]="'primary'" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Lote</button>
+
+</div>
+<br>
+
+
+<nz-table #basicTable nzBordered [nzPageSize]="5" [nzData]="listOfData">
+    <thead>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Superficie Km2</th>
+
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td class="text-center">{{data.Lote}}</td>
+            <td class="text-center">{{data.Superficie}}</td>
+            <td class="text-center">
+                <nz-space [nzSize]="size">
+                    <a *nzSpaceItem class="cursor " (click)="guardarCambios(data)" style="font-size: 20px; color: #08c;;" data-toggle="tooltip" data-original-title="Save"> <i nz-icon nzType="save" nzTheme="outline"></i></a>
+                    <a *nzSpaceItem class="cursor" (click)="Eliminar(data)" style="font-size: 20px; color:  rgb(204, 0, 0)" data-toggle="tooltip" data-original-title="Close"> <i nz-icon nzType="close-circle" nzTheme="outline"></i> </a>
+                </nz-space>
+
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<!--- (nzOnOk)="handleOk()"  (nzOnCancel)="handleCancel()" -->
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar Lote" [nzFooter]=null (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="loteForm" (ngSubmit)="submitForm()">
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Número de Semana </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el número de semana!">
+                    <input width="50px" nz-input id="idSemana" formControlName="id" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Superficie Km2 </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa la superficie del lote!">
+                    <input width="50px" nz-input id="superficie" formControlName="superficie" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-row>
+                <nz-form-control class="text-center" [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button nzType="primary">Crear</button>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </ng-container>
+</nz-modal>

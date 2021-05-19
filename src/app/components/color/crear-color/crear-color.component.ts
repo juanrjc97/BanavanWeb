@@ -12,6 +12,7 @@ import {
   styleUrls: ['./crear-color.component.css'],
 })
 export class CrearColorComponent implements OnInit {
+  
   validateForm!: FormGroup;
   submitForm(): void {
     for (const i in this.validateForm.controls) {

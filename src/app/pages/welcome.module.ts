@@ -45,6 +45,7 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
 
 
 
+
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -86,6 +87,9 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
     CrearPersonalComponent,
     CrearColorComponent,
     ModificarColorSemanaComponent,
+
+    
+    
   ],
   exports: [WelcomeComponent],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
