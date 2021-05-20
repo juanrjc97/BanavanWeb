@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Lote } from 'src/app/models/lote';
+import { LoteService } from '../../services/lote/lote.service';
 
 
 //para la tabla 
@@ -14,7 +16,7 @@ interface ItemData {
 })
 export class LoteComponent implements OnInit {
 
-  public listOfData: ItemData[] = [];
+  public listOfData: Lote[] = [];
   public  size = 8;
   public  isVisible = false;
 
@@ -23,17 +25,12 @@ export class LoteComponent implements OnInit {
     superficie: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private loteService: LoteService) { }
 
   ngOnInit(): void {
-    const data = [];
-    for (let i = 0; i < 10; i++) {
-      data.push({
-        Lote: i,
-        Superficie: i+10,
-      });
-    }
-    this.listOfData = data;
+    this.loteService.cargarLotes().subscribe( 
+      (resp:any) => this.listOfData = resp.lotes
+    )
   }
 
   //hacer aqui la llamada a ActualizarcrearLote

@@ -6,7 +6,7 @@
 <br>
 
 
-<nz-table #basicTable nzBordered [nzPageSize]="5" [nzData]="listOfData">
+<nz-table #basicTable nzBordered [nzPageSize]="5" [nzData]="listOfData" class="text-center">
     <thead>
         <tr>
             <th class="text-center">Id</th>
@@ -17,14 +17,17 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of basicTable.data">
-            <td class="text-center">{{data.Lote}}</td>
-            <td class="text-center">{{data.Superficie}}</td>
+            <td class="text-center">
+                <input type="text" class="form-control" placeholder="semana" [(ngModel)]="data.id">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" placeholder="Superficie" [(ngModel)]="data.superficie">
+            </td>
             <td class="text-center">
                 <nz-space [nzSize]="size">
                     <a *nzSpaceItem class="cursor " (click)="guardarCambios(data)" style="font-size: 20px; color: #08c;;" data-toggle="tooltip" data-original-title="Save"> <i nz-icon nzType="save" nzTheme="outline"></i></a>
                     <a *nzSpaceItem class="cursor" (click)="Eliminar(data)" style="font-size: 20px; color:  rgb(204, 0, 0)" data-toggle="tooltip" data-original-title="Close"> <i nz-icon nzType="close-circle" nzTheme="outline"></i> </a>
                 </nz-space>
-
             </td>
         </tr>
     </tbody>

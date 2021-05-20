@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Inventario } from 'src/app/models/inventario';
+import { InventarioService } from '../../services/inventario/inventario.service';
 
 //para la tabla 
 interface ItemData {
@@ -27,24 +29,15 @@ export class InventarioComponent implements OnInit {
     maximo: [ '', [Validators.required]],
   }) ;   
 
-  public listOfData: ItemData[] = [];
-  public dataFiltrada: ItemData[] =[];
-  constructor( private fb: FormBuilder) { 
+  public listOfData: Inventario[] = [];
+  public dataFiltrada: Inventario[] =[];
+  constructor( private fb: FormBuilder, private inventarioService: InventarioService) { 
    
   }
 
   ngOnInit(): void {
-    const data = [];
-    for (let i = 0; i < 20; i++) {
-      data.push({
-        Semana: i,
-        enfundado: i+10,
-        Cosechado: i+15,
-        CPerdida: i+20,
-        fecha: '20-2-2021'
-      });
-    }
-    this.listOfData = data;
+    
+    this.cargarInvetario();
   }
 
   buscarSemana(){ 
@@ -57,12 +50,12 @@ export class InventarioComponent implements OnInit {
     }
     if (this.semanafb.get('rango')?.value ==='Entre') {
         if (this.semanafb.get('maximo')?.value < this.listOfData.length ) {
-          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value,
-          this.semanafb.get('maximo')?.value + 1);
+          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
+          this.semanafb.get('maximo')?.value );
           this.semanafb.disable();
           return;
         }else{
-          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value,
+          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
           this.semanafb.get('maximo')?.value);
           this.semanafb.disable();
           return;
@@ -75,17 +68,14 @@ export class InventarioComponent implements OnInit {
       this.semanafb.enable()
       this.semanafb.setValue( {'rango':'Entre','minimo':'','maximo':'' }) ;
       const data = [];
-      for (let i = 0; i < 20; i++) {
-        data.push({
-          Semana: i,
-          enfundado: i+10,
-          Cosechado: i+15,
-          CPerdida: i+20,
-          fecha: '20-2-2021'
-        });
-      }
-      this.listOfData = data;
+      this.cargarInvetario();
       
+  }
+
+  cargarInvetario(){
+    this.inventarioService.cargarInventario().subscribe(
+      (resp:any)=> this.listOfData = resp.inventarioSem
+    )
   }
  
 
