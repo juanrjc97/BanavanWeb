@@ -28,19 +28,58 @@ export class LoteComponent implements OnInit {
   constructor(private fb: FormBuilder, private loteService: LoteService) { }
 
   ngOnInit(): void {
+      this.cargarLotes();
+  }
+
+
+  cargarLotes(){
     this.loteService.cargarLotes().subscribe( 
       (resp:any) => this.listOfData = resp.lotes
     )
   }
 
-  //hacer aqui la llamada a ActualizarcrearLote
-  guardarCambios(data: any){
-    console.log(data);
+  //hacer aqui la llamada de post 
+  crearLote( ){
+    const lote = {
+     ...this.loteForm.value
+    }
+    console.log(lote);
+    this.loteService.crearLote(lote).subscribe(
+      (resp:any)=>{
+        console.log(resp);
+      },(err)=>{
+        console.log(err);
+      }
+    )
+    
+
   }
 
+  //hacer aqui la llamada a ActualizarLote
+  ActualizarCambios(lote: Lote){
+    this.loteService.actualizarLote(lote).subscribe(
+      (resp:any)=>{
+        console.log(resp);
+        console.log(lote);
+      }
+    )
+    
+  }
+
+
   //hacer aqui la llamada a EliminarcrearLote
-  Eliminar(data: any){
-    console.log(data);
+  Eliminar(lote: Lote){
+    this.loteService.eliminarLote(`${lote.id}`).subscribe(
+      (resp:any)=>{
+        console.log('funka');
+        //this.listOfData.splice(lote,1);
+        // activar esto cuando ya este el backend
+        //this.cargarLotes();
+      },(err)=>{
+          console.log(err);
+      }
+    )
+    
   }
 
 
@@ -49,7 +88,6 @@ export class LoteComponent implements OnInit {
   }
 
   handleCancel(): void {
-    
     this.isVisible = false;
     this.loteForm.reset();   
   }
@@ -63,7 +101,7 @@ export class LoteComponent implements OnInit {
       }
       return;
     }
-    console.log(this.loteForm.value);
+    this.crearLote();
     this.isVisible = false;
     this.loteForm.reset();    
   }

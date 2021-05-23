@@ -28,6 +28,7 @@
     </tbody>
 </nz-table>
 
+
 typescript 
 public  size = 20;
 
@@ -89,3 +90,11 @@ public  size = 20;
 
 -PARA CREAR UN COMPONENTE E IMPORTAR EN UN MODULO ESPECIFICO  
 -- ng g c components/lote --module pages/welcome
+
+
+ <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+                <td>{{ data.id }}</td>
+                <td>{{ data.titulo }}</td>
+                <td>{{ data.desc }}</td>
+                <td><a (click)="startEdit(data.id)">Edit</a></td>
+            </ng-container>
