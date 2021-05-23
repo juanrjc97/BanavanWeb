@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'inventario', component: InventarioComponent},
     { path: 'respaldo', component: RespaldoComponent},
     { path: 'lote', component: LoteComponent},
-    { path: 'color', component: ColorComponent},
+    { path: 'cinta', component: ColorComponent},
     { path: 'semana', component: SemanaComponent},
     { path: 'motivo', component: MotivoComponent},
     { path: 'cosecha', component: CosechaComponent},

@@ -12,7 +12,7 @@ export class SidebarService {
       icon: 'dashboard',
       submenu: [
         {title: 'Lote' ,  icon: 'table',      path: 'lote'},
-        {title: 'Color' , icon: 'bg-colors',  path: 'color'},
+        {title: 'Cinta' , icon: 'bg-colors',  path: 'cinta'},
         {title: 'Semana' ,icon: 'schedule',  path: 'semana'},
         {title: 'Motivo' , icon: 'message' ,path: 'motivo'},
       ],
