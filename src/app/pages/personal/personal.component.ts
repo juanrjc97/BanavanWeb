@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Alerta } from 'src/app/models/alert';
 import { PersonalService } from 'src/app/services/personal/personal.service';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 import {Personal} from '../../models/personal';
 
 @Component({
@@ -10,6 +12,20 @@ import {Personal} from '../../models/personal';
 export class PersonalComponent implements OnInit {
   public size = 8;
   public editCache: { [key: number]: { edit: boolean; data: Personal } } = {};
+  alerta: AlertsComponent = new AlertsComponent();
+
+  succesPut: Alerta = {
+    title: 'Personal Actualizado',
+    text: 'Actualización exitosa en la base de datos.',
+    icon: 'success',
+  };
+  
+  errorPut: Alerta = {
+    title: 'Personal No Actualizado',
+    text: 'Error en la base de datos o desconexión.',
+    icon: 'error',
+  };
+
   listOfPersonal: Personal[] = [];
   isVisible = false;
 
@@ -20,23 +36,28 @@ export class PersonalComponent implements OnInit {
     console.log(this.listOfPersonal);
   }
 
-  cargarPersonal(){
-    this.PersonalService.cargarPersonal().subscribe(
-      (resp:any)=>{
+  cargarPersonal() {
+    this.PersonalService.cargarPersonal().subscribe((resp: any) => {
       this.listOfPersonal = resp;
-        this.updateEditCache();
-      }
-    )
+      this.updateEditCache();
+    });
   }
 
   //hacer aqui la llamada a ActualizarPersonal
-  actualizarPersonal(Personal: Personal) {
-    this.PersonalService.actualizarPersonal(Personal).subscribe((resp: any) => {
-      console.log(resp);
-      console.log(Personal);
-    },(err) => {
-        console.log("Error: "+err);
-      })
+  actualizarPersonal(Personal: Personal, id: number, index: number) {
+    this.PersonalService.actualizarPersonal(Personal).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        console.log(Personal);
+        this.alerta.createBasicNotification(this.succesPut);
+        Object.assign(this.listOfPersonal[index], this.editCache[id].data);
+        this.editCache[id].edit = false;
+      },
+      (err) => {
+        console.log('Error: ' + err);
+        this.alerta.createBasicNotification(this.errorPut);
+      }
+    );
   }
 
   showModal(): void {
@@ -65,11 +86,12 @@ export class PersonalComponent implements OnInit {
     };
   }
 
+  //Falta Validar que si arroja un error en el Put, no hacer actualizacion
   saveEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
-    this.actualizarPersonal(this.listOfPersonal[index]);
-    Object.assign(this.listOfPersonal[index], this.editCache[id].data);
-    this.editCache[id].edit = false;
+    this.actualizarPersonal(this.listOfPersonal[index], id, index);
+    /*Object.assign(this.listOfPersonal[index], this.editCache[id].data);
+    this.editCache[id].edit = false;*/
   }
 
   updateEditCache(): void {

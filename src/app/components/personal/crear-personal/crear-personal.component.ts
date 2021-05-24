@@ -5,9 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-//import { AlertaService } from 'src/app/services/alerta/alerta.service';
 import { PersonalService } from 'src/app/services/personal/personal.service';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
+import { Alerta } from 'src/app/models/alert';
 
 @Component({
   selector: 'app-crear-personal',
@@ -17,13 +17,23 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class CrearPersonalComponent implements OnInit {
   validateForm!: FormGroup;
   selectedValue = null;
-  //alerta = AlertaComponent;
+  alerta: AlertsComponent = new AlertsComponent();
+
+  successPersonal: Alerta = {
+    title: 'Personal Agregado',
+    text: 'Registro exitoso en la base de datos.',
+    icon: 'success',
+  };
+
+  errorPersonal: Alerta = {
+    title: 'Personal No Agregado',
+    text: 'Error en la base de datos o desconexión.',
+    icon: 'error',
+  };
 
   constructor(
     private fb: FormBuilder,
-    private PersonalService: PersonalService,
-    //private NzNotificationService: NzNotificationService,
-    //private AlertaService: AlertaService
+    private PersonalService: PersonalService //private NzNotificationService: NzNotificationService, //private AlertaService: AlertaService
   ) {}
 
   ngOnInit(): void {
@@ -34,14 +44,20 @@ export class CrearPersonalComponent implements OnInit {
       cedula: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z0-9]*$')]],
+      nickname: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern('^[a-zA-Z0-9]*$'),
+        ],
+      ],
     });
   }
 
-  /*createBasicNotification(type: string, title: string, content: string): void {
-    this.NzNotificationService.create(type, title, content);
-  }*/
-
+  /** Crea el Personal con los datos del Form. 
+   * Muestra un feedback en caso exitoso o fallido.
+   */
   crearPersonal() {
     const personal = {
       ...this.validateForm.value,
@@ -50,15 +66,17 @@ export class CrearPersonalComponent implements OnInit {
     this.PersonalService.crearPersonal(personal).subscribe(
       (resp: any) => {
         console.log(resp);
+        this.alerta.createBasicNotification(this.successPersonal);
       },
       (err) => {
         console.log(err);
+        this.alerta.createBasicNotification(this.errorPersonal);
       }
     );
   }
 
   submitForm(): void {
-    if ( this.validateForm.invalid ) {
+    if (this.validateForm.invalid) {
       for (const i in this.validateForm.controls) {
         this.validateForm.controls[i].markAsDirty();
         this.validateForm.controls[i].updateValueAndValidity();
@@ -66,12 +84,6 @@ export class CrearPersonalComponent implements OnInit {
     } else {
       this.crearPersonal();
       this.validateForm.reset();
-      //this.AlertaService.createBasicNotification("success","Personal Agregado","Guardado exitosamente en la base");
-      /*this.createBasicNotification(
-        'success',
-        'Personal Agregado',
-        'Guardado exitosamente en la base'
-      );*/
     }
   }
 
@@ -91,7 +103,4 @@ export class CrearPersonalComponent implements OnInit {
     return {};
   };
 
-  /*getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
-  }*/
 }
