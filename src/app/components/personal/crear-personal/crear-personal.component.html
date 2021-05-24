@@ -15,9 +15,17 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cedula">Cedula</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa la cedula!">
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cedula">Cédula</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCedula">
             <input nz-input id="cedula" formControlName="cedula" />
+            <ng-template #errorCedula let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Por favor ingresa la cédula!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">
+                    Ingrese solamente números!
+                </ng-container>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     
@@ -36,15 +44,34 @@
 
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="nickname" nzRequired>Usuario</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa tu usuario!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorUser">
             <input nz-input id="nickname" formControlName="nickname" />
+            <ng-template #errorUser let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Por favor ingresa tu usuario!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">
+                    Usuario con mínimo de 6 caracteres!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">
+                    Ingrese solo letras y números!
+                </ng-container>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Contraseña</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor escribe tu contraseña!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorPassword">
             <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+            <ng-template #errorPassword let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Por favor ingresa tu contraseña!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">
+                    Contraseña con mínimo de 6 caracteres!
+                </ng-container>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
 
