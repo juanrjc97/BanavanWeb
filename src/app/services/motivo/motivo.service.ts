@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Motivo } from 'src/app/models/motivo';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class MotivoService {
 
   constructor(private http: HttpClient) { }
 
-  crearMotivo(motivo: Motivo){
-    return this.http.post(this.path, motivo);
+  crearMotivo( data: {titulo: string, desc: string}){
+   
+    return this.http.post(this.path, data);
   }
 
   cargarMotivos() {

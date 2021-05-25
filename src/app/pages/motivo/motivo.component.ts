@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Motivo } from 'src/app/models/motivo';
 import { MotivoService } from '../../services/motivo/motivo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-motivo',
@@ -26,6 +27,19 @@ export class MotivoComponent implements OnInit {
   ngOnInit(): void {
     this.cargarMotivos();
     
+  }
+
+  crearMotivo(){
+    console.log(this.motivoForm.value);
+    this.motivoService.crearMotivo(this.motivoForm.value).subscribe(
+      (resp:any)=>{
+        Swal.fire('Motivo Creado','Nuevo motivo creado Exitosamente','success')
+        
+      },(err)=>{
+        Swal.fire('ERROR', 'Ocurrio un error al crear el motivo, Intentalo mas tarde','error')
+      }
+    )
+   
   }
 
   cargarMotivos(){
@@ -107,7 +121,7 @@ export class MotivoComponent implements OnInit {
       }
       return;
     }
-    //this.crearLote();
+    this.crearMotivo();
     this.isVisible = false;
     this.motivoForm.reset();    
   }

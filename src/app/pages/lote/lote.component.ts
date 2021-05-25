@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Lote } from 'src/app/models/lote';
+import Swal from 'sweetalert2';
 import { LoteService } from '../../services/lote/lote.service';
 
 
@@ -46,8 +47,10 @@ export class LoteComponent implements OnInit {
     console.log(lote);
     this.loteService.crearLote(lote).subscribe(
       (resp:any)=>{
+        Swal.fire('Nuevo Lote Creado', `El lote  se ha creado co Exito`, 'success')
         console.log(resp);
       },(err)=>{
+        Swal.fire('Error','Ocurrio un erro al rear el Lote','error')
         console.log(err);
       }
     )
