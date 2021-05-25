@@ -3,7 +3,7 @@
     <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Personal</button>
 </div>
 
-<nz-table #basicTable [nzData]="listOfPersonal">
+<nz-table #editRowTable [nzPageSize]="8" [nzData]="listOfPersonal">
     <thead>
         <tr>
             <th>ID</th>
@@ -17,20 +17,46 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of basicTable.data">
-            <td>{{ data.id }}</td>
-            <td>{{ data.nombres }}</td>
-            <td>{{ data.apellidos }}</td>
-            <td>{{ data.cedula }}</td>
-            <td>{{ data.rol }}</td>
-            <td>{{ data.activo }}</td>
-            <td>{{ data.username }}</td>
-            <td>
+        <tr *ngFor="let data of editRowTable.data">
+            <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+                <td>{{ data.id }}</td>
+                <td>{{ data.nombres }}</td>
+                <td>{{ data.apellidos }}</td>
+                <td>{{ data.cedula }}</td>
+                <td>{{ data.rol }}</td>
+                <td>{{ data.activo }}</td>
+                <td>{{ data.username }}</td>
+                <td>
+                    <nz-button-group>
+                        <button (click)="startEdit(data.id)" nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                    </nz-button-group>
+                </td>
+            </ng-container>
+            <ng-template #editTemplate>
+                <td></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.nombres" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.apellidos" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.cedula" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.rol" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.activo" /></td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.username" /></td>
+                <td>
+                    <nz-button-group>
+                        <button (click)="saveEdit(data.id)" class="save" nz-button nzType="primary"><i nz-icon nzType="save" nzTheme="outline"></i></button>
+                        <button nz-popconfirm nzPopconfirmTitle="Deseas cancelar?" (nzOnConfirm)="cancelEdit(data.id)" nz-button nzDanger><i nz-icon nzType="close-circle" nzTheme="outline"></i></button>
+                    </nz-button-group>
+                </td>
+                <!--td>
+                    <a (click)="saveEdit(data.id)" class="save">Guardar</a>
+                    <a nz-popconfirm nzPopconfirmTitle="Deseas cancelar?" (nzOnConfirm)="cancelEdit(data.id)">Cancelar</a>
+                </td-->
+            </ng-template>
+
+            <!--td>
                 <nz-button-group>
                     <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
-                    <button nz-button nzDanger><i nz-icon [nzType] =" data.activo =='Si' ? 'user-delete' : 'user-add' " nzTheme="outline"></i></button>
                 </nz-button-group>
-            </td>
+            </td-->
         </tr>
     </tbody>
 </nz-table>

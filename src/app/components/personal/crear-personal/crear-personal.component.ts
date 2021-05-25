@@ -5,7 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { PersonalService } from 'src/app/services/personal/personal.service';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
+import { Alerta } from 'src/app/models/alert';
 
 @Component({
   selector: 'app-crear-personal',
@@ -15,15 +17,73 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 export class CrearPersonalComponent implements OnInit {
   validateForm!: FormGroup;
   selectedValue = null;
-  captchaTooltipIcon: NzFormTooltipIcon = {
-    type: 'info-circle',
-    theme: 'twotone',
+  alerta: AlertsComponent = new AlertsComponent();
+
+  successPersonal: Alerta = {
+    title: 'Personal Agregado',
+    text: 'Registro exitoso en la base de datos.',
+    icon: 'success',
   };
 
+  errorPersonal: Alerta = {
+    title: 'Personal No Agregado',
+    text: 'Error en la base de datos o desconexión.',
+    icon: 'error',
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private PersonalService: PersonalService //private NzNotificationService: NzNotificationService, //private AlertaService: AlertaService
+  ) {}
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      nombre: [null, [Validators.required]],
+      apellido: [null, [Validators.required]],
+      rol: [null, [Validators.required]],
+      cedula: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      nickname: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern('^[a-zA-Z0-9]*$'),
+        ],
+      ],
+    });
+  }
+
+  /** Crea el Personal con los datos del Form. 
+   * Muestra un feedback en caso exitoso o fallido.
+   */
+  crearPersonal() {
+    const personal = {
+      ...this.validateForm.value,
+    };
+    console.log(personal);
+    this.PersonalService.crearPersonal(personal).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.alerta.createBasicNotification(this.successPersonal);
+      },
+      (err) => {
+        console.log(err);
+        this.alerta.createBasicNotification(this.errorPersonal);
+      }
+    );
+  }
+
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+    if (this.validateForm.invalid) {
+      for (const i in this.validateForm.controls) {
+        this.validateForm.controls[i].markAsDirty();
+        this.validateForm.controls[i].updateValueAndValidity();
+      }
+    } else {
+      this.crearPersonal();
+      this.validateForm.reset();
     }
   }
 
@@ -43,21 +103,4 @@ export class CrearPersonalComponent implements OnInit {
     return {};
   };
 
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
-  }
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      nombre: [null, [Validators.required]],
-      apellido: [null, [Validators.required]],
-      rol: [null, [Validators.required]],
-      cedula: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-    });
-  }
 }
