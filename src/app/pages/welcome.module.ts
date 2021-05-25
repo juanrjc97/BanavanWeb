@@ -36,6 +36,7 @@ import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 //para la tabla 
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -74,7 +75,8 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
     NzPopconfirmModule,
     NzInputModule,
     NzSpaceModule,
-    ColorChromeModule
+    ColorChromeModule,
+    NzDividerModule
 
   ],
   declarations: [

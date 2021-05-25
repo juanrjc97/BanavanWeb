@@ -21,7 +21,7 @@ export class LoteComponent implements OnInit {
   public  isVisible = false;
 
   public loteForm:FormGroup = this.fb.group({
-    id: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]  ],
+    numLote: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]  ],
     superficie: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]]
   });
 

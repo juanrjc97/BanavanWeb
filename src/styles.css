@@ -140,3 +140,7 @@ nz-footer {
 .cursor {
     cursor: pointer;
 }
+
+.save {
+    margin-right: 8px;
+}

@@ -1,5 +1,6 @@
 export interface Lote {
     id: number;
+    numLote: number;
     superficie: number;
   }
 

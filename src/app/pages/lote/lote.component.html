@@ -9,16 +9,16 @@
 <nz-table #basicTable nzBordered [nzPageSize]="5" [nzData]="listOfData" class="text-center">
     <thead>
         <tr>
-            <th class="text-center">Id</th>
+            <th class="text-center"># Lote</th>
             <th class="text-center">Superficie Km2</th>
 
-            <th class="text-center">Action</th>
+            <th class="text-center">Acción</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of basicTable.data">
             <td class="text-center">
-                <input type="text" class="form-control" placeholder="semana" [(ngModel)]="data.id">
+                <input type="text" class="form-control" placeholder="semana" [(ngModel)]="data.numLote">
             </td>
             <td class="text-center">
                 <input type="text" class="form-control" placeholder="Superficie" [(ngModel)]="data.superficie">
@@ -40,9 +40,9 @@
         <form nz-form [formGroup]="loteForm" (ngSubmit)="submitForm()">
 
             <nz-form-item>
-                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Número de Semana </nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el número de semana!">
-                    <input width="50px" nz-input id="idSemana" formControlName="id" />
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Número de Lote </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el número de Lote!">
+                    <input width="50px" nz-input id="idSemana" formControlName="numLote" />
                 </nz-form-control>
             </nz-form-item>
 

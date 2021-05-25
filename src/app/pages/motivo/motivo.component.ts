@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Motivo } from 'src/app/models/motivo';
 import { MotivoService } from '../../services/motivo/motivo.service';
 
@@ -12,9 +13,15 @@ export class MotivoComponent implements OnInit {
   public size = 20;
   public editCache: { [key: number]: { edit: boolean; data: Motivo } } = {};
   public listOfData: Motivo[] = [];
+
+  public  isVisible = false;
+  public motivoForm:FormGroup = this.fb.group({
+    titulo: [null, [Validators.required,]  ],
+    Desc: [null, [Validators.required,]]
+  });
  
 
-  constructor(private motivoService: MotivoService ) { }
+  constructor(private fb: FormBuilder, private motivoService: MotivoService ) { }
 
   ngOnInit(): void {
     this.cargarMotivos();
@@ -25,7 +32,7 @@ export class MotivoComponent implements OnInit {
     this.motivoService.cargarMotivos().subscribe(
       (resp:any)=>{
       this.listOfData = resp.motivos;
-        console.log(resp.motivos);
+        //console.log(resp.motivos);
         this.updateEditCache();
       }
     )
@@ -36,19 +43,36 @@ export class MotivoComponent implements OnInit {
     this.editCache[id].edit = true;
   }
 
-  cancelEdit(id: number): void {
-    const index = this.listOfData.findIndex(item => item.id === id);
-    this.editCache[id] = {
-      data: { ...this.listOfData[index] },
-      edit: false
-    };
-  }
+ 
 
   saveEdit(id: number): void {
-    const index = this.listOfData.findIndex(item => item.id === id);
-    Object.assign(this.listOfData[index], this.editCache[id].data);
-    this.editCache[id].edit = false;
+   
+    this.motivoService.actualizarMotivo( this.listOfData[id]).subscribe(
+      (resp:any)=>{
+        console.log('motivo actualizo');
+        const index = this.listOfData.findIndex(item => item.id === id);
+        Object.assign(this.listOfData[index], this.editCache[id].data);
+        this.editCache[id].edit = false;
+      }, (err)=>{
+        this.editCache[id].edit = false;
+        console.log("Error al actualizat el motivo" + id);
+      }
+    )
+  
   }
+
+  deleteRow(id: number): void {
+    this.motivoService.eliminarMotivo(id).subscribe(
+      (resp:any)=>{
+        console.log("motivo eliminado");
+        this.listOfData = this.listOfData.filter(d => d.id !== id);
+      },(err)=>{
+        console.log("Error al elminar el motivo" + id + "\n" +err);
+      }
+    );
+    
+  }
+
 
   updateEditCache(): void {
     this.listOfData.forEach(
@@ -61,8 +85,41 @@ export class MotivoComponent implements OnInit {
       };
     }
     );
-    console.log(this.editCache);
+   // console.log(this.editCache);
   }
 
+  //For modal 
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+    this.motivoForm.reset();   
+  }
+
+  //hacer aqui la llamada a crearMotivo
+  submitForm(): void {
+    if (this.motivoForm.invalid) {
+      for (const i in this.motivoForm.controls) {
+        this.motivoForm.controls[i].markAsDirty();
+        this.motivoForm.controls[i].updateValueAndValidity();
+      }
+      return;
+    }
+    //this.crearLote();
+    this.isVisible = false;
+    this.motivoForm.reset();    
+  }
+
+
+  /* verificar mejor la funcinalidad de guardar
+   cancelEdit(id: number): void {
+    const index = this.listOfData.findIndex(item => item.id === id);
+    this.editCache[id] = {
+      data: { ...this.listOfData[index] },
+      edit: false
+    };
+  }*/
 
 }

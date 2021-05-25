@@ -1,7 +1,6 @@
 <h1> Visulizar Motivos </h1>
 <div>
-    <!-- (click)="showModal()" -->
-    <button nz-button [nzType]="'primary'" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Motivo</button>
+    <button (click)="showModal()" nz-button [nzType]="'primary'" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Motivo</button>
 </div>
 <br>
 
@@ -41,13 +40,13 @@
 <!---- (click)="ActualizarCambios(data)"  (click)="Eliminar(data)" -->
 
 
-<nz-table #editRowTable nzBordered [nzData]="listOfData" nzTableLayout="fixed">
+<nz-table #editRowTable nzBordered [nzData]="listOfData" [nzPageSize]="5" nzTableLayout="fixed">
     <thead>
         <tr>
-            <th nzWidth="10%">id</th>
+            <th nzWidth="10%">Id</th>
             <th nzWidth="15%">Titulo</th>
-            <th nzWidth="30%">Desc</th>
-            <th nzWidth="10%">Action</th>
+            <th nzWidth="30%">Descripción</th>
+            <th nzWidth="10%">Acción</th>
         </tr>
     </thead>
     <tbody>
@@ -56,18 +55,52 @@
                 <td>{{ data.id }}</td>
                 <td>{{ data.titulo }}</td>
                 <td>{{ data.desc }}</td>
-                <td><a (click)="startEdit(data.id)">Edit</a></td>
+                <td>
+                    <a (click)="startEdit(data.id)" class="edit">Editar</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete>Eliminar</a>
+                </td>
             </ng-container>
 
             <ng-template #editTemplate>
-                <td></td>
+                <td> {{ data.id }}</td>
                 <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.titulo" /></td>
                 <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.desc" /></td>
                 <td>
-                    <a (click)="saveEdit(data.id)" class="save">Save</a>
-                    <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
+                    <a (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?">Guardar</a>
+                    <!--<a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>  -->
                 </td>
+
             </ng-template>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar Motivo" [nzFooter]=null (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="motivoForm" (ngSubmit)="submitForm()">
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Título </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el título">
+                    <input width="50px" nz-input id="tituloMotivo" formControlName="titulo" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Descripción </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa la descripción!">
+                    <textarea rows="4" nz-input formControlName="Desc"></textarea>
+
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-row>
+                <nz-form-control class="text-center" [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button nzType="primary">Crear</button>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </ng-container>
+</nz-modal>
