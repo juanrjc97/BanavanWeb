@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomeModule } from './pages/welcome.module';
 //import { LoginComponent } from './login/login.component';
-import {LoginModule} from '../app/login/login.module';
+import {LoginModule} from  './auth/auth.module'; 
 
 registerLocaleData(es);
 

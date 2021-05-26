@@ -8,7 +8,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
-import {LoginComponent} from './login.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [

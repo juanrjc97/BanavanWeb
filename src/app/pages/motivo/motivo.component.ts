@@ -78,9 +78,11 @@ export class MotivoComponent implements OnInit {
   deleteRow(id: number): void {
     this.motivoService.eliminarMotivo(id).subscribe(
       (resp:any)=>{
+        Swal.fire('Exito',"Elemento eliminado correctamente",'success')
         console.log("motivo eliminado");
         this.listOfData = this.listOfData.filter(d => d.id !== id);
       },(err)=>{
+        Swal.fire('Error',"Ocurrio un error al eliminar el elemento",'error')
         console.log("Error al elminar el motivo" + id + "\n" +err);
       }
     );
