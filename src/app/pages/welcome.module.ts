@@ -11,8 +11,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 
-import { ColorChromeModule } from 'ngx-color/chrome'; //Para seleccionar el color
-
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 
@@ -45,7 +43,7 @@ import { CrearPersonalComponent } from '../components/personal/crear-personal/cr
 import { CrearColorComponent } from '../components/color/crear-color/crear-color.component'
 import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
 
-
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 
@@ -75,7 +73,7 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
     NzPopconfirmModule,
     NzInputModule,
     NzSpaceModule,
-    ColorChromeModule,
+    ColorPickerModule,
     NzDividerModule
 
   ],

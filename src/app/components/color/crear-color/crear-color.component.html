@@ -8,8 +8,8 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="codigo">Codigo</nz-form-label>        
-        <color-chrome (onChange)="handleChange($event)"></color-chrome>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired >Codigo</nz-form-label>
+        <input  [value]="color1" [(colorPicker)]="color1" [cpOutputFormat]="'hex'"  [cpDisableInput]="true" [style.background]="color1" readonly/>
     </nz-form-item>
 
     <nz-form-item nz-row class="register-area">
