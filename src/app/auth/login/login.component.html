@@ -1,17 +1,30 @@
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Por favor, ingrese su usuario!">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="userName" placeholder="Username" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Por favor, ingrese su contraseña!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar Sesión</button>
-  </form>
+<section _ngcontent-wyq-c31 class="login-register login-sidebar  " style="background-image: url(../../../assets/img/fondo.jpg);">
+    <div _ngcontent-wyq-c31 class=" login-box card ">
+        <div _ngcontent-wyq-c31 class=" text-center card-body">
+            <br>
+            <div>
+                <img src="../../../assets/img/logo.png" width="50px" height="50px" alt="Home">
+                <br _ngcontent-wyq-c31>
+                <h2> Banavan S.A</h2>
+            </div>
+            <br>
+            <form _ngcontent-wyq-c31 novalidate nz-form [formGroup]="validateForm" class="login-form form-horizontal form-material ng-untouched ng-pristine ng-invalid" (ngSubmit)="submitForm()">
+                <nz-form-item class="form-group">
+                    <nz-form-control nzErrorTip="Por favor, ingrese su usuario!">
+                        <nz-input-group nzPrefixIcon="user">
+                            <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item class="form-group">
+                    <nz-form-control nzErrorTip="Por favor, ingrese su contraseña!">
+                        <nz-input-group nzPrefixIcon="lock">
+                            <input type="password" nz-input formControlName="password" placeholder="Password" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <button nz-button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded login-form-button login-form-margin" [nzType]="'primary'">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</section>

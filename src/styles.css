@@ -144,3 +144,99 @@ nz-footer {
 .save {
     margin-right: 8px;
 }
+
+.login-sidebar {
+    padding: 10% 0;
+}
+
+.db {
+    display: block;
+}
+
+.card {
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.card {
+    border: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+form label {
+    font-weight: 400;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-horizontal label {
+    margin-bottom: 0px;
+}
+
+.form-control-static {
+    padding-top: 0px;
+}
+
+.form-bordered .form-group {
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+    padding-bottom: 20px;
+}
+
+.form-material .form-control:focus {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#398bf7), to(#398bf7)), -webkit-gradient(linear, left top, left bottom, from(#e9edf2), to(#e9edf2));
+    background-image: -webkit-linear-gradient(#398bf7, #398bf7), -webkit-linear-gradient(#e9edf2, #e9edf2);
+    background-image: -o-linear-gradient(#398bf7, #398bf7), -o-linear-gradient(#e9edf2, #e9edf2);
+    background-image: linear-gradient(#398bf7, #398bf7), linear-gradient(#e9edf2, #e9edf2);
+    border: 0 none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    float: none;
+}
+
+.form-material .form-group {
+    overflow: hidden;
+}
+
+.form-material .form-control {
+    background-color: transparent;
+    background-position: center bottom, center calc(100% - 1px);
+    background-repeat: no-repeat;
+    background-size: 0 2px, 100% 1px;
+    padding: 0;
+    -webkit-transition: background 0s ease-out 0s;
+    -o-transition: background 0s ease-out 0s;
+    transition: background 0s ease-out 0s;
+}
+
+.form-material .form-control,
+.form-material .form-control.focus,
+.form-material .form-control:focus {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#398bf7), to(#398bf7)), -webkit-gradient(linear, left top, left bottom, from(#e9edf2), to(#e9edf2));
+    background-image: -webkit-linear-gradient(#398bf7, #398bf7), -webkit-linear-gradient(#e9edf2, #e9edf2);
+    background-image: -o-linear-gradient(#398bf7, #398bf7), -o-linear-gradient(#e9edf2, #e9edf2);
+    background-image: linear-gradient(#398bf7, #398bf7), linear-gradient(#e9edf2, #e9edf2);
+    border: 0 none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    float: none;
+}
+
+.form-material .form-control.focus,
+.form-material .form-control:focus {
+    background-size: 100% 2px, 100% 1px;
+    outline: 0 none;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+
+/*
+*/

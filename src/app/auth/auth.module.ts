@@ -7,6 +7,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 import {LoginComponent} from './login/login.component';
 
@@ -22,7 +23,8 @@ import {LoginComponent} from './login/login.component';
     NzSpaceModule,
     NzFormModule,
     NzGridModule,
-    NzIconModule
+    NzIconModule,
+    NzInputModule
   ], exports: [LoginComponent]
 })
 export class LoginModule { }
