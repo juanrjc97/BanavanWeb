@@ -22,10 +22,12 @@ export class ColorService {
 
   actualizarCinta(Cinta: Color) {
     return this.http.put(`${this.update_cinta}`, Cinta);
+    
   }
 
   //Revisar esto
-  eliminarCinta(id: string) {
+  eliminarCinta(id: number) {
     return this.http.delete(`${this.get_post_cinta}/${id}`);
+    
   }
 }

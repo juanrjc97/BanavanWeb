@@ -9,28 +9,28 @@
             <th>ID</th>
             <th>Cinta</th>
             <th>Código</th>
-            <th>Muestra</th>
             <th>Acción</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of editRowTable.data">
             <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
-                    <td>{{ data.id }}</td>
-                    <td>{{ data.nombre }}</td>
-                    <td>{{ data.codigo }}</td> 
-                    <td [style.background-color]= "data.codigo"></td> 
-                    <td>
-                        <nz-button-group>
-                            <button (click)="startEdit(data.id)" nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
-                            <button nz-button nzDanger><i nz-icon nzType ="delete" nzTheme="outline"></i></button>
-                        </nz-button-group>
-                    </td>
-                </ng-container>          
+                <td>{{ data.id }}</td>
+                <td>{{ data.nombre }}</td>
+                <td> <input [value]="data.codigo" [(colorPicker)]="data.codigo" [cpOutputFormat]="'hex'" [cpDisabled]="true" [cpDisableInput]="true" [style.background]="data.codigo" readonly/></td>
+                <td>
+                    <nz-button-group>
+                        <button (click)="startEdit(data.id)" nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                        <a nz-button nzDanger nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete><i nz-icon nzType ="delete" nzTheme="outline"></i></a>
+                        
+                    </nz-button-group>
+                </td>
+            </ng-container>
             <ng-template #editTemplate>
                 <td></td>
                 <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.nombre" /></td>
-                <td> <input  nz-input type="text"  [(ngModel)]="editCache[data.id].data.codigo"  [value]="data.codigo" [(colorPicker)]="data.codigo" [cpOutputFormat]="'hex'"  [cpDisableInput]="true" [style.background]="data.codigo" readonly/></td>
+                <td></td>
+                <td> <input nz-input type="text" [(ngModel)]="editCache[data.id].data.codigo" [value]="data.codigo" [(colorPicker)]="data.codigo" [cpOutputFormat]="'hex'" [cpDisableInput]="true" [style.background]="data.codigo" readonly/></td>
                 <!--td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.codigo" /></td-->
                 <td></td>
                 <td>

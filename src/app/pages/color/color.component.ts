@@ -12,7 +12,7 @@ export class ColorComponent implements OnInit {
   isVisible = false;
   public editCache: { [key: number]: { edit: boolean; data: Color } } = {};
   listOfCinta: Color[] = [];
-  
+
   alerta: AlertsComponent = new AlertsComponent();
 
   succesPut: Alerta = {
@@ -23,6 +23,18 @@ export class ColorComponent implements OnInit {
 
   errorPut: Alerta = {
     title: 'Cinta No Actualizada',
+    text: 'Error en la base de datos o desconexión.',
+    icon: 'error',
+  };
+
+  successDelete: Alerta = {
+    title: 'Cinta Eliminada',
+    text: 'Borrado exitoso en la base de datos.',
+    icon: 'success',
+  };
+
+  errorDelete: Alerta = {
+    title: 'Cinta No Eliminada',
     text: 'Error en la base de datos o desconexión.',
     icon: 'error',
   };
@@ -54,7 +66,7 @@ export class ColorComponent implements OnInit {
     this.isVisible = false;
   }
 
-/**Recibe el Color, id del objeto, index de la fila en la tabla */
+  /**Recibe el Color, id del objeto, index de la fila en la tabla */
   actualizarCinta(Color: Color, id: number, index: number) {
     this.ColorService.actualizarCinta(Color).subscribe(
       (resp: any) => {
@@ -67,6 +79,21 @@ export class ColorComponent implements OnInit {
       (err) => {
         console.log('Error: ' + err);
         this.alerta.createBasicNotification(this.errorPut);
+      }
+    );
+  }
+
+  deleteRow(id: number): void {
+    this.ColorService.eliminarCinta(id).subscribe(
+      (resp: any) => {
+        this.listOfCinta = this.listOfCinta.filter((d) => d.id !== id);
+        this.alerta.createBasicNotification(this.successDelete);
+      },
+      (err) => {
+        this.alerta.createBasicNotification(this.errorDelete);
+        console.log(
+          'Error al elminar el motivo' + id  + '\n' + err
+        );
       }
     );
   }
@@ -85,6 +112,13 @@ export class ColorComponent implements OnInit {
 
   saveEdit(id: number): void {
     const index = this.listOfCinta.findIndex((item) => item.id === id);
+    console.log(
+      'El nombre es ' +
+        this.listOfCinta[index].nombre +
+        ' y el codigo: ' +
+        this.listOfCinta[index].codigo
+    );
+
     this.actualizarCinta(this.listOfCinta[index], id, index);
     /*Object.assign(this.listOfCinta[index], this.editCache[id].data);
     this.editCache[id].edit = false;*/
