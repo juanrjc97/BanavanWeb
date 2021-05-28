@@ -45,6 +45,7 @@ export class PersonalComponent implements OnInit {
 
   //hacer aqui la llamada a ActualizarPersonal
   actualizarPersonal(Personal: Personal, id: number, index: number) {
+   
     this.PersonalService.actualizarPersonal(Personal).subscribe(
       (resp: any) => {
         console.log(resp);

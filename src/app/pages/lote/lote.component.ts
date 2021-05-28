@@ -62,8 +62,11 @@ export class LoteComponent implements OnInit {
   ActualizarCambios(lote: Lote){
     this.loteService.actualizarLote(lote).subscribe(
       (resp:any)=>{
+        Swal.fire('Lote Actualizado', 'El elemento se ha actualizado exitosamente','success')
         console.log(resp);
         console.log(lote);
+      },(err)=>{
+      Swal.fire('Error','No se ha actualizado el elemento','error')
       }
     )
     
@@ -74,7 +77,8 @@ export class LoteComponent implements OnInit {
   Eliminar(lote: Lote){
     this.loteService.eliminarLote(`${lote.id}`).subscribe(
       (resp:any)=>{
-        console.log('funka');
+        Swal.fire('Lote Eliminado','Se ha eliminado exitosamente de la base', 'success')
+        
         //this.listOfData.splice(lote,1);
         // activar esto cuando ya este el backend
         //this.cargarLotes();
