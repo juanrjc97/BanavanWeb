@@ -6,29 +6,35 @@
 <br>
 
 
-<nz-table #basicTable nzBordered [nzPageSize]="5" [nzData]="listOfData" class="text-center">
+<nz-table #editRowTable nzBordered [nzData]="listOfData" [nzPageSize]="5" nzTableLayout="fixed">
     <thead>
         <tr>
-            <th class="text-center"># Lote</th>
-            <th class="text-center">Superficie Km2</th>
-
-            <th class="text-center">Acción</th>
+            <th class="text-center" nzWidth="30%">Número de Lote</th>
+            <th class="text-center" nzWidth="30%">Superficie Km2</th>
+            <th class="text-center" nzWidth="30%">Acción</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of basicTable.data">
-            <td class="text-center">
-                <input type="text" class="form-control" placeholder="semana" [(ngModel)]="data.numLote">
-            </td>
-            <td class="text-center">
-                <input type="text" class="form-control" placeholder="Superficie" [(ngModel)]="data.superficie">
-            </td>
-            <td class="text-center">
-                <nz-space [nzSize]="size">
-                    <a *nzSpaceItem class="cursor " (click)="ActualizarCambios(data)" style="font-size: 20px; color: #08c;" data-toggle="tooltip" data-original-title="Save"> <i nz-icon nzType="save" nzTheme="outline"></i></a>
-                    <a *nzSpaceItem class="cursor" (click)="Eliminar(data)" style="font-size: 20px; color:  rgb(204, 0, 0)" data-toggle="tooltip" data-original-title="Close"> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
-                </nz-space>
-            </td>
+        <tr *ngFor="let data of editRowTable.data">
+            <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+                <td class="text-center">{{ data.numLote }}</td>
+                <td class="text-center">{{ data.superficie }}</td>
+                <td class="text-center">
+                    <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
+                </td>
+            </ng-container>
+
+            <ng-template #editTemplate>
+                <td class="text-center"><input #lote type="text" nz-input [(ngModel)]="editCache[data.id].data.numLote" /></td>
+                <td class="text-center"><input #super type="text" nz-input [(ngModel)]="editCache[data.id].data.superficie" /></td>
+                <td class="text-center">
+                    <a *ngIf=" super.value.length!==0 && lote.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
+                    <!--<a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>  -->
+                </td>
+
+            </ng-template>
         </tr>
     </tbody>
 </nz-table>

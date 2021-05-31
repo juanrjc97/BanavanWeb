@@ -5,11 +5,6 @@ import Swal from 'sweetalert2';
 import { LoteService } from '../../services/lote/lote.service';
 
 
-//para la tabla 
-interface ItemData {
-  Lote: number;
-  Superficie: number;
-}
 @Component({
   selector: 'app-lote',
   templateUrl: './lote.component.html',
@@ -17,6 +12,7 @@ interface ItemData {
 })
 export class LoteComponent implements OnInit {
 
+  public editCache: { [key: number]: { edit: boolean; data: Lote } } = {};
   public listOfData: Lote[] = [];
   public  size = 8;
   public  isVisible = false;
@@ -32,10 +28,12 @@ export class LoteComponent implements OnInit {
       this.cargarLotes();
   }
 
-
   cargarLotes(){
     this.loteService.cargarLotes().subscribe( 
-      (resp:any) => this.listOfData = resp.lotes
+      (resp:any) =>  {
+        this.listOfData = resp.lotes;
+        this.updateEditCache();
+      }
     )
   }
 
@@ -53,42 +51,62 @@ export class LoteComponent implements OnInit {
         Swal.fire('Error','Ocurrio un erro al rear el Lote','error')
         console.log(err);
       }
-    )
-    
+    ) 
 
   }
 
-  //hacer aqui la llamada a ActualizarLote
-  ActualizarCambios(lote: Lote){
-    this.loteService.actualizarLote(lote).subscribe(
-      (resp:any)=>{
-        Swal.fire('Lote Actualizado', 'El elemento se ha actualizado exitosamente','success')
-        console.log(resp);
-        console.log(lote);
-      },(err)=>{
-      Swal.fire('Error','No se ha actualizado el elemento','error')
-      }
-    )
-    
+
+startEdit(id: number): void {
+  this.editCache[id].edit = true;
+}
+
+saveEdit(id: number): void {
+
+  const index = this.listOfData.findIndex((item) => item.id === id);
+  this.loteService.actualizarLote( this.listOfData[index]).subscribe(
+    (resp:any)=>{
+      Swal.fire('Lote Actualizado','Se ha actualizado exitosamente', 'success');
+      console.log('Lote actualizo');
+      const index = this.listOfData.findIndex(item => item.id === id);
+      Object.assign(this.listOfData[index], this.editCache[id].data);
+      this.editCache[id].edit = false;
+    }, (err)=>{
+      Swal.fire('Error','Sucedio un error, no se pudo actualizar el elemento', 'error');
+      this.editCache[id].edit = false;
+      console.log("Error al actualizat el Lote" + id);
+    }
+  )
+
+}
+
+deleteRow(id: number): void {
+  
+  this.loteService.eliminarLote(`${id}`).subscribe(
+    (resp:any)=>{
+      Swal.fire('Exito',"Elemento eliminado correctamente",'success')
+      console.log("Lote eliminado");
+      this.listOfData = this.listOfData.filter(d => d.id !== id);
+    },(err)=>{
+      Swal.fire('Error',"Ocurrio un error al eliminar el elemento",'error')
+      console.log("Error al elminar el Lote" + id + "\n" +err);
+    }
+  );
+  
+}
+
+updateEditCache(): void {
+  this.listOfData.forEach(
+    item => {
+    this.editCache[item.id] = {
+      edit: false,
+      data: { ...item } // con los 3 puntos se genera un copia completa del objeto al cual se le
+                        // esta iterando (crea otro elemento igual) es como una copia sin referencia 
+                        //al objeto anterior 
+    };
   }
-
-
-  //hacer aqui la llamada a EliminarcrearLote
-  Eliminar(lote: Lote){
-    this.loteService.eliminarLote(`${lote.id}`).subscribe(
-      (resp:any)=>{
-        Swal.fire('Lote Eliminado','Se ha eliminado exitosamente de la base', 'success')
-        
-        //this.listOfData.splice(lote,1);
-        // activar esto cuando ya este el backend
-        //this.cargarLotes();
-      },(err)=>{
-          console.log(err);
-      }
-    )
-    
-  }
-
+  );
+ // console.log(this.editCache);
+}
 
   showModal(): void {
     this.isVisible = true;
@@ -112,11 +130,4 @@ export class LoteComponent implements OnInit {
     this.isVisible = false;
     this.loteForm.reset();    
   }
-
-  
- 
-  
-
-
-
 }
