@@ -72,6 +72,8 @@ export class ColorComponent implements OnInit {
       (resp: any) => {
         console.log(resp);
         console.log(Color);
+        
+        console.log('Color response: ' + Color.nombre + ' ' + Color.codigo);
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfCinta[index], this.editCache[id].data);
         this.editCache[id].edit = false;

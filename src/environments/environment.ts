@@ -8,6 +8,7 @@ const BASE_URL = 'http://demo7289443.mockable.io';
 export const environment = {
   production: false,
   base_url: BASE_URL,
+  get_rol: BASE_URL + '/rol',
   get_post_personal: BASE_URL + '/personal',
   update_personal: BASE_URL + '/personal/id',
   get_post_cinta: BASE_URL + '/cinta',

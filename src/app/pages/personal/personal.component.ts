@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Alerta } from 'src/app/models/alert';
+import { Rol } from 'src/app/models/rol';
 import { PersonalService } from 'src/app/services/personal/personal.service';
+import { RolService } from 'src/app/services/rol/rol.service';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 import {Personal} from '../../models/personal';
 
@@ -13,27 +15,37 @@ export class PersonalComponent implements OnInit {
   public size = 8;
   public editCache: { [key: number]: { edit: boolean; data: Personal } } = {};
   alerta: AlertsComponent = new AlertsComponent();
+  public listOfRol: Rol[] = [];
+  listOfPersonal: Personal[] = [];
+  isVisible = false;
 
   succesPut: Alerta = {
     title: 'Personal Actualizado',
     text: 'Actualización exitosa en la base de datos.',
     icon: 'success',
   };
-  
+
   errorPut: Alerta = {
     title: 'Personal No Actualizado',
     text: 'Error en la base de datos o desconexión.',
     icon: 'error',
   };
 
-  listOfPersonal: Personal[] = [];
-  isVisible = false;
-
-  constructor(private PersonalService: PersonalService) {}
+  constructor(
+    private PersonalService: PersonalService,
+    private RolService: RolService
+  ) {}
 
   ngOnInit(): void {
     this.cargarPersonal();
-    console.log(this.listOfPersonal);
+    this.cargarRoles();
+  }
+
+  cargarRoles() {
+    this.RolService.cargarRol().subscribe((resp: any) => {
+      this.listOfRol = resp;
+      console.log(resp);
+    });
   }
 
   cargarPersonal() {
@@ -45,7 +57,6 @@ export class PersonalComponent implements OnInit {
 
   //hacer aqui la llamada a ActualizarPersonal
   actualizarPersonal(Personal: Personal, id: number, index: number) {
-   
     this.PersonalService.actualizarPersonal(Personal).subscribe(
       (resp: any) => {
         console.log(resp);
@@ -104,6 +115,6 @@ export class PersonalComponent implements OnInit {
         //al objeto anterior
       };
     });
-    console.log(this.editCache);
+    //console.log(this.editCache);
   }
 }

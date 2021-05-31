@@ -8,6 +8,8 @@ import {
 import { PersonalService } from 'src/app/services/personal/personal.service';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 import { Alerta } from 'src/app/models/alert';
+import { Rol } from 'src/app/models/rol';
+import { RolService } from 'src/app/services/rol/rol.service';
 
 @Component({
   selector: 'app-crear-personal',
@@ -17,6 +19,8 @@ import { Alerta } from 'src/app/models/alert';
 export class CrearPersonalComponent implements OnInit {
   validateForm!: FormGroup;
   selectedValue = null;
+  listOfRol: Rol[] = [];
+
   alerta: AlertsComponent = new AlertsComponent();
 
   successPersonal: Alerta = {
@@ -33,10 +37,12 @@ export class CrearPersonalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private PersonalService: PersonalService //private NzNotificationService: NzNotificationService, //private AlertaService: AlertaService
+    private PersonalService: PersonalService,
+    private RolService: RolService
   ) {}
 
   ngOnInit(): void {
+    
     this.validateForm = this.fb.group({
       nombre: [null, [Validators.required]],
       apellido: [null, [Validators.required]],
@@ -53,9 +59,19 @@ export class CrearPersonalComponent implements OnInit {
         ],
       ],
     });
+    this.cargarRoles();
+    //console.log(this.listOfRol);
   }
 
-  /** Crea el Personal con los datos del Form. 
+  cargarRoles() {
+    this.RolService.cargarRol().subscribe((resp: any) => {
+      this.listOfRol = resp;
+      console.log(this.listOfRol);
+      
+    });
+  }
+
+  /** Crea el Personal con los datos del Form.
    * Muestra un feedback en caso exitoso o fallido.
    */
   crearPersonal() {
@@ -102,5 +118,4 @@ export class CrearPersonalComponent implements OnInit {
     }
     return {};
   };
-
 }
