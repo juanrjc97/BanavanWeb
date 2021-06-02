@@ -3,21 +3,21 @@
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombres</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los nombres!">
-            <input nz-input id="nombre" formControlName="nombre" />
+            <input nz-input id="nombre" formControlName="nombre" appValidateForm="words"/>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="apellido">Apellidos</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los apellidos!">
-            <input nz-input id="apellido" formControlName="apellido" />
+            <input nz-input id="apellido" formControlName="apellido" appValidateForm="words"/>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cedula">Cédula</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCedula">
-            <input nz-input id="cedula" formControlName="cedula" />
+            <input nz-input id="cedula" formControlName="cedula" appValidateForm="integer"/>
             <ng-template #errorCedula let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     Por favor ingresa la cédula!
@@ -45,7 +45,7 @@
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="nickname" nzRequired>Usuario</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorUser">
-            <input nz-input id="nickname" formControlName="nickname" />
+            <input nz-input id="nickname" formControlName="nickname" appValidateForm="username"/>
             <ng-template #errorUser let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     Por favor ingresa tu usuario!

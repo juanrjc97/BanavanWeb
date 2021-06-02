@@ -42,9 +42,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { CrearPersonalComponent } from '../components/personal/crear-personal/crear-personal.component'
 import { CrearColorComponent } from '../components/color/crear-color/crear-color.component'
 import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
-
+//Para las cintas
 import { ColorPickerModule } from 'ngx-color-picker';
-
+//
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 //Directiva
 import { ValidateFormDirective } from '../directive/validate-form.directive'; 
 
@@ -76,6 +77,7 @@ import { ValidateFormDirective } from '../directive/validate-form.directive';
     NzSpaceModule,
     ColorPickerModule,
     NzDividerModule,
+    NzTypographyModule,
   ],
   declarations: [
     WelcomeComponent,

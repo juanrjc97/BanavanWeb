@@ -13,7 +13,7 @@
             <th>Rol</th>
             <th>Activo</th>
             <th>Usuario</th>
-            <th>Acción</th>
+            <th nzWidth="10%">Acción</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                 <td>{{ data.rol }}</td>
                 <td>{{ data.activo}}</td>
                 <td>{{ data.username }}</td>
-                <td>
+                <td class="text-center">
                     <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
                 </td>
             </ng-container>

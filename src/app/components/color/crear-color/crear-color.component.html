@@ -3,7 +3,7 @@
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombre de la cinta</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingrese el nombre de la cinta">
-            <input nz-input id="nombre" formControlName="nombre" />
+            <input nz-input id="nombre" formControlName="nombre" appValidateForm="onlyLetterNumber"/>
         </nz-form-control>
     </nz-form-item>
 

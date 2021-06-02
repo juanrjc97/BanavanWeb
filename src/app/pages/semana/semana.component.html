@@ -3,11 +3,12 @@
     <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Cambiar color de la semana</button>
 </div>
 
-<nz-table #basicTable [nzData]="listOfWeeks">
+<nz-table #basicTable nzBordered [nzData]="listOfWeeks">
     <thead>
         <tr>
             <th>ID</th>
             <th>Numero de Semana</th>
+            <th>Fecha Inicial</th>
             <th>Cinta</th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
         <tr *ngFor="let data of basicTable.data">
             <td>{{ data.id }}</td>
             <td>{{ data.semana }}</td>
+            <td>{{ data.fecha_inicial }}</td>
             <td>{{ data.cinta }}</td>
         </tr>
     </tbody>

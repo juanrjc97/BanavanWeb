@@ -26,6 +26,7 @@ export class SemanaComponent implements OnInit {
       this.listOfWeeks.push({
         id: 100 + index,
         semana: (15 + index).toString(),
+        fecha_inicial: "02/05/2021",
         cinta: this.listaOfColors[index],
       });
     }
