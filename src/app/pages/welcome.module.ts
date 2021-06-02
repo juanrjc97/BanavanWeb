@@ -45,7 +45,8 @@ import { ModificarColorSemanaComponent } from '../components/semana/modificar-co
 
 import { ColorPickerModule } from 'ngx-color-picker';
 
-
+//Directiva
+import { ValidateFormDirective } from '../directive/validate-form.directive'; 
 
 
 @NgModule({
@@ -74,8 +75,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     NzInputModule,
     NzSpaceModule,
     ColorPickerModule,
-    NzDividerModule
-
+    NzDividerModule,
   ],
   declarations: [
     WelcomeComponent,
@@ -91,9 +91,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CrearPersonalComponent,
     CrearColorComponent,
     ModificarColorSemanaComponent,
-
-    
-    
+    ValidateFormDirective,
   ],
   exports: [WelcomeComponent],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
