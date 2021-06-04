@@ -10,6 +10,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
@@ -78,6 +79,7 @@ import { ValidateFormDirective } from '../directive/validate-form.directive';
     ColorPickerModule,
     NzDividerModule,
     NzTypographyModule,
+    NzDatePickerModule,
   ],
   declarations: [
     WelcomeComponent,

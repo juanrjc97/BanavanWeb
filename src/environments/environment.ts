@@ -13,6 +13,7 @@ export const environment = {
   update_personal: BASE_URL + '/personal/id',
   get_post_cinta: BASE_URL + '/cinta',
   put_delete_cinta: BASE_URL + '/cinta/id',
+  get_update_semanas: BASE_URL + '/semana',
 };
 
 /*

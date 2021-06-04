@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SemanasService } from 'src/app/services/semanas/semanas.service';
 import { Semana } from '../../models/semana';
 
 @Component({
@@ -8,34 +9,19 @@ import { Semana } from '../../models/semana';
 })
 export class SemanaComponent implements OnInit {
   isVisible = false;
-  listaOfColors: string[] = [
-    'Amarilla',
-    'Verde',
-    'Azul',
-    'Blanca',
-    'Negro',
-    'Lila',
-    'Roja',
-    'Cafe',
-  ];
-
   listOfWeeks: Semana[] = [];
 
-  rellenar_lista(): void{
-    for (let index = 0; index < 8; index++) {
-      this.listOfWeeks.push({
-        id: 100 + index,
-        semana: (15 + index).toString(),
-        fecha_inicial: "02/05/2021",
-        cinta: this.listaOfColors[index],
-      });
-    }
-  }
-
-  constructor() {}
+  constructor(private SemanasService: SemanasService) {}
 
   ngOnInit(): void {
     this.rellenar_lista();
+  }
+
+  rellenar_lista(): void {
+    this.SemanasService.cargarSemanas().subscribe((resp: any) => {
+      this.listOfWeeks = resp;
+      console.log(resp);
+    });
   }
 
   showModal(): void {
