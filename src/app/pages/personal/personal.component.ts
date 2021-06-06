@@ -55,11 +55,15 @@ export class PersonalComponent implements OnInit {
     });
   }
 
-  //hacer aqui la llamada a ActualizarPersonal
-  actualizarPersonal(Personal: Personal, id: number, index: number) {
+  /**
+   * Actualiza personal
+   * @param Personal Objeto de tipo Personal
+   * @param id 
+   * @param index 
+   */
+  actualizarPersonal(Personal: Personal, id: number, index: number) {    
     this.PersonalService.actualizarPersonal(Personal).subscribe(
       (resp: any) => {
-        console.log(resp);
         console.log(Personal);
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfPersonal[index], this.editCache[id].data);
@@ -87,6 +91,9 @@ export class PersonalComponent implements OnInit {
   }
 
   startEdit(id: number): void {
+    const index = this.listOfPersonal.findIndex((item) => item.id === id);
+    console.log(this.listOfPersonal[index]);
+    
     this.editCache[id].edit = true;
   }
 
@@ -98,7 +105,7 @@ export class PersonalComponent implements OnInit {
     };
   }
 
-  //Falta Validar que si arroja un error en el Put, no hacer actualizacion
+  
   saveEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
     this.actualizarPersonal(this.listOfPersonal[index], id, index);

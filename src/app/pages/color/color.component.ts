@@ -72,7 +72,7 @@ export class ColorComponent implements OnInit {
       (resp: any) => {
         console.log(resp);
         console.log(Color);
-        
+
         console.log('Color response: ' + Color.nombre + ' ' + Color.codigo);
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfCinta[index], this.editCache[id].data);
@@ -85,17 +85,15 @@ export class ColorComponent implements OnInit {
     );
   }
 
-  deleteRow(id: number): void {
-    this.ColorService.eliminarCinta(id).subscribe(
+  deleteRow(Cinta: Color, id:number): void {
+    this.ColorService.eliminarCinta(Cinta).subscribe(
       (resp: any) => {
         this.listOfCinta = this.listOfCinta.filter((d) => d.id !== id);
         this.alerta.createBasicNotification(this.successDelete);
       },
       (err) => {
         this.alerta.createBasicNotification(this.errorDelete);
-        console.log(
-          'Error al elminar el motivo' + id  + '\n' + err
-        );
+        console.log('Error al elminar el motivo' + id + '\n' + err);
       }
     );
   }

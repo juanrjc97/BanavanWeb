@@ -21,7 +21,7 @@
                 <td class="text-center">
                     <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
                     <nz-divider nzType="vertical"></nz-divider>
-                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
+                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data, data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
                 </td>
             </ng-container>
             <ng-template #editTemplate>
