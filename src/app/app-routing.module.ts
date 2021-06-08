@@ -4,7 +4,7 @@ import { WelcomeRoutingModule } from './pages/welcome-routing.module';
 import { LoginRoutingModule } from './auth/auth-routing.module';
 
 const routes: Routes = [
-  { path:'' , redirectTo: '/welcome', pathMatch:'full' },
+  { path:'' , redirectTo: '/dashboard', pathMatch:'full' },
 ];
 
 @NgModule({
