@@ -16,6 +16,7 @@ export class MotivoComponent implements OnInit {
   public listOfData: Motivo[] = [];
 
   public  isVisible = false;
+
   public motivoForm:FormGroup = this.fb.group({
     titulo: [null, [Validators.required,]  ],
     Desc: [null, [Validators.required,]]
@@ -39,7 +40,6 @@ export class MotivoComponent implements OnInit {
         Swal.fire('ERROR', 'Ocurrio un error al crear el motivo, Intentalo mas tarde','error')
       }
     )
-   
   }
 
   cargarMotivos(){
