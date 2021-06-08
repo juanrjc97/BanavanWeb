@@ -4,6 +4,6 @@ export interface Personal {
   apellidos: string;
   cedula: string;
   rol: string;
-  activo: string;
+  activo: boolean;
   username: string;
 }
