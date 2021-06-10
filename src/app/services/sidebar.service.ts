@@ -23,7 +23,6 @@ export class SidebarService {
       submenu: [
         {title: 'Personal' , icon: 'team', path: 'solicitud-personal'},
         {title: 'Cosecha' , icon: 'scissor', path: 'cosecha'},
-       
       ],
     }
   ]
