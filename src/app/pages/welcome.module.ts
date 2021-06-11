@@ -14,6 +14,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { AppComponent } from 'src/app/app.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
+import { DatePipe } from '@angular/common';
 
 import { WelcomeRoutingModule } from './welcome-routing.module';
 
@@ -98,7 +99,7 @@ import { ValidateFormDirective } from '../directive/validate-form.directive';
     ValidateFormDirective,
   ],
   exports: [WelcomeComponent],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }],
+  providers: [{ provide: NZ_I18N, useValue: es_ES }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class WelcomeModule {}
