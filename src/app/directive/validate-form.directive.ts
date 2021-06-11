@@ -10,6 +10,7 @@ export class ValidateFormDirective {
     words: '^[a-zA-Z]+( [a-zA-Z]+)*$',
     username: '^[a-zA-Z0-9]*$',
     onlyLetterNumber: '^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$',
+    correo: '/S+@S+.S+/',
     float: '^[+-]?([0-9]*[.])?[0-9]+$',
     point25: '^-?[0-9]*(?:\\.25|\\.50|\\.75|)$',
   };

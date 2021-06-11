@@ -10,6 +10,7 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Cédula</th>
+            <th>Correo</th>
             <th>Rol</th>
             <th>Activo</th>
             <th>Usuario</th>
@@ -23,6 +24,7 @@
                 <td>{{ data.nombres }}</td>
                 <td>{{ data.apellidos }}</td>
                 <td>{{ data.cedula }}</td>
+                <td>{{ data.correo }}</td>
                 <td>{{ data.rol }}</td>
                 <td>{{ data.activo  ? "Sí" : "No" }}</td>
                 <td>{{ data.username }}</td>
@@ -35,6 +37,7 @@
                 <td><input #nombres type="text" nz-input [(ngModel)]="editCache[data.id].data.nombres" appValidateForm="words"/></td>
                 <td><input #apellidos type="text" nz-input [(ngModel)]="editCache[data.id].data.apellidos" appValidateForm="words"/></td>
                 <td><input #cedula type="text" nz-input [(ngModel)]="editCache[data.id].data.cedula" appValidateForm="integer"/></td>
+                <td><input #correo type="email" nz-input [(ngModel)]="editCache[data.id].data.correo"/></td>
                 <td>
                     <nz-select nzPlaceHolder="Selecciona un rol" [(ngModel)]="editCache[data.id].data.rol">
                         <nz-option *ngFor="let rol of listOfRol" [nzLabel]="rol.nombre" [nzValue]="rol.nombre"></nz-option>
@@ -49,7 +52,7 @@
                 </td>
                 <td><input #username type="text" nz-input [(ngModel)]="editCache[data.id].data.username" appValidateForm="username"/></td>
                 <td class="text-center">
-                    <a *ngIf="nombres.value.length!==0 && apellidos.value.length!==0 && cedula.value.length!==0 && username.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
+                    <a *ngIf="nombres.value.length!==0 && apellidos.value.length!==0 && cedula.value.length!==0 && username.value.length!==0 && correo.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
                     <a nz-popconfirm nzPopconfirmTitle="Deseas cancelar?" (nzOnConfirm)="cancelEdit(data.id)"><i nz-icon nzType="close-circle" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i></a>
                 </td>
                 <!--td>
