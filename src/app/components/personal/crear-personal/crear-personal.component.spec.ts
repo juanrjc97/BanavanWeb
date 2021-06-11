@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CrearPersonalComponent } from './crear-personal.component';
 
 describe('CrearPersonalComponent', () => {
@@ -8,9 +9,10 @@ describe('CrearPersonalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrearPersonalComponent ]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule, 
+        HttpClientTestingModule],
+      declarations: [CrearPersonalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
