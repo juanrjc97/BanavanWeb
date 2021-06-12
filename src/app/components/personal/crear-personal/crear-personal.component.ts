@@ -48,6 +48,7 @@ export class CrearPersonalComponent implements OnInit {
       apellido: [null, [Validators.required]],
       rol: [null, [Validators.required]],
       cedula: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      correo: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       nickname: [

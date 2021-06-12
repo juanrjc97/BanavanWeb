@@ -28,15 +28,27 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="correo">Correo</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCorreo">
+            <input nz-input id="correo" formControlName="correo"/>
+            <ng-template #errorCorreo let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Por favor ingresa el correo electrónico!!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('email')">
+                    Ingrese un correo válido!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
     
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="rol">Rol</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona el rol!">
             <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un rol" id="rol" formControlName="rol" [(ngModel)]="selectedValue">
                 <nz-option *ngFor="let rol of listOfRol" [nzLabel]="rol.nombre" [nzValue]="rol.nombre"></nz-option>
-                <!--nz-option nzLabel="Administrador" nzValue="admin"></nz-option>
-                <nz-option nzLabel="Jefe de Bodega" nzValue="jdb"></nz-option>
-                <nz-option nzLabel="Jefe de Campo" nzValue="jdc"></nz-option-->
             </nz-select>
         </nz-form-control>
     </nz-form-item>
