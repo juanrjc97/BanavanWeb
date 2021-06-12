@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   //validateForm!: FormGroup;
   public validateForm = this.fb.group({
-    userName: [null, [Validators.required, Validators.minLength(3), Validators.email]],
+    userName: [null, [Validators.required, Validators.minLength(3)]],
     password: [null, [Validators.required, Validators.minLength(3)]]
   });
 
