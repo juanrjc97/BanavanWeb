@@ -49,10 +49,16 @@ export class PersonalComponent implements OnInit {
   }
 
   cargarPersonal() {
-    this.PersonalService.cargarPersonal().subscribe((resp: any) => {
+    this.PersonalService.cargarPersonal().subscribe(
+      (resp: any) => {
       this.listOfPersonal = resp;
       this.updateEditCache();
-    });
+    },
+    (err)=>{
+      console.log(err);      
+    }
+    
+    );
   }
 
   /**
