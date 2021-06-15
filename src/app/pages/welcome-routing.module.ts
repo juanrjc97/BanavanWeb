@@ -10,6 +10,13 @@ import { SemanaComponent } from './semana/semana.component';
 import { CosechaComponent } from './cosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 import { MotivoComponent } from './motivo/motivo.component';
+import { RacimoComponent } from './racimo/racimo.component';
+import { EnfundadoComponent } from './enfundado/enfundado.component';
+import { ApuntaladoComponent } from './apuntalado/apuntalado.component';
+import { RepInventarioComponent } from './rep-inventario/rep-inventario.component';
+import { RepEnfundeComponent } from './rep-enfunde/rep-enfunde.component';
+import { RepSemanasComponent } from './rep-semanas/rep-semanas.component';
+import { RepRacimosPComponent } from './rep-racimos-p/rep-racimos-p.component';
 
 
 const routes: Routes = [
@@ -26,6 +33,16 @@ const routes: Routes = [
     { path: 'motivo', component: MotivoComponent},
     { path: 'cosecha', component: CosechaComponent},
     { path: 'solicitud-personal', component: SolpersonalComponent},
+
+    //admin pages
+    { path: 'racimo', component: RacimoComponent },
+    { path: 'enfudado', component: EnfundadoComponent},
+    { path: 'apuntalado', component: ApuntaladoComponent},
+    { path: 'inventarioRacimos', component: RepInventarioComponent},
+    { path: 'enfunde', component: RepEnfundeComponent},
+    { path: 'semanasRacimos', component: RepSemanasComponent},
+    { path: 'racimosPerdidos', component: RepRacimosPComponent}
+
      ] 
   },
 

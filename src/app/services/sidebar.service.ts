@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SidebarService {
 
-
-  menu: any[] = [
+  public userRole: string = 'admin' ;
+  public menu: any[] = [
     {
       title :'Finca',
       icon: 'dashboard',
@@ -24,8 +24,35 @@ export class SidebarService {
         {title: 'Personal' , icon: 'team', path: 'solicitud-personal'},
         {title: 'Cosecha' , icon: 'scissor', path: 'cosecha'},
       ],
+    },
+    {
+      title :'Inventario',
+      icon: 'container',
+      submenu: [
+        {title: 'Racimo' ,  icon: 'table',      path: 'racimo'},
+        {title: 'Enfundados' , icon: 'file-done',  path: 'enfudado'},
+        {title: 'Apuntalado' ,icon: 'schedule',  path: 'apuntalado'},
+      ],
+      
+    },
+    {
+      title :'Reportes',
+      icon: 'fund',
+      submenu: [
+        {title: 'Racimos' ,  icon: 'table',      path: 'inventarioRacimos'},
+        {title: 'Enfunde' , icon: 'file-done',  path: 'enfunde'},
+        {title: 'Semanas' ,icon: 'schedule',  path: 'semanasRacimos'},
+        {title: 'Perdidos' ,icon: 'stop',  path: 'racimosPerdidos'},
+      ],
+      
     }
   ]
 
-  constructor() { }
+  constructor() {
+    if (this.userRole === 'admin') {
+      this.menu.splice(0,2);  
+    }else{
+      this.menu.splice(2,1);  
+    }
+   }
 }

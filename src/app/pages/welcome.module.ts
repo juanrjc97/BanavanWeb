@@ -49,7 +49,15 @@ import { ColorPickerModule } from 'ngx-color-picker';
 //
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 //Directiva
-import { ValidateFormDirective } from '../directive/validate-form.directive'; 
+import { ValidateFormDirective } from '../directive/validate-form.directive';
+
+import { RacimoComponent } from './racimo/racimo.component';
+import { EnfundadoComponent } from './enfundado/enfundado.component';
+import { ApuntaladoComponent } from './apuntalado/apuntalado.component';
+import { RepInventarioComponent } from './rep-inventario/rep-inventario.component';
+import { RepEnfundeComponent } from './rep-enfunde/rep-enfunde.component';
+import { RepRacimosPComponent } from './rep-racimos-p/rep-racimos-p.component';
+import { RepSemanasComponent } from './rep-semanas/rep-semanas.component'; 
 
 
 @NgModule({
@@ -97,6 +105,14 @@ import { ValidateFormDirective } from '../directive/validate-form.directive';
     CrearColorComponent,
     ModificarColorSemanaComponent,
     ValidateFormDirective,
+    
+    RacimoComponent,
+    EnfundadoComponent,
+    ApuntaladoComponent,
+    RepInventarioComponent,
+    RepEnfundeComponent,
+    RepRacimosPComponent,
+    RepSemanasComponent,
   ],
   exports: [WelcomeComponent],
   providers: [{ provide: NZ_I18N, useValue: es_ES }, DatePipe],

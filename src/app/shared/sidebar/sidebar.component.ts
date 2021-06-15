@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
   
   isCollapsed = false;
   menuItems: any[];
-  constructor(private  serviceToggle:ToggleService, private sidebarService: SidebarService) {
+  constructor(private  serviceToggle:ToggleService, public sidebarService: SidebarService) {
     this.menuItems = sidebarService.menu;
    }
 

@@ -4,15 +4,15 @@
 </div>
 <ul nz-menu nzTheme="dark" nzMode="inline">
     <!-- [nzInlineCollapsed]="isCollapsed"-->
-    <li nz-menu-item>
+    <li [hidden]="sidebarService.userRole ==='admin' " nz-menu-item>
         <i nz-icon nzType="user"></i>
         <span><a  [routerLink]="['/dashboard']" routerLinkActive="active" >Personal</a></span>
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
         <i nz-icon nzType="container"></i>
         <span> <a [routerLink]="['inventario']" routerLinkActive="active" ></a>Inventario</span>
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
         <i nz-icon nzType="save"></i>
         <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
