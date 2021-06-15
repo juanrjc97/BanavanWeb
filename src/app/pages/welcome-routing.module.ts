@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'dashboard', component: WelcomeComponent , 
     children: [
     //{ path: '', loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)},
-    { path: '', component: PersonalComponent},
+    { path: '', component: PersonalComponent },
     { path: 'inventario', component: InventarioComponent},
     { path: 'respaldo', component: RespaldoComponent},
     { path: 'lote', component: LoteComponent},
@@ -34,7 +34,7 @@ const routes: Routes = [
     { path: 'cosecha', component: CosechaComponent},
     { path: 'solicitud-personal', component: SolpersonalComponent},
 
-    //admin pages
+    //admin pages //revisar el login y la pantalla que se muestra al iniciar
     { path: 'racimo', component: RacimoComponent },
     { path: 'enfudado', component: EnfundadoComponent},
     { path: 'apuntalado', component: ApuntaladoComponent},
