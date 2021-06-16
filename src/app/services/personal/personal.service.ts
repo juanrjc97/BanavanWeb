@@ -39,4 +39,9 @@ export class PersonalService {
                     );*/
   }
 
+  getCoockie(){
+    
+    return this.http.get('/sanctum/csrf-coockie')
+  }
+
 }
