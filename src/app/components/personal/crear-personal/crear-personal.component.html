@@ -47,7 +47,7 @@
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="rol">Rol</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona el rol!">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un rol" id="rol" formControlName="rol" [(ngModel)]="selectedValue">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un rol" id="rol" formControlName="rol" ngDefaultControl  [(ngModel)]="selectedValue">
                 <nz-option *ngFor="let rol of listOfRol" [nzLabel]="rol.nombre" [nzValue]="rol.nombre"></nz-option>
             </nz-select>
         </nz-form-control>
