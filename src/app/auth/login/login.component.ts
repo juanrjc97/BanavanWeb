@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router,private personalService: PersonalService) {}
 
   ngOnInit(): void {
-    
+    this.personalService.getCoockie('hola','12232');
   }
 
   submitForm(): void {
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       }
       
     }else{
-        
         this.personalService.login(this.validateForm.value)
                             .subscribe( (resp) =>{
                               this.router.navigateByUrl('/');
