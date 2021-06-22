@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { solicitud } from 'src/app/models/solicitudes';
+import { SolicitudService } from '../../services/solicitud/solicitud.service';
 
 @Component({
   selector: 'app-solpersonal',
@@ -9,18 +10,30 @@ import { solicitud } from 'src/app/models/solicitudes';
 export class SolpersonalComponent implements OnInit {
 
   public size = 20;
-  public listOfData: solicitud[] = [{
-    id: 1,
-    solicitud_tipo_id : 1,
-    mensaje : "Buenos dias, nos puede mandar una jaba al lote 10",
-    is_accepted: false,
-  }];
+  public listOfData: solicitud[] = [];
 
-  constructor() { }
+  constructor( private solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
+    this.cargarSolicitud();
+    console.log(this.listOfData);
   }
 
+  cargarSolicitud(){
+   this.solicitudService.getSolicutes().subscribe(
+     ( resp : any)=>{
+      console.log(resp);
+      resp.solicitudes.forEach((elemento: solicitud) => {
+        console.log(elemento.tipoSolicitud);
+        if (elemento.tipoSolicitud === 1) {
+            console.log("funka");
+            this.listOfData.push(elemento);
+        }
+      });
+      console.log(this.listOfData[0]);
+     }
+   )
+  }
   aceptarSol(id: number):void {
 
   }

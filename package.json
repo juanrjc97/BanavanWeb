@@ -22,7 +22,6 @@
     "@sentry/angular": "^6.6.0",
     "@sentry/browser": "^6.6.0",
     "@sentry/tracing": "^6.6.0",
-    "@types/axios": "^0.14.0",
     "@types/inputmask": "^5.0.0",
     "inputmask": "^5.0.6",
     "ng-zorro-antd": "^11.4.0",

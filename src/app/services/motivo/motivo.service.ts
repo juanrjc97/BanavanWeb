@@ -14,13 +14,13 @@ export class MotivoService {
 
   constructor(private http: HttpClient) { }
 
+  cargarMotivos() {
+    return this.http.get(this.path);
+  }
+
   crearMotivo( data: {titulo: string, desc: string}){
    
     return this.http.post(this.path, data);
-  }
-
-  cargarMotivos() {
-    return this.http.get(this.path);
   }
 
   actualizarMotivo(motivo: Motivo){

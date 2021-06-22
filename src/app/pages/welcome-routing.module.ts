@@ -7,7 +7,7 @@ import { RespaldoComponent } from './respaldo/respaldo.component';
 import { LoteComponent } from './lote/lote.component';
 import { ColorComponent } from './color/color.component';
 import { SemanaComponent } from './semana/semana.component';
-import { CosechaComponent } from './cosecha/cosecha.component';
+import { CosechaComponent } from './solcosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 import { MotivoComponent } from './motivo/motivo.component';
 import { RacimoComponent } from './racimo/racimo.component';

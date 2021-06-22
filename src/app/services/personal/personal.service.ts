@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { loginForm } from 'src/app/models/login-form';
 import { Personal } from 'src/app/models/personal';
 import { environment } from 'src/environments/environment';
-import axios from 'axios';
+
 
 @Injectable({
   providedIn: 'root',
@@ -41,13 +41,6 @@ export class PersonalService {
   }
 
   getCoockie(correo: string, pass: string){
-    axios.get('https://coco-backend-api.herokuapp.com/sanctum/csrf-coockie').then(()=>{
-      this.http.post('https://coco-backend-api.herokuapp.com/login', {email: correo, password: pass}).subscribe(
-        (resp:any)=>{
-          return resp;
-        }
-      );
-    } );
    
   }
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class SidebarService {
   
-  public userRole: string = 'admin' ; 
+  public userRole: string = '' ; 
   public menu: any[] = [
     {
       title :'Finca',
@@ -52,7 +52,7 @@ export class SidebarService {
     if (this.userRole === 'admin') {
       this.menu.splice(0,2);  
     }else{
-      this.menu.splice(2,1);  
+      this.menu.splice(2,2);  
     }
    }
 }

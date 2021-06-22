@@ -31,7 +31,7 @@ import { LoteComponent } from './lote/lote.component';
 import { ColorComponent } from './color/color.component';
 import { SemanaComponent } from './semana/semana.component';
 import { MotivoComponent } from './motivo/motivo.component';
-import { CosechaComponent } from './cosecha/cosecha.component';
+import { CosechaComponent } from './solcosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 //para la tabla 
 import { ScrollingModule } from '@angular/cdk/scrolling';
