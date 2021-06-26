@@ -77,7 +77,7 @@ export class CrearPersonalComponent implements OnInit {
    */
   crearPersonal() {
     const personal = {
-      ...this.validateForm.value,
+     ...this.validateForm.value,
     };
     console.log(personal);
     this.PersonalService.crearPersonal(personal).subscribe(

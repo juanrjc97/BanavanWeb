@@ -30,7 +30,7 @@ export class InventarioComponent implements OnInit {
   }) ;   
 
   public listOfData: Inventario[] = [];
-  public dataFiltrada: Inventario[] =[];
+  // public dataFiltrada: Inventario[] =[];
   constructor( private fb: FormBuilder, private inventarioService: InventarioService) { 
    
   }
@@ -41,27 +41,29 @@ export class InventarioComponent implements OnInit {
   }
 
   buscarSemana(){ 
+
     if (!this.semanafb.valid ||
         this.semanafb.get('minimo')?.value === this.semanafb.get('maximo')?.value
         || this.semanafb.get('minimo')?.value <0 
         || this.semanafb.get('maximo')?.value <0
         || this.semanafb.get('maximo')?.value > this.listOfData.length) {
-      return;
-    }
-    if (this.semanafb.get('rango')?.value ==='Entre') {
+      return this.listOfData;
+    }else if(this.semanafb.get('rango')?.value ==='Entre') {
         if (this.semanafb.get('maximo')?.value < this.listOfData.length ) {
-          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
-          this.semanafb.get('maximo')?.value );
           this.semanafb.disable();
-          return;
+          return this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
+                             this.semanafb.get('maximo')?.value );
+        
         }else{
-          this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
-          this.semanafb.get('maximo')?.value);
           this.semanafb.disable();
-          return;
-        }
-             
+          return this.listOfData =  this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
+                             this.semanafb.get('maximo')?.value);  
+          
+        }        
+    }else{
+      return this.listOfData;
     }
+    
   }
 
   resetData():void{
@@ -74,7 +76,7 @@ export class InventarioComponent implements OnInit {
 
   cargarInvetario(){
     this.inventarioService.cargarInventario().subscribe(
-      (resp:any)=> this.listOfData = resp.inventarioSem
+      (inventarioSem)=> this.listOfData = inventarioSem
     )
   }
  

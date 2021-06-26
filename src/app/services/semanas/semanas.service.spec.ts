@@ -16,4 +16,11 @@ describe('SemanasService', () => {
     const service: SemanasService = TestBed.inject(SemanasService);
     expect(service).toBeTruthy();
   });
+
+  it('should use ValueService', () => {
+    const service: SemanasService = TestBed.inject(SemanasService);
+    expect(service.get_semanas).toBeTruthy();
+  });
+
+ 
 });

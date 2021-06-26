@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { loginForm } from 'src/app/models/login-form';
 import { Personal } from 'src/app/models/personal';
 import { environment } from 'src/environments/environment';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -17,7 +18,9 @@ export class PersonalService {
   constructor(private http: HttpClient) {}
 
   cargarPersonal() {
-    return this.http.get(this.getPersonal);
+    return this.http.get(this.getPersonal).pipe( 
+      map((resp:any) => resp)
+      );;
   }
 
   crearPersonal(Personal: Personal) {
