@@ -3,7 +3,7 @@
     <button nz-button nzType="primary" (click)="showModal()" nzShape="round"><i nz-icon nzType="plus"></i>Agregar Cinta</button>
 </div>
 
-<nz-table #editRowTable nzBordered [nzData]="listOfCinta">
+<nz-table #editRowTable nzBordered [nzPageSize]="5" [nzData]="listOfCinta">
     <thead>
         <tr>
             <th nzWidth="10%">ID</th>
@@ -17,7 +17,7 @@
             <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
                 <td>{{ data.id }}</td>
                 <td>{{ data.nombre }}</td>
-                <td><input [value]="data.codigo" [(colorPicker)]="data.codigo" [cpOutputFormat]="'hex'" [cpDisabled]="true" [cpDisableInput]="true" [style.background]="data.codigo" readonly/></td>
+                <td><input [value]="data.hex_code" [(colorPicker)]="data.hex_code" [cpOutputFormat]="'hex'" [cpDisabled]="true" [cpDisableInput]="true" [style.background]="data.hex_code" readonly/></td>
                 <td class="text-center">
                     <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
                     <nz-divider nzType="vertical"></nz-divider>
@@ -27,7 +27,7 @@
             <ng-template #editTemplate>
                 <td>{{ data.id }}</td>
                 <td><input #nombre type="text" nz-input [(ngModel)]="editCache[data.id].data.nombre" appValidateForm="onlyLetterNumber" /></td>
-                <td> <input type="text" nz-input [(ngModel)]="editCache[data.id].data.codigo" [value]="editCache[data.id].data.codigo" [(colorPicker)]="editCache[data.id].data.codigo" [cpOutputFormat]="'hex'" [cpDisableInput]="true" [style.background]="editCache[data.id].data.codigo"
+                <td> <input type="text" nz-input [(ngModel)]="editCache[data.id].data.hex_code" [value]="editCache[data.id].data.hex_code" [(colorPicker)]="editCache[data.id].data.hex_code" [cpOutputFormat]="'hex'" [cpDisableInput]="true" [style.background]="editCache[data.id].data.hex_code"
                         readonly/></td>
                 <!--td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.codigo" /></td-->
                 <td class="text-center">

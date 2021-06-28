@@ -42,10 +42,11 @@ export class PersonalComponent implements OnInit {
   }
 
   cargarRoles() {
-    this.RolService.cargarRol().subscribe((resp: any) => {
+    this.listOfRol = this.RolService.cargarRol();
+    /*this.RolService.cargarRol().subscribe((resp: any) => {
       this.listOfRol = resp;
       console.log(resp);
-    });
+    });*/
   }
 
   cargarPersonal() {

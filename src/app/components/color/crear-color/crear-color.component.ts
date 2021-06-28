@@ -20,7 +20,7 @@ export class CrearColorComponent implements OnInit {
   alerta: AlertsComponent = new AlertsComponent();
 
   successCinta: Alerta = {
-    title: 'Cinta Agregado',
+    title: 'Cinta Agregada',
     text: 'Registro exitoso en la base de datos.',
     icon: 'success',
   };
@@ -35,7 +35,7 @@ export class CrearColorComponent implements OnInit {
     const cinta = {
       ...this.validateForm.value
     };
-    cinta.codigo = this.color1
+    cinta.hex_code = this.color1;
     console.log(cinta);
     this.ColorService.crearCinta(cinta).subscribe(
       (resp: any) => {

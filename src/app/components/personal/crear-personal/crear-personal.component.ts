@@ -65,11 +65,12 @@ export class CrearPersonalComponent implements OnInit {
   }
 
   cargarRoles() {
-    this.RolService.cargarRol().subscribe((resp: any) => {
+    this.listOfRol = this.RolService.cargarRol();
+    /*this.RolService.cargarRol().subscribe((resp: any) => {
       this.listOfRol = resp;
       console.log(this.listOfRol);
       
-    });
+    });*/
   }
 
   /** Crea el Personal con los datos del Form.

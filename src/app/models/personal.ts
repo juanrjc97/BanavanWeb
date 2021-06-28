@@ -3,7 +3,7 @@ export interface Personal {
   nombres: string;
   apellidos: string;
   cedula: string;
-  correo: string;
+  email: string;
   rol: string;
   activo: boolean;
   username: string;

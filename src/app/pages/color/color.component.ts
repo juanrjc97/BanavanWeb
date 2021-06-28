@@ -49,7 +49,11 @@ export class ColorComponent implements OnInit {
     this.ColorService.cargarCinta().subscribe((resp: any) => {
       this.listOfCinta = resp;
       this.updateEditCache();
-    });
+    },
+    (error)=>{
+      console.log(error);      
+    }
+    );
   }
 
   showModal(): void {
@@ -72,14 +76,12 @@ export class ColorComponent implements OnInit {
       (resp: any) => {
         console.log(resp);
         console.log(Color);
-
-        console.log('Color response: ' + Color.nombre + ' ' + Color.codigo);
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfCinta[index], this.editCache[id].data);
         this.editCache[id].edit = false;
       },
       (err) => {
-        console.log('Error: ' + err);
+        console.log(err);
         this.alerta.createBasicNotification(this.errorPut);
       }
     );
@@ -93,7 +95,7 @@ export class ColorComponent implements OnInit {
       },
       (err) => {
         this.alerta.createBasicNotification(this.errorDelete);
-        console.log('Error al elminar el motivo' + id + '\n' + err);
+        console.log('Error al elminar el color' + id + '\n' + err);
       }
     );
   }
@@ -116,7 +118,7 @@ export class ColorComponent implements OnInit {
       'El nombre es ' +
         this.listOfCinta[index].nombre +
         ' y el codigo: ' +
-        this.listOfCinta[index].codigo
+        this.listOfCinta[index].hex_code
     );
 
     this.actualizarCinta(this.listOfCinta[index], id, index);

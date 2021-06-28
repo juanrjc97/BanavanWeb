@@ -2,17 +2,23 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-//const BASE_URL = 'https://coco-backend-api.herokuapp.com/';
+const BASE_URL_PROD = 'https://coco-backend-api.herokuapp.com/api';
 const BASE_URL = 'http://demo7289443.mockable.io';
 
 export const environment = {
   production: false,
   base_url: BASE_URL,
   get_rol: BASE_URL + '/rol',
-  get_post_personal: BASE_URL + '/personal',
-  update_personal: BASE_URL + '/personal',
-  get_post_cinta: BASE_URL + '/cinta',
-  put_delete_cinta: BASE_URL + '/cinta',
+
+  get_personal: BASE_URL_PROD + '/personnel/get?isActive=0',
+  post_personal: BASE_URL_PROD + '/personnel/hire',
+  update_personal: BASE_URL_PROD + '/personnel/update',
+
+  get_cinta: BASE_URL_PROD + '/color/get',
+  post_cinta: BASE_URL_PROD + '/color/create',
+  put_cinta: BASE_URL_PROD + '/color/update',
+  delete_cinta: BASE_URL_PROD + '/color/delete',
+
   get_update_semanas: BASE_URL + '/semana',
 };
 

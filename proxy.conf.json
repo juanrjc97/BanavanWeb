@@ -1,0 +1,7 @@
+{
+    "/api/*":{
+        "target": "https://coco-backend-api.herokuapp.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
