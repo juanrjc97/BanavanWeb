@@ -10,10 +10,12 @@ export const environment = {
   base_url: BASE_URL,
   get_rol: BASE_URL + '/rol',
 
+  //personal
   get_personal: BASE_URL_PROD + '/personnel/get?isActive=0',
   post_personal: BASE_URL_PROD + '/personnel/hire',
   update_personal: BASE_URL_PROD + '/personnel/update',
 
+  //Color
   get_cinta: BASE_URL_PROD + '/color/get',
   post_cinta: BASE_URL_PROD + '/color/create',
   put_cinta: BASE_URL_PROD + '/color/update',

@@ -1,16 +1,16 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="nombre">Nombres</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="s">Nombres</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los nombres!">
-            <input nz-input id="nombre" formControlName="nombre" appValidateForm="words"/>
+            <input nz-input id="nombres" formControlName="nombres" appValidateForm="words"/>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="apellido">Apellidos</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="apellidos">Apellidos</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los apellidos!">
-            <input nz-input id="apellido" formControlName="apellido" appValidateForm="words"/>
+            <input nz-input id="apellidos" formControlName="apellidos" appValidateForm="words"/>
         </nz-form-control>
     </nz-form-item>
 
@@ -30,9 +30,9 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="correo">Correo</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email">Correo</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCorreo">
-            <input nz-input id="correo" formControlName="correo"/>
+            <input nz-input id="email" formControlName="email"/>
             <ng-template #errorCorreo let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     Por favor ingresa el correo electrónico!!
@@ -73,9 +73,9 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Contraseña</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="contrasena" nzRequired>Contraseña</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorPassword">
-            <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+            <input nz-input type="password" id="contrasena" formControlName="contrasena" (ngModelChange)="updateConfirmValidator()" />
             <ng-template #errorPassword let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     Por favor ingresa tu contraseña!

@@ -44,12 +44,12 @@ export class CrearPersonalComponent implements OnInit {
   ngOnInit(): void {
     
     this.validateForm = this.fb.group({
-      nombre: [null, [Validators.required]],
-      apellido: [null, [Validators.required]],
+      nombres: [null, [Validators.required]],
+      apellidos: [null, [Validators.required]],
       rol: [null, [Validators.required]],
       cedula: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
-      correo: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
+      email: [null, [Validators.required, Validators.email]],
+      contrasena: [null, [Validators.required, Validators.minLength(6)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       nickname: [
         null,
@@ -115,7 +115,7 @@ export class CrearPersonalComponent implements OnInit {
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
+    } else if (control.value !== this.validateForm.controls.contrasena.value) {
       return { confirm: true, error: true };
     }
     return {};

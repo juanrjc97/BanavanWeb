@@ -115,7 +115,7 @@ export class PersonalComponent implements OnInit {
   
   saveEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
-    this.actualizarPersonal(this.listOfPersonal[index], id, index);
+    this.actualizarPersonal(this.editCache[id].data, id, index);
     /*Object.assign(this.listOfPersonal[index], this.editCache[id].data);
     this.editCache[id].edit = false;*/
   }

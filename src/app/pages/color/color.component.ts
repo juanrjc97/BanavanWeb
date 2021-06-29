@@ -121,7 +121,7 @@ export class ColorComponent implements OnInit {
         this.listOfCinta[index].hex_code
     );
 
-    this.actualizarCinta(this.listOfCinta[index], id, index);
+    this.actualizarCinta(this.editCache[id].data, id, index);
     /*Object.assign(this.listOfCinta[index], this.editCache[id].data);
     this.editCache[id].edit = false;*/
   }
