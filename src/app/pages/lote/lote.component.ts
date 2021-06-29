@@ -18,7 +18,7 @@ export class LoteComponent implements OnInit {
   public  isVisible = false;
 
   public loteForm:FormGroup = this.fb.group({
-    numLote: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]  ],
+    numero: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]  ],
     superficie: [null, [Validators.required, Validators.pattern("^[0-9]*$"),]]
   });
 
@@ -31,7 +31,9 @@ export class LoteComponent implements OnInit {
   cargarLotes(){
     this.loteService.cargarLotes().subscribe( 
       (resp:any) =>  {
+       
         this.listOfData = resp.lotes;
+        console.log(this.listOfData);
         this.updateEditCache();
       }
     )
@@ -46,9 +48,9 @@ export class LoteComponent implements OnInit {
     this.loteService.crearLote(lote).subscribe(
       (resp:any)=>{
         Swal.fire('Nuevo Lote Creado', `El lote  se ha creado co Exito`, 'success')
-        console.log(resp);
+        this.cargarLotes();
       },(err)=>{
-        Swal.fire('Error','Ocurrio un erro al rear el Lote','error')
+        Swal.fire('Error','Ocurrio un erro al crear el Lote','error')
         console.log(err);
       }
     ) 
@@ -60,16 +62,16 @@ startEdit(id: number): void {
   this.editCache[id].edit = true;
 }
 
-saveEdit(id: number): void {
-
-  const index = this.listOfData.findIndex((item) => item.id === id);
-  this.loteService.actualizarLote( this.listOfData[index]).subscribe(
+saveEdit(id: number): void {  
+  const index = this.listOfData.findIndex(item => item.id === id);
+  Object.assign(this.listOfData[index], this.editCache[id].data);
+  this.editCache[id].edit = false;
+  console.log("lote compo");
+  this.loteService.actualizarLote( this.editCache[id].data).subscribe(
     (resp:any)=>{
       Swal.fire('Lote Actualizado','Se ha actualizado exitosamente', 'success');
       console.log('Lote actualizo');
-      const index = this.listOfData.findIndex(item => item.id === id);
-      Object.assign(this.listOfData[index], this.editCache[id].data);
-      this.editCache[id].edit = false;
+      
     }, (err)=>{
       Swal.fire('Error','Sucedio un error, no se pudo actualizar el elemento', 'error');
       this.editCache[id].edit = false;
@@ -81,7 +83,7 @@ saveEdit(id: number): void {
 
 deleteRow(id: number): void {
   
-  this.loteService.eliminarLote(`${id}`).subscribe(
+  this.loteService.eliminarLote(id).subscribe(
     (resp:any)=>{
       Swal.fire('Exito',"Elemento eliminado correctamente",'success')
       console.log("Lote eliminado");

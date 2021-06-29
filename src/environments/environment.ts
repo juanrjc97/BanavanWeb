@@ -20,6 +20,12 @@ export const environment = {
   delete_cinta: BASE_URL_PROD + '/color/delete',
 
   get_update_semanas: BASE_URL + '/semana',
+
+  //lotes
+  get_lote: BASE_URL_PROD + '/lote/get',
+  post_lote: BASE_URL_PROD + '/lote/create',
+  put_lote: BASE_URL_PROD + '/lote/update',
+  delete_lote: BASE_URL_PROD + '/lote/delete',
 };
 
 /*

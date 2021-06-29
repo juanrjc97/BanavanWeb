@@ -1,38 +1,46 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lote } from 'src/app/models/lote';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoteService {
 
-  
-  // Get: https://api.jsonbin.io/b/60a597c64e1de86b45d2222b
-  //         CRUD lote/id
-  // GET : http://demo5983135.mockable.io/lotes 
-  // DELETE: /id
-  // POST: misma url
-  // PUT: /id
   public path: string = 'http://demo5983135.mockable.io/lotes';
 
+  public getLoteUrl: string = environment.get_lote;
+  public postLoteUrl: string = environment.post_lote;
+  public deleteLoteUrl : string = environment.delete_lote;
+  public updateLoteUrl : string = environment.put_lote;
   constructor(private http: HttpClient) { }
 
   cargarLotes() {
-    return this.http.get(this.path);
+    return this.http.get(this.getLoteUrl);
   }
 
   crearLote(lote: Lote){ 
-    return this.http.post(this.path, lote);
+    return this.http.post(this.postLoteUrl, lote);
   }
   
   actualizarLote(lote: Lote){
-    return this.http.put(`${this.path}/id`, lote);
+  console.log(lote );
+  console.log('lote ser');
+    return this.http.put(this.updateLoteUrl, lote);
   }
 
-  eliminarLote(idLote: string){
+  eliminarLote(id: number){
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: `{
+        "id": ${id}
+     }` ,
+    };
     //agregar el idLote en el delete
-    return this.http.delete(`${this.path}/id`);
+    return this.http.delete(`${this.deleteLoteUrl}`,options );
   }
 
   
