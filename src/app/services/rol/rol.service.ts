@@ -7,7 +7,7 @@ import {Rol} from "src/app/models/rol";
   providedIn: 'root',
 })
 export class RolService {
-  public get_roles = environment.get_rol;
+  //public get_roles = environment.get_rol;
   public listOfRol: Rol[] = [
     {
       id: 1,
