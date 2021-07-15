@@ -75,9 +75,10 @@ export class PersonalComponent implements OnInit {
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfPersonal[index], this.editCache[id].data);
         this.editCache[id].edit = false;
+        console.log(resp);        
       },
       (err) => {
-        console.log('Error: ' + err);
+        console.log( err);
         this.alerta.createBasicNotification(this.errorPut);
       }
     );
