@@ -74,6 +74,7 @@ export class ColorComponent implements OnInit {
     this.ColorService.crearCinta(cinta).subscribe(
       (resp: any) => {
         console.log(resp);
+        this.validateForm.reset();
         Swal.fire(
           'Nueva cinta Agregada',
           `La cinta  se ha creado con exito`,
@@ -100,7 +101,6 @@ export class ColorComponent implements OnInit {
       }
     } else {
       this.crearCinta();
-      this.validateForm.reset();
     }
   }
 
@@ -109,12 +109,11 @@ export class ColorComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isVisible = false;
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
+    this.validateForm.reset();
     this.isVisible = false;
   }
 

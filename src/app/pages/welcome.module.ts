@@ -41,8 +41,6 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
-import { CrearPersonalComponent } from '../components/personal/crear-personal/crear-personal.component'
-
 import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
 //Para las cintas
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -101,7 +99,6 @@ import { RepSemanasComponent } from './rep-semanas/rep-semanas.component';
     MotivoComponent,
     CosechaComponent,
     SolpersonalComponent,
-    CrearPersonalComponent,
     
     ModificarColorSemanaComponent,
     ValidateFormDirective,
