@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzTableModule } from 'ng-zorro-antd/table';
+
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -34,6 +34,7 @@ import { MotivoComponent } from './motivo/motivo.component';
 import { CosechaComponent } from './solcosecha/cosecha.component';
 import { SolpersonalComponent } from './solpersonal/solpersonal.component';
 //para la tabla 
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NzDividerModule } from 'ng-zorro-antd/divider';

@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { loginForm } from 'src/app/models/login-form';
-import { Personal } from 'src/app/models/personal';
-import { environment } from 'src/environments/environment';
+/* eslint-disable require-jsdoc */
+/* eslint-disable new-cap */
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {loginForm} from 'src/app/models/login-form';
+import {Personal} from 'src/app/models/personal';
+import {environment} from 'src/environments/environment';
 import {map} from 'rxjs/operators';
 
 
@@ -30,9 +32,9 @@ export class PersonalService {
   }
 
   login(formData: loginForm): Observable<any> {
-    //agregar "login" al final de la url
+    // agregar "login" al final de la url
     // el pipe siempre regresa un observable
-    return this.http.post(`${this.updatePersonal}`, formData);
+    return this.http.post(`${environment.login}`, formData);
     /* .pipe(
                       tap((resp: any) => {
                         // token es la llave con la que se guardara el dato
@@ -41,5 +43,8 @@ export class PersonalService {
                     );*/
   }
 
-  getCoockie(correo: string, pass: string) {}
+  // eslint-disable-next-line require-jsdoc
+  getCoockie() {
+    return this.http.get(`${environment.getCookie}`);
+  }
 }

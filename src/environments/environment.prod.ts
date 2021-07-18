@@ -10,7 +10,8 @@ export const environment = {
    get_personal: BASE_URL + '/personnel/get?isActive=0',
    post_personal: BASE_URL + '/personnel/hire',
    update_personal: BASE_URL + '/personnel/update',
- 
+   login: BASE_URL + 'login',
+   getCookie: BASE_URL + 'sanctum/csrf-cookie',
    //Color
    get_cinta: BASE_URL + '/color/get',
    post_cinta: BASE_URL + '/color/create',

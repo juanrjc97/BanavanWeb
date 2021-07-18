@@ -7,6 +7,7 @@ const BASE_URL = 'https://coco-backend-api.herokuapp.com/api';
 
 export const environment = {
   production: false,
+ 
   //base_url: BASE_URL,
  // get_rol: BASE_URL + '/rol',
 
@@ -14,6 +15,8 @@ export const environment = {
   get_personal: BASE_URL + '/personnel/get?isActive=0',
   post_personal: BASE_URL + '/personnel/hire',
   update_personal: BASE_URL + '/personnel/update',
+  login: BASE_URL + 'login',
+  getCookie: BASE_URL + 'sanctum/csrf-cookie',
 
   //Color
   get_cinta: BASE_URL + '/color/get',
