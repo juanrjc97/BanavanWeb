@@ -44,6 +44,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { ModificarColorSemanaComponent } from '../components/semana/modificar-color-semana/modificar-color-semana.component';
 //Para las cintas
 import { ColorPickerModule } from 'ngx-color-picker';
+//Para los reportes administrador
+import { ChartsModule } from 'ng2-charts';
 //
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 //Directiva
@@ -84,6 +86,7 @@ import { RepSemanasComponent } from './rep-semanas/rep-semanas.component';
     NzInputModule,
     NzSpaceModule,
     ColorPickerModule,
+    ChartsModule,
     NzDividerModule,
     NzTypographyModule,
     NzDatePickerModule,
