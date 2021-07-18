@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { Alerta } from 'src/app/models/alert';
 import { ColorService } from 'src/app/services/color/color.service';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
@@ -12,6 +14,12 @@ export class ColorComponent implements OnInit {
   isVisible = false;
   public editCache: { [key: number]: { edit: boolean; data: Color } } = {};
   listOfCinta: Color[] = [];
+
+  public color1: string = '#2889e9';
+
+  public validateForm:FormGroup = this.fb.group({
+    nombre: [null, [Validators.required]]
+  });
 
   alerta: AlertsComponent = new AlertsComponent();
 
@@ -39,21 +47,61 @@ export class ColorComponent implements OnInit {
     icon: 'error',
   };
 
-  constructor(private ColorService: ColorService) {}
+  constructor(private fb: FormBuilder, private ColorService: ColorService) {}
 
   ngOnInit(): void {
     this.cargarCinta();
   }
 
   cargarCinta() {
-    this.ColorService.cargarCinta().subscribe((resp: any) => {
-      this.listOfCinta = resp;
-      this.updateEditCache();
-    },
-    (error)=>{
-      console.log(error);      
-    }
+    this.ColorService.cargarCinta().subscribe(
+      (resp: any) => {
+        this.listOfCinta = resp;
+        this.updateEditCache();
+      },
+      (error) => {
+        console.log(error);
+      }
     );
+  }
+
+  crearCinta() {
+    const cinta = {
+      ...this.validateForm.value,
+    };
+    cinta.hex_code = this.color1;
+    console.log(cinta);
+    this.ColorService.crearCinta(cinta).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.validateForm.reset();
+        Swal.fire(
+          'Nueva cinta Agregada',
+          `La cinta  se ha creado con exito`,
+          'success'
+        );
+        this.cargarCinta();
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Cinta No Agregada',
+          `Error en la base de datos o desconexión.`,
+          'error'
+        );
+      }
+    );
+  }
+
+  submitForm(): void {
+    if (this.validateForm.invalid) {
+      for (const i in this.validateForm.controls) {
+        this.validateForm.controls[i].markAsDirty();
+        this.validateForm.controls[i].updateValueAndValidity();
+      }
+    } else {
+      this.crearCinta();
+    }
   }
 
   showModal(): void {
@@ -61,12 +109,11 @@ export class ColorComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isVisible = false;
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
+    this.validateForm.reset();
     this.isVisible = false;
   }
 
@@ -87,7 +134,7 @@ export class ColorComponent implements OnInit {
     );
   }
 
-  deleteRow(Cinta: Color, id:number): void {
+  deleteRow(Cinta: Color, id: number): void {
     this.ColorService.eliminarCinta(Cinta).subscribe(
       (resp: any) => {
         this.listOfCinta = this.listOfCinta.filter((d) => d.id !== id);

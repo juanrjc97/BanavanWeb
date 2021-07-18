@@ -5,6 +5,6 @@ export interface Personal {
   cedula: string;
   email: string;
   rol: string;
-  activo: boolean;
+  activo: string;
   username: string;
 }

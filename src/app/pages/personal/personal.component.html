@@ -26,7 +26,7 @@
                 <td>{{ data.cedula }}</td>
                 <td>{{ data.email }}</td>
                 <td>{{ data.rol }}</td>
-                <td>{{ data.activo  ? "Sí" : "No" }}</td>
+                <td>{{ data.activo == "1" ? "Sí" : "No" }}</td>
                 <td>{{ data.username }}</td>
                 <td class="text-center">
                     <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
@@ -34,10 +34,10 @@
             </ng-container>
             <ng-template #editTemplate>
                 <td>{{ data.id }}</td>
-                <td><input #nombres type="text" nz-input [(ngModel)]="editCache[data.id].data.nombres" appValidateForm="words"/></td>
-                <td><input #apellidos type="text" nz-input [(ngModel)]="editCache[data.id].data.apellidos" appValidateForm="words"/></td>
-                <td><input #cedula type="text" nz-input [(ngModel)]="editCache[data.id].data.cedula" appValidateForm="integer"/></td>
-                <td><input #email type="email" nz-input [(ngModel)]="editCache[data.id].data.email"/></td>
+                <td><input #nombres type="text" nz-input [(ngModel)]="editCache[data.id].data.nombres" appValidateForm="words" /></td>
+                <td><input #apellidos type="text" nz-input [(ngModel)]="editCache[data.id].data.apellidos" appValidateForm="words" /></td>
+                <td><input #cedula type="text" nz-input [(ngModel)]="editCache[data.id].data.cedula" appValidateForm="integer" /></td>
+                <td><input #email type="email" nz-input [(ngModel)]="editCache[data.id].data.email" /></td>
                 <td>
                     <nz-select nzPlaceHolder="Selecciona un rol" [(ngModel)]="editCache[data.id].data.rol">
                         <nz-option *ngFor="let rol of listOfRol" [nzLabel]="rol.nombre" [nzValue]="rol.nombre"></nz-option>
@@ -46,13 +46,13 @@
                 <!--td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.rol" /></td-->
                 <td>
                     <nz-select [(ngModel)]="editCache[data.id].data.activo">
-                        <nz-option [nzValue]=true nzLabel="Sí"></nz-option>
-                        <nz-option [nzValue]=false nzLabel="No"></nz-option>
+                        <nz-option nzValue="1" nzLabel="Sí"></nz-option>
+                        <nz-option nzValue="0" nzLabel="No"></nz-option>
                     </nz-select>
                 </td>
-                <td><input #username type="text" nz-input [(ngModel)]="editCache[data.id].data.username" appValidateForm="username"/></td>
+                <td>{{ data.username }}</td>
                 <td class="text-center">
-                    <a *ngIf="nombres.value.length!==0 && apellidos.value.length!==0 && cedula.value.length!==0 && username.value.length!==0 && email.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
+                    <a *ngIf="nombres.value.length!==0 && apellidos.value.length!==0 && cedula.value.length!==0 && email.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
                     <a nz-popconfirm nzPopconfirmTitle="Deseas cancelar?" (nzOnConfirm)="cancelEdit(data.id)"><i nz-icon nzType="close-circle" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i></a>
                 </td>
                 <!--td>
@@ -72,6 +72,99 @@
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar Personal" [nzFooter]=null (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
     <ng-container *nzModalContent>
-        <app-crear-personal></app-crear-personal>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="s">Nombres</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los nombres!">
+                    <input nz-input id="nombres" formControlName="nombres" appValidateForm="words" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="apellidos">Apellidos</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa los apellidos!">
+                    <input nz-input id="apellidos" formControlName="apellidos" appValidateForm="words" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="cedula">Cédula</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCedula">
+                    <input nz-input id="cedula" formControlName="cedula" appValidateForm="integer" />
+                    <ng-template #errorCedula let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Por favor ingresa la cédula!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">
+                            Cédula con mínimo de 9 caracteres!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('pattern')">
+                            Ingrese solamente números!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email">Correo</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorCorreo">
+                    <input nz-input id="email" formControlName="email" />
+                    <ng-template #errorCorreo let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Por favor ingresa el correo electrónico!!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('email')">
+                            Ingrese un correo válido!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="rol">Rol</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona el rol!">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona un rol" id="rol" formControlName="rol" ngDefaultControl [(ngModel)]="selectedValue">
+                        <nz-option *ngFor="let rol of listOfRol" [nzLabel]="rol.nombre" [nzValue]="rol.nombre"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="contrasena" nzRequired>Contraseña</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorPassword">
+                    <input nz-input type="password" id="contrasena" formControlName="contrasena" (ngModelChange)="updateConfirmValidator()" />
+                    <ng-template #errorPassword let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Por favor ingresa tu contraseña!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">
+                            Contraseña con mínimo de 6 caracteres!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmar Contraseña</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                    <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+                    <ng-template #errorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Por favor confirma tu contraseña!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('confirm')">
+                            ¡Dos contraseñas que ingresa son inconsistentes!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+
+
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="10">
+                    <button nz-button nzType="primary">Registrar Personal</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
     </ng-container>
 </nz-modal>
