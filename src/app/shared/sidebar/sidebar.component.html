@@ -16,6 +16,7 @@
         <i nz-icon nzType="save"></i>
         <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
+
     <li nz-submenu nzTitle="{{item.title}}" *ngFor="let item of menuItems" nzIcon="{{item.icon}}">
         <ul>
             <li nz-menu-item nzMatchRouter *ngFor="let submenuItem of item.submenu">
@@ -29,40 +30,39 @@
 
 
 
+
+
+
+<!-- [nzInlineCollapsed]="isCollapsed"-->
+
 <!-- SubmeniNodinamico 
-    
-    
-    
-      <li nz-submenu nzTitle="Finca" nzIcon="dashboard">
-        <ul>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="table" nzTheme="outline"></i>
-                <a>Lote</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="bg-colors" nzTheme="outline"></i>
-                <a routerLink="/color">Color</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="schedule" nzTheme="outline"></i>
-                <a>Semana</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="message" nzTheme="outline"></i>
-                <a>Motivo</a>
-            </li>
-        </ul>
-    </li>
-    <li nz-submenu nzTitle="Solicitud" nzIcon="mail">
-        <ul>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="team" nzTheme="outline"></i>
-                <a>Personal</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-                <i nz-icon nzType="scissor" nzTheme="outline"></i>
-                <a>Cosecha</a>
-            </li>
-        </ul>
-    </li>
- -->
+    <div class="sidebar-logo">
+    <img src="../assets/img/logo.png">
+    <h1 class="sidebar-logo h1">Banavan S.A.</h1>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline">
+   
+<li [hidden]="sidebarService.userRole ==='admin' " nz-menu-item>
+    <i nz-icon nzType="user"></i>
+    <span><a  [routerLink]="['/dashboard']" routerLinkActive="active" >Personal</a></span>
+</li>
+<li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+    <i nz-icon nzType="container"></i>
+    <span> <a [routerLink]="['inventario']" routerLinkActive="active" ></a>Inventario</span>
+</li>
+<li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+    <i nz-icon nzType="save"></i>
+    <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
+</li>
+<li nz-submenu nzTitle="{{item.title}}" *ngFor="let item of menuItems" nzIcon="{{item.icon}}">
+    <ul>
+        <li nz-menu-item nzMatchRouter *ngFor="let submenuItem of item.submenu">
+            <i nz-icon nzType="{{submenuItem.icon}}" nzTheme="outline"></i>
+            <a [routerLink]="submenuItem.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{submenuItem.title}}</a>
+        </li>
+    </ul>
+</li>
+</ul>
+
+
+-->

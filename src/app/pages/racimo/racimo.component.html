@@ -1,1 +1,46 @@
-<p>racimo works!</p>
+<h1> Inventario de Racimos </h1>
+
+<div nz-space [nzSize]="size">
+    <nz-input-group *nzSpaceItem nzCompact [formGroup]="semanafb">
+        <nz-select formControlName="rango">
+            <nz-option [nzLabel]="'Entre'" [nzValue]="'Entre'"></nz-option>
+            <!--  <nz-option [nzLabel]="'Except'" [nzValue]="'Except'"></nz-option>-->
+        </nz-select>
+        <input formControlName="minimo" type="number" nz-input placeholder="Minimo" style="width:100px; text-align: center;" />
+        <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
+        <input formControlName="maximo" type="number" nz-input placeholder="Maximo" style="width:100px; text-align: center;" />
+    </nz-input-group>
+
+    <button *nzSpaceItem nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
+    <button *nzSpaceItem [hidden]="semanafb.invalid" nz-button (click)="resetData()" type="submit" nzType="primary"><i nz-icon nzType="close" nzTheme="outline"></i></button>
+    <br>
+    <br>
+</div>
+
+
+<nz-table #TableData nzBordered [nzPageSize]="5" [nzData]="listOfData" nzTableLayout="fixed">
+
+    <thead>
+        <tr>
+            <th nzWidth="10%">Color</th>
+            <th nzWidth="10%">Semana</th>
+            <th nzWidth="10%" [nzFilters]="filterlote" [nzFilterFn]="loteFilterFn">
+                Lote
+
+            </th>
+            <th nzWidth="10%">Enfundado</th>
+            <th nzWidth="10%">Cosechado</th>
+            <th nzWidth="10%">Cantidad Perdida</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of TableData.data">
+            <td>{{data.color }}</td>
+            <td>{{data.semana }}</td>
+            <td>{{data.lote}} </td>
+            <td>{{data.enfundado }}</td>
+            <td>{{data.cosechado }}</td>
+            <td>{{data.cPerdida}} </td>
+        </tr>
+    </tbody>
+</nz-table>

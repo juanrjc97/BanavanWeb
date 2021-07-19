@@ -79,9 +79,4 @@ export class InventarioComponent implements OnInit {
       (inventarioSem)=> this.listOfData = inventarioSem
     )
   }
- 
-
-
-
-
 }

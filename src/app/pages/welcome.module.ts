@@ -124,6 +124,6 @@ import {RepSemanasComponent} from './rep-semanas/rep-semanas.component';
   bootstrap: [AppComponent],
 })
 /**
- * 
+ *params:
  */
 export class WelcomeModule {}

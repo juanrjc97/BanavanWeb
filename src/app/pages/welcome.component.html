@@ -1,6 +1,45 @@
 <nz-layout>
-    <nz-sider nzCollapsible nzWidth="200px">
+    <nz-sider>
+        <app-sidebar></app-sidebar>
+    </nz-sider>
+    <nz-layout>
+        <app-header>
+        </app-header>
+        <nz-content>
+            <div class="inner-content cover">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <br>
+        <br>
+        <nz-footer>© 2021 Bananaweb</nz-footer>
+    </nz-layout>
+</nz-layout>
 
+<!--- 
+<nz-layout>
+    <app-header></app-header>
+    <nz-layout>
+        <app-sidebar></app-sidebar>
+        <nz-layout class="inner-layout">
+            <nz-content>
+
+                <div class="inner-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </nz-content>
+        </nz-layout>
+        <nz-footer>© 2021 Bananaweb</nz-footer>
+    </nz-layout>
+</nz-layout>
+
+
+
+
+
+///aqui muere
+<nz-layout>
+    <nz-sider nzCollapsible nzWidth="200px">
         <app-sidebar></app-sidebar>
     </nz-sider>
 
@@ -18,22 +57,5 @@
         <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
     </nz-layout>
 </nz-layout>
-
-<!--- 
-
-     <nz-header>
-        <app-header></app-header>
-    </nz-header>
-
-
-    <nz-layout>
-        <app-sidebar></app-sidebar>
-        <nz-content>
-
-            <div class="inner-content">
-                <router-outlet></router-outlet>
-            </div>
-        </nz-content>
-        <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
-    </nz-layout>
+     
 -->

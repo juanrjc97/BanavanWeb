@@ -57,6 +57,12 @@ nz-breadcrumb {
 padding: 20px 24px;
 */
 
+html,
+body {
+    height: 100%;
+    margin: 0px;
+}
+
 .app-header {
     height: 50px;
     padding: 10;
@@ -106,26 +112,6 @@ padding: 20px 24px;
     height: 32px;
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
-}
-
-nz-header {
-    background: #fff;
-    padding: 0;
-}
-
-nz-content {
-    margin: 0 16px;
-}
-
-.inner-content {
-    padding: 24px;
-    background: #fff;
-    min-height: 360px;
-    margin-top: 20px;
-}
-
-nz-footer {
-    text-align: center;
 }
 
 .toRight {

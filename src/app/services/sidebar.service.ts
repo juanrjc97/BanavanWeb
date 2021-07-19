@@ -1,58 +1,60 @@
-import { Injectable } from '@angular/core';
+/* eslint-disable require-jsdoc */
+/* eslint-disable new-cap */
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SidebarService {
-  
-  public userRole: string = '' ; 
+  public userRole: string = 'admin' ;
   public menu: any[] = [
     {
-      title :'Finca',
+      title: 'Finca',
       icon: 'dashboard',
       submenu: [
-        {title: 'Lote' ,  icon: 'table',      path: 'lote'},
-        {title: 'Cinta' , icon: 'bg-colors',  path: 'cinta'},
-        {title: 'Semana' ,icon: 'schedule',  path: 'semana'},
-        {title: 'Motivo' , icon: 'message' ,path: 'motivo'},
+        {title: 'Lote', icon: 'table', path: 'lote'},
+        {title: 'Cinta', icon: 'bg-colors', path: 'cinta'},
+        {title: 'Semana', icon: 'schedule', path: 'semana'},
+        {title: 'Motivo', icon: 'message', path: 'motivo'},
       ],
     },
     {
-      title :'Solicitud',
+      title: 'Solicitud',
       icon: 'mail',
       submenu: [
-        {title: 'Personal' , icon: 'team', path: 'solicitud-personal'},
-        {title: 'Cosecha' , icon: 'scissor', path: 'cosecha'},
+        {title: 'Personal', icon: 'team', path: 'solicitud-personal'},
+        {title: 'Cosecha', icon: 'scissor', path: 'cosecha'},
       ],
     },
+
     {
-      title :'Inventario',
+      title: 'Inventarios',
       icon: 'container',
       submenu: [
-        {title: 'Racimo' ,  icon: 'table',      path: 'racimo'},
-        {title: 'Enfundados' , icon: 'file-done',  path: 'enfudado'},
-        {title: 'Apuntalado' ,icon: 'schedule',  path: 'apuntalado'},
+        {title: 'Semanal', icon: 'table', path: 'inventario'},
+        {title: 'Enfundados', icon: 'file-done', path: 'racimo'},
+        {title: 'Apuntalado', icon: 'schedule', path: 'apuntalado'},
       ],
-      
+
     },
     {
-      title :'Reportes',
+      title: 'Reportes',
       icon: 'fund',
       submenu: [
-        {title: 'Racimos' ,  icon: 'table',      path: 'inventarioRacimos'},
-        {title: 'Enfunde' , icon: 'file-done',  path: 'enfunde'},
-        {title: 'Semanas' ,icon: 'schedule',  path: 'semanasRacimos'},
-        {title: 'Perdidos' ,icon: 'stop',  path: 'racimosPerdidos'},
+        {title: 'Racimos', icon: 'table', path: 'inventarioRacimos'},
+        {title: 'Enfunde', icon: 'file-done', path: 'enfunde'},
+        {title: 'Semanas', icon: 'schedule', path: 'semanasRacimos'},
+        {title: 'Perdidos', icon: 'stop', path: 'racimosPerdidos'},
       ],
-      
-    }
+
+    },
   ]
 
   constructor() {
     if (this.userRole === 'admin') {
-      this.menu.splice(0,2);  
-    }else{
-      this.menu.splice(2,2);  
+      this.menu.splice(0, 2);
+    } else {
+      this.menu.splice(2, 2);
     }
-   }
+  }
 }
