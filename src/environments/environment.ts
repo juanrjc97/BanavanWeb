@@ -4,12 +4,13 @@
 
 const BASE_URL = 'https://coco-backend-api.herokuapp.com/api';
 //const BASE_URL = 'http://demo7289443.mockable.io';
+const BASE_UR = 'http://demo7289443.mockable.io';
 
 export const environment = {
   production: false,
- 
+
   //base_url: BASE_URL,
- // get_rol: BASE_URL + '/rol',
+  // get_rol: BASE_URL + '/rol',
 
   //personal
   get_personal: BASE_URL + '/personnel/get?isActive=0',
@@ -31,6 +32,9 @@ export const environment = {
   post_lote: BASE_URL + '/lote/create',
   put_lote: BASE_URL + '/lote/update',
   delete_lote: BASE_URL + '/lote/delete',
+
+  // Reporte Enfundado x semana
+  get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',
 };
 
 /*

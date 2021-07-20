@@ -3,14 +3,14 @@
     <div class="row">
         <div class="col-md-8">
             <div style="display: block;">
-                <canvas 
-                baseChart width="100" height="100" 
-                [datasets]="lineChartData" 
-                [labels]="lineChartLabels"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"></canvas>
+                <canvas baseChart width="100" height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
             </div>
+        </div>
+        <div class="col-md-4">
+            <p>Filtro por anio:</p>
+            <nz-date-picker nzMode="year" [(ngModel)]="date" [nzInputReadOnly]=true (ngModelChange)="onChange($event)"></nz-date-picker>
+            <br />
+            <button class="btn btn-primary block" (click)="randomize()">RANDOM</button>
         </div>
     </div>
 
