@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RepRacimoSemanaService {
 
-  constructor() { }
+  public getRepRacimo: string = environment.get_reporte_racimo_semana;
+
+  constructor(private http: HttpClient) {}
+
+  cargarReporteEnfundado() {
+    return this.http.get(this.getRepRacimo);
+  }
 }
