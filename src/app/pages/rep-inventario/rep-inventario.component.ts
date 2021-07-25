@@ -77,6 +77,10 @@ export class RepInventarioComponent implements OnInit {
     },
   ];
 
+  public lineChartOptions: any = {
+    responsive: true,
+  };
+
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
 
@@ -113,7 +117,7 @@ export class RepInventarioComponent implements OnInit {
     this.loteService.cargarLotes().subscribe((resp: any) => {
       let lotesJson = resp.lotes;
       const children: Array<{ label: string; value: string }> = [];
-      for (let i = 0; i < lotesJson.length ; i++) {
+      for (let i = 0; i < lotesJson.length; i++) {
         children.push({
           label: 'Lote ' + lotesJson[i].numero,
           value: lotesJson[i].numero,

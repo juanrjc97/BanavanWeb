@@ -22,6 +22,10 @@ export class RepEnfundeComponent implements OnInit {
     { data: [35, 200, 300, 90, 224, 270, 400], label: 'Lote 7' },*/
   ];
 
+  public lineChartOptions: any = {
+    responsive: true,
+  };
+
   public lineChartLabels: Array<any> = [];
   public lineChartColors: Color[] = [
     {
