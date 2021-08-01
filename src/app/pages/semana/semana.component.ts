@@ -28,7 +28,6 @@ export class SemanaComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarCinta();
-    this.rellenar_lista();
     this.validateForm = this.fb.group({
       semana: [null, [Validators.required]],
       color: [null, [Validators.required]],
@@ -84,6 +83,7 @@ export class SemanaComponent implements OnInit {
     this.ColorService.cargarCinta().subscribe(
       (resp: any) => {
         this.listOfCinta = resp;
+        this.rellenar_lista();
       },
       (error) => {
         console.log(error);
@@ -127,12 +127,40 @@ export class SemanaComponent implements OnInit {
         this.listOfWeeks[index].numero +
         ' y el anho: ' +
         this.listOfWeeks[index].anho +
-        ' y el color y su ide es ' + 
-        this.listOfWeeks[index].name_color + 
+        ' y el color y su ide es ' +
+        this.listOfWeeks[index].name_color +
         this.listOfWeeks[index].color_id
     );
 
-    //this.actualizarCinta(this.editCache[id].data, id, index);
+    this.actualizarUnicaSemana(this.editCache[id].data, id, index);
+  }
+
+  /**
+   * Cambiar este metodo para llamar el endpoint respectivo para
+   * actualizar unica semana.
+   * Aparentemente el id se almacena en el name_color porque esa columna a editar
+   * tiene referenciado el name_color
+   */
+  actualizarUnicaSemana(Semana: Semana, id: number, index: number) {
+    const semana_seleccionada: any = {
+      semana: Semana.id,
+      color: Semana.name_color,
+      //color : Semana.color_id
+    };
+    console.log(semana_seleccionada);
+    this.SemanasService.actualizarSemanas(semana_seleccionada).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        Swal.fire('Única semana modificada', '', 'success');
+        Object.assign(this.listOfWeeks[index], this.editCache[id].data);
+        this.rellenar_lista();
+        this.editCache[id].edit = false;
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire('Error', `Semana no actualizada`, 'error');
+      }
+    );
   }
 
   updateEditCache(): void {

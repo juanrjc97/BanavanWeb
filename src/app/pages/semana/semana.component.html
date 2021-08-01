@@ -25,10 +25,14 @@
             <ng-template #editTemplate>
                 <td>{{ data.numero }}</td>
                 <td>{{ data.fecha_inicio }}</td>
-                <td><input #name_color type="text" nz-input [(ngModel)]="editCache[data.id].data.name_color" /></td>
+                <td>
+                    <nz-select nzPlaceHolder="Selecciona una  cinta" [(ngModel)]="editCache[data.id].data.name_color">
+                        <nz-option *ngFor="let cinta of listOfCinta" [nzLabel]="cinta.nombre" [nzValue]="cinta.id"></nz-option>
+                    </nz-select>
+                </td>
                 <!--td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.codigo" /></td-->
                 <td class="text-center">
-                    <a *ngIf="name_color.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
+                    <a (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
                     <a nz-popconfirm nzPopconfirmTitle="Deseas cancelar?" (nzOnConfirm)="cancelEdit(data.id)"><i nz-icon nzType="close-circle" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i></a>
                 </td>
             </ng-template>
@@ -45,7 +49,7 @@
                 <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="semana">Seleccionar semana inicial</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona una semana!">
                     <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecciona una semana" id="semana" formControlName="semana" [(ngModel)]="selectedValueDate">
-                        <nz-option *ngFor="let week of listOfWeeks" [nzLabel]="week.numero" [nzValue]="week.id"></nz-option>
+                        <nz-option *ngFor="let week of listOfWeeks" [nzLabel]="week.numero +' ~ ' + week.fecha_inicio" [nzValue]="week.id"></nz-option>
                     </nz-select>
                 </nz-form-control>
             </nz-form-item>
