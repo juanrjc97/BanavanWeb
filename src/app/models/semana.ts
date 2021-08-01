@@ -1,6 +1,8 @@
 export interface Semana {
   id: number;
-  semana: string;
-  fecha_inicial: string,
-  cinta: string;
+  numero: string;
+  anho: string;
+  fecha_inicio: string;
+  color_id: string;
+  name_color: string;
 }
