@@ -23,7 +23,8 @@ export class MotivoComponent implements OnInit {
   });
 
 
-  constructor(private fb: FormBuilder, private motivoService: MotivoService ) { }
+  constructor(private fb: FormBuilder,
+              private motivoService: MotivoService ) { }
 
   ngOnInit(): void {
     this.cargarMotivos();
@@ -33,9 +34,12 @@ export class MotivoComponent implements OnInit {
     console.log(this.motivoForm.value);
     this.motivoService.crearMotivo(this.motivoForm.value).subscribe(
         (resp:any)=>{
-          Swal.fire('Motivo Creado', 'Nuevo motivo creado Exitosamente', 'success');
+          Swal.fire('Motivo Creado',
+              'Nuevo motivo creado Exitosamente', 'success');
         }, (err)=>{
-          Swal.fire('ERROR', 'Ocurrio un error al crear el motivo, Intentalo mas tarde', 'error');
+          Swal.fire('ERROR',
+              'Ocurrio un error al crear el motivo, Intentalo mas tarde',
+              'error');
         },
     );
   }
@@ -60,13 +64,15 @@ export class MotivoComponent implements OnInit {
     const index = this.listOfData.findIndex((item) => item.id === id);
     this.motivoService.actualizarMotivo( this.listOfData[index]).subscribe(
         (resp:any)=>{
-          Swal.fire('Motivo Actualizado', 'Se ha actualizado exitosamente', 'success');
+          Swal.fire('Motivo Actualizado',
+              'Se ha actualizado exitosamente', 'success');
           console.log('motivo actualizo');
           const index = this.listOfData.findIndex((item) => item.id === id);
           Object.assign(this.listOfData[index], this.editCache[id].data);
           this.editCache[id].edit = false;
         }, (err)=>{
-          Swal.fire('Error', 'Sucedio un error, no se pudo actualizar el elemento', 'error');
+          Swal.fire('Error',
+              'Sucedio un error, no se pudo actualizar el elemento', 'error');
           this.editCache[id].edit = false;
           console.log('Error al actualizat el motivo' + id);
         },
@@ -80,7 +86,8 @@ export class MotivoComponent implements OnInit {
           console.log('motivo eliminado');
           this.listOfData = this.listOfData.filter((d) => d.id !== id);
         }, (err)=>{
-          Swal.fire('Error', 'Ocurrio un error al eliminar el elemento', 'error');
+          Swal.fire('Error',
+              'Ocurrio un error al eliminar el elemento', 'error');
           console.log('Error al elminar el motivo' + id + '\n' +err);
         },
     );
@@ -92,9 +99,7 @@ export class MotivoComponent implements OnInit {
         (item) => {
           this.editCache[item.id] = {
             edit: false,
-            data: {...item}, // con los 3 puntos se genera un copia completa del objeto al cual se le
-            // esta iterando (crea otro elemento igual) es como una copia sin referencia
-            // al objeto anterior
+            data: {...item},
           };
         },
     );
