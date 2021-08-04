@@ -22,7 +22,10 @@
                 <td class="text-center">
                     <a (click)="startEdit(data.id)" class="edit"> <i nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; color: #08c;"></i></a>
                     <nz-divider nzType="vertical"></nz-divider>
-                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
+                    <a nz-popconfirm nzPopconfirmTitle="¿Seguro que desea eliminar?" (nzOnConfirm)="deleteRow(data.id)" class=delete>
+                        <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)">
+                        </i>
+                    </a>
                 </td>
             </ng-container>
 
@@ -30,7 +33,10 @@
                 <td class="text-center"><input #lote type="text" nz-input [(ngModel)]="editCache[data.id].data.numero" /></td>
                 <td class="text-center"><input #super type="text" nz-input [(ngModel)]="editCache[data.id].data.superficie" /></td>
                 <td class="text-center">
-                    <a *ngIf=" super.value.length!==0 && lote.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?"><i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;"></i> </a>
+                    <a *ngIf=" super.value.length!==0 && lote.value.length!==0" (nzOnConfirm)="saveEdit(data.id)" class="save" nz-popconfirm nzPopconfirmTitle="¿Seguro desea guardar el cambio?">
+                        <i nz-icon nzType="save" nzTheme="outline" style="font-size: 20px; color: #08c;">
+                        </i>
+                    </a>
                     <!--<a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>  -->
                 </td>
 

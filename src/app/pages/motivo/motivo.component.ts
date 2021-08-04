@@ -19,7 +19,7 @@ export class MotivoComponent implements OnInit {
 
   public motivoForm:FormGroup = this.fb.group({
     titulo: [null, [Validators.required]],
-    Desc: [null, [Validators.required]],
+    descripcion: [null, [Validators.required]],
   });
 
 
@@ -47,8 +47,7 @@ export class MotivoComponent implements OnInit {
   cargarMotivos() {
     this.motivoService.cargarMotivos().subscribe(
         (resp:any)=>{
-          this.listOfData = resp.motivos;
-          // console.log(resp.motivos);
+          this.listOfData = resp;
           this.updateEditCache();
         },
     );
@@ -62,12 +61,12 @@ export class MotivoComponent implements OnInit {
 
   saveEdit(id: number): void {
     const index = this.listOfData.findIndex((item) => item.id === id);
-    this.motivoService.actualizarMotivo( this.listOfData[index]).subscribe(
+    const updateMotivo = this.editCache[id].data;
+    this.motivoService.actualizarMotivo( updateMotivo).subscribe(
         (resp:any)=>{
           Swal.fire('Motivo Actualizado',
               'Se ha actualizado exitosamente', 'success');
           console.log('motivo actualizo');
-          const index = this.listOfData.findIndex((item) => item.id === id);
           Object.assign(this.listOfData[index], this.editCache[id].data);
           this.editCache[id].edit = false;
         }, (err)=>{
@@ -80,6 +79,7 @@ export class MotivoComponent implements OnInit {
   }
 
   deleteRow(id: number): void {
+    console.log(id);
     this.motivoService.eliminarMotivo(id).subscribe(
         (resp:any)=>{
           Swal.fire('Exito', 'Elemento eliminado correctamente', 'success');
@@ -88,7 +88,7 @@ export class MotivoComponent implements OnInit {
         }, (err)=>{
           Swal.fire('Error',
               'Ocurrio un error al eliminar el elemento', 'error');
-          console.log('Error al elminar el motivo' + id + '\n' +err);
+          console.log(err);
         },
     );
   }
@@ -127,17 +127,17 @@ export class MotivoComponent implements OnInit {
       return;
     }
     this.crearMotivo();
+    this.cargarMotivos();
     this.isVisible = false;
     this.motivoForm.reset();
   }
 
 
-  /* verificar mejor la funcinalidad de guardar
-   cancelEdit(id: number): void {
-    const index = this.listOfData.findIndex(item => item.id === id);
+  cancelEdit(id: number): void {
+    const index = this.listOfData.findIndex( (item) => item.id === id);
     this.editCache[id] = {
-      data: { ...this.listOfData[index] },
-      edit: false
+      data: { ...this.listOfData[index]},
+      edit: false,
     };
-  }*/
+  }
 }

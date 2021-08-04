@@ -34,6 +34,15 @@ export const environment = {
   put_lote: BASE_URL + '/lote/update',
   delete_lote: BASE_URL + '/lote/delete',
 
+  //motivos
+  get_motivo: BASE_URL + '/perdidaMotivo/get',
+  put_motivo: BASE_URL + '/perdidaMotivo/update',
+  post_motivo: BASE_URL + '/perdidaMotivo/create',
+  delete_motivo: BASE_URL + '/perdidaMotivo/delete',
+
+  //solicitud
+  get_solicitud: BASE_URL + '/solicitud/get',
+
   // Reporte Enfundado x semana
   get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',
   // Reporte Racimo x semana
