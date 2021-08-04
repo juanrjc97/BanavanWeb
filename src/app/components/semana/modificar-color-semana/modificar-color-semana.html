@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <p class="text-center text-secondary">Cambia el color de cinta de las semanas desde una fecha especificada.</p>
+    <p class="text-center text-secondary">Cambia el color de cinta de las semanas desde una semana especificada.</p>
     <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="fecha">Seleccionar fecha inicial</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="fecha">Seleccionar semana inicial</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona una fecha!">
             <nz-date-picker [(ngModel)]="selectedValueDate" id="fecha" formControlName="fecha" nzFormat="dd/MM/yyyy" ></nz-date-picker>
         </nz-form-control>

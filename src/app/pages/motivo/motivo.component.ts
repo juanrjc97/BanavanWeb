@@ -119,6 +119,7 @@ export class MotivoComponent implements OnInit {
   // hacer aqui la llamada a crearMotivo
   submitForm(): void {
     if (this.motivoForm.invalid) {
+      // eslint-disable-next-line guard-for-in
       for (const i in this.motivoForm.controls) {
         this.motivoForm.controls[i].markAsDirty();
         this.motivoForm.controls[i].updateValueAndValidity();

@@ -18,7 +18,8 @@ export const environment = {
   put_cinta: BASE_URL + '/color/update',
   delete_cinta: BASE_URL + '/color/delete',
 
-  get_update_semanas: BASE_UR + '/semana',
+  get_semanas: BASE_URL + '/semana/get',
+  post_semanas: BASE_URL + '/semana/pivot',
 
   //lotes
   get_lote: BASE_URL + '/lote/get',

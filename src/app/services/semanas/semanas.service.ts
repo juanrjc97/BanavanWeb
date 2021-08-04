@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class SemanasService {
-  public get_semanas: string = environment.get_update_semanas;
+  public get_semanas: string = environment.get_semanas;
+  public post_semanas: string = environment.post_semanas;
   constructor(private http: HttpClient) {}
 
   cargarSemanas() {
@@ -15,7 +16,6 @@ export class SemanasService {
   }
 
   actualizarSemanas(Semana: any) {
-    return this.http.put(`${this.get_semanas}`, Semana);
+    return this.http.post(`${this.post_semanas}`, Semana);
   }
-
 }
