@@ -136,7 +136,7 @@ export class MotivoComponent implements OnInit {
   cancelEdit(id: number): void {
     const index = this.listOfData.findIndex( (item) => item.id === id);
     this.editCache[id] = {
-      data: { ...this.listOfData[index]},
+      data: {...this.listOfData[index]},
       edit: false,
     };
   }

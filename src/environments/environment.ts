@@ -42,6 +42,7 @@ export const environment = {
 
   //solicitud
   get_solicitud: BASE_URL + '/solicitud/get',
+  update_solicitud: BASE_URL + '/solicitud/respond',
 
   // Reporte Enfundado x semana
   get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',

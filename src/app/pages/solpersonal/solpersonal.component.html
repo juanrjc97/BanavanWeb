@@ -1,26 +1,38 @@
-<h1> Solicitudes de Personal </h1>
+<h1> Solicitudes</h1>
 <br>
+<div class="row animated fadein fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="spinner-border text-primary" role="status" aria-hidden="true"></i>
+            <p class="mb-0"></p>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <nz-table #TableData nzBordered [nzPageSize]="5" [nzData]="listOfData" nzTableLayout="fixed">
 
-<nz-table #TableData nzBordered [nzPageSize]="5" [nzData]="listOfData" nzTableLayout="fixed">
-
-    <thead>
-        <tr>
-            <th class="text-center" nzWidth="80%">Mensaje</th>
-            <th class="text-center" nzWidth="20%">Lote</th>
-            <th class="text-center" nzWidth="20%">Cant. Personal</th>
-            <th class="text-center" nzWidth="20%">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of TableData.data">
-            <td class="text-center">{{data.mensaje}}</td>
-            <td class="text-center">{{data.lote}}</td>
-            <td class="text-center">{{data.trabajadores}}</td>
-            <td class="text-center">
-                <a (click)="aceptarSol(data.id)" class="edit"> <i nz-icon nzType="check" nzTheme="outline" style="font-size: 20px; color: rgb(0, 204, 102);"></i></a>
-                <nz-divider nzType="vertical"></nz-divider>
-                <a (click)="rechazarSol(data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
-            </td>
-        </tr>
-    </tbody>
-</nz-table>
+            <thead>
+                <tr>
+                    <th class="text-center" nzWidth="80%">Mensaje</th>
+                    <th class="text-center" nzWidth="20%">Lote</th>
+                    <th class="text-center" nzWidth="20%">Cant. Personal</th>
+                    <th class="text-center" nzWidth="20%">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of TableData.data">
+                    <td class="text-center">{{data.mensaje}}</td>
+                    <td class="text-center">{{data.lote_id}}</td>
+                    <td class="text-center">{{data.personal_requerido}}</td>
+                    <td class="text-center">
+                        <a (click)="aceptarSol(data.id)" class="edit"> <i nz-icon nzType="check" nzTheme="outline" style="font-size: 20px; color: rgb(0, 204, 102);"></i></a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a (click)="rechazarSol(data.id)" class=delete> <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; color:  rgb(204, 0, 0)"></i> </a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

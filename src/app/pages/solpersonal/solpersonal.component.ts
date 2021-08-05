@@ -2,7 +2,10 @@
 import {Component, OnInit} from '@angular/core';
 import {solicitud} from 'src/app/models/solicitudes';
 import {SolicitudService} from '../../services/solicitud/solicitud.service';
+import Swal from 'sweetalert2';
+import {delay} from 'rxjs/operators';
 
+// eslint-disable-next-line new-cap
 @Component({
   selector: 'app-solpersonal',
   templateUrl: './solpersonal.component.html',
@@ -11,32 +14,65 @@ import {SolicitudService} from '../../services/solicitud/solicitud.service';
 export class SolpersonalComponent implements OnInit {
   public size = 20;
   public listOfData: solicitud[] = [];
+  public cargando = true;
 
   constructor( private solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
     this.cargarSolicitud();
-    console.log(this.listOfData);
+    /* setTimeout(
+        function() {
+          location.reload();
+        }, 10000);*/
   }
 
   cargarSolicitud() {
     this.solicitudService.getSolicutes().subscribe(
         ( resp : any)=>{
-          console.log(resp);
-          resp.solicitudes.forEach((elemento: solicitud) => {
-            console.log(elemento.tipoSolicitud);
-            if (elemento.tipoSolicitud === 1) {
-              console.log('funka');
-              this.listOfData.push(elemento);
+          resp.solicitudes.forEach((element:any) => {
+            if (element.is_answered ==='0') {
+              this.listOfData.push(element);
             }
           });
+          this.cargando =false;
+        }, (error)=>{
+          Swal.fire('Error',
+              'Sucedio un error al cargar las Solicitudes', 'error');
         },
     );
   }
   aceptarSol(id: number):void {
-
+    this.solicitudService.updateSolicitudes(id, true)
+        .pipe(delay(100)).subscribe(
+            (resp:any)=>{
+              if (resp.status) {
+                this.cargando =true;
+                this.cargarSolicitud();
+                Swal.fire('Exito', resp.message, 'success');
+                this.listOfData = [];
+              } else {
+                Swal.fire('Atención', resp.message, 'warning');
+              }
+            }, (error)=>{
+              Swal.fire('Exito', error.message, 'error');
+            },
+        );
   }
   rechazarSol(id: number): void {
-
+    this.solicitudService.updateSolicitudes(id, false)
+        .pipe(delay(100)).subscribe(
+            (resp:any)=>{
+              if (resp.status) {
+                this.cargando =true;
+                this.cargarSolicitud();
+                Swal.fire('Exito', resp.message, 'success');
+                this.listOfData = [];
+              } else {
+                Swal.fire('Atención', resp.message, 'warning');
+              }
+            }, (error)=>{
+              Swal.fire('Exito', error.message, 'error');
+            },
+        );
   }
 }
