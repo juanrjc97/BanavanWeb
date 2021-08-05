@@ -16,6 +16,10 @@
         <i nz-icon nzType="save"></i>
         <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
+    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+        <i nz-icon nzType="mail"></i>
+        <span><a [routerLink]="['solicitud-personal']" routerLinkActive="active"  ></a> Solicitudes</span>
+    </li>
 
     <li nz-submenu nzTitle="{{item.title}}" *ngFor="let item of menuItems" nzIcon="{{item.icon}}">
         <ul>

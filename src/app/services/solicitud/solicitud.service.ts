@@ -11,9 +11,14 @@ import {environment} from '../../../environments/environment.prod';
 export class SolicitudService {
   public getSolicitud: string = environment.get_solicitud;
   public updateSolicitud : string = environment.update_solicitud;
+  public getTipoSolicitud: string = environment.get_tipoSolicitud;
   public path = 'http://demo5983135.mockable.io/solpersonal';
 
   constructor(private http: HttpClient) { }
+
+  getTipoSolicitudes() {
+    return this.http.get(this.getTipoSolicitud);
+  }
 
   getSolicutes() {
     return this.http.get(this.getSolicitud);

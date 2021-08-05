@@ -14,11 +14,13 @@ import {delay} from 'rxjs/operators';
 export class SolpersonalComponent implements OnInit {
   public size = 20;
   public listOfData: solicitud[] = [];
+  public tiposSolicitud: { [key: string]: { titulo:string} } = {};
   public cargando = true;
 
   constructor( private solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
+    this.cargarTipos();
     this.cargarSolicitud();
     /* setTimeout(
         function() {
@@ -34,10 +36,19 @@ export class SolpersonalComponent implements OnInit {
               this.listOfData.push(element);
             }
           });
-          this.cargando =false;
         }, (error)=>{
           Swal.fire('Error',
               'Sucedio un error al cargar las Solicitudes', 'error');
+        },
+    );
+  }
+  cargarTipos() {
+    this.solicitudService.getTipoSolicitudes().subscribe(
+        (resp:any)=>{
+          resp.forEach((item:any) => {
+            this.tiposSolicitud[`${item.id}`] = item.titulo;
+          });
+          this.cargando =false;
         },
     );
   }

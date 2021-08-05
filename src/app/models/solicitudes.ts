@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 export interface solicitud {
     id: number,
-    tipoSolicitud: number,
+    solicitud_tipo_id: string,
     lote_id: number,
     personal_requerido: string,
     mensaje : string,
