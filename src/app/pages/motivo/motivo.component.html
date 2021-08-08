@@ -43,7 +43,7 @@
 <nz-table #editRowTable nzBordered [nzData]="listOfData" [nzPageSize]="5" nzTableLayout="fixed">
     <thead>
         <tr>
-            <th nzWidth="10%">Id</th>
+
             <th nzWidth="15%">Titulo</th>
             <th nzWidth="30%">Descripción</th>
             <th nzWidth="10%">Acción</th>
@@ -52,7 +52,7 @@
     <tbody>
         <tr *ngFor="let data of editRowTable.data">
             <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
-                <td>{{ data.id }}</td>
+
                 <td>{{ data.titulo }}</td>
                 <td>{{ data.descripcion }}</td>
                 <td class="text-center">
@@ -66,7 +66,7 @@
             </ng-container>
 
             <ng-template #editTemplate>
-                <td> {{ data.id }}</td>
+
                 <td><input #titulo type="text" nz-input [(ngModel)]="editCache[data.id].data.titulo" /></td>
                 <td><input #desc type="text" nz-input [(ngModel)]="editCache[data.id].data.descripcion" /></td>
                 <td class="text-center">
