@@ -29,13 +29,17 @@ export class SolpersonalComponent implements OnInit {
   }
 
   cargarSolicitud() {
+    this.cargando =true;
     this.solicitudService.getSolicutes().subscribe(
         ( resp : any)=>{
+          this.cargarTipos();
           resp.solicitudes.forEach((element:any) => {
             if (element.is_answered ==='0') {
               this.listOfData.push(element);
             }
           });
+          console.log(this.listOfData);
+          this.cargando =false;
         }, (error)=>{
           Swal.fire('Error',
               'Sucedio un error al cargar las Solicitudes', 'error');
@@ -48,42 +52,66 @@ export class SolpersonalComponent implements OnInit {
           resp.forEach((item:any) => {
             this.tiposSolicitud[`${item.id}`] = item.titulo;
           });
-          this.cargando =false;
+          // this.cargando =false;
         },
     );
   }
-  aceptarSol(id: number):void {
-    this.solicitudService.updateSolicitudes(id, true)
-        .pipe(delay(100)).subscribe(
-            (resp:any)=>{
-              if (resp.status) {
-                this.cargando =true;
-                this.cargarSolicitud();
-                Swal.fire('Exito', resp.message, 'success');
-                this.listOfData = [];
-              } else {
-                Swal.fire('Atención', resp.message, 'warning');
-              }
-            }, (error)=>{
-              Swal.fire('Exito', error.message, 'error');
-            },
-        );
+
+  aceptarSol(id: number) {
+    Swal.fire({
+      title: 'Esta seguro de aceptar la solicitud?',
+      text: 'Esta accion no se pude revertir!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.solicitudService.updateSolicitudes(id, true)
+            .pipe(delay(100)).subscribe(
+                (resp:any)=>{
+                  if (resp.status) {
+                    this.listOfData = [];
+                    this.cargarSolicitud();
+                    Swal.fire('Exito', 'Solicitud Aceptada', 'success');
+                  } else {
+                    Swal.fire('Atención', resp.message, 'warning');
+                  }
+                }, (error)=>{
+                  Swal.fire('Exito', error.message, 'error');
+                },
+            );
+      }
+    });
   }
-  rechazarSol(id: number): void {
-    this.solicitudService.updateSolicitudes(id, false)
-        .pipe(delay(100)).subscribe(
-            (resp:any)=>{
-              if (resp.status) {
-                this.cargando =true;
-                this.cargarSolicitud();
-                Swal.fire('Exito', resp.message, 'success');
-                this.listOfData = [];
-              } else {
-                Swal.fire('Atención', resp.message, 'warning');
-              }
-            }, (error)=>{
-              Swal.fire('Exito', error.message, 'error');
-            },
-        );
+
+  rechazarSol(id: number) {
+    Swal.fire({
+      title: 'Esta seguro de rechazar la solicitud?',
+      text: 'Esta accion no se pude revertir!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Rechazar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.solicitudService.updateSolicitudes(id, false)
+            .pipe(delay(100)).subscribe(
+                (resp:any)=>{
+                  if (resp.status) {
+                    this.listOfData = [];
+                    this.cargarSolicitud();
+                    Swal.fire('Exito', 'Solicitud Rechazada', 'success');
+                  } else {
+                    Swal.fire('Atención', resp.message, 'warning');
+                  }
+                }, (error)=>{
+                  Swal.fire('Exito', error.message, 'error');
+                },
+            );
+      }
+    });
   }
 }
