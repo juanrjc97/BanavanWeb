@@ -20,7 +20,6 @@ export class SolpersonalComponent implements OnInit {
   constructor( private solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
-    this.cargarTipos();
     this.cargarSolicitud();
     /* setTimeout(
         function() {
@@ -34,9 +33,7 @@ export class SolpersonalComponent implements OnInit {
         ( resp : any)=>{
           this.cargarTipos();
           resp.solicitudes.forEach((element:any) => {
-            if (element.is_answered ==='0') {
-              this.listOfData.push(element);
-            }
+            this.listOfData.push(element);
           });
           console.log(this.listOfData);
           this.cargando =false;

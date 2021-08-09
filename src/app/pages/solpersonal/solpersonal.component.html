@@ -19,6 +19,7 @@
                     <th class="text-center" nzWidth="80%">Mensaje</th>
                     <th class="text-center" nzWidth="20%">Lote</th>
                     <th class="text-center" nzWidth="20%">Cant. Personal</th>
+                    <th class="text-center" nzWidth="20%">Estado</th>
                     <th class="text-center" nzWidth="20%">Acciones</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                     <td class="text-center">{{data.mensaje}}</td>
                     <td class="text-center">{{data.lote_id}}</td>
                     <td class="text-center">{{data.personal_requerido}}</td>
+                    <td class="text-center">{{ data.is_answered ==false ? "Visto" : "Respondido" }}</td>
                     <td class="text-center">
                         <a (click)="aceptarSol(data.id)" class="edit">
                             <i nz-icon nzType="check" nzTheme="outline" style="font-size: 20px; color: rgb(0, 204, 102);">

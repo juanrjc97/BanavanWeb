@@ -3,6 +3,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {inventarioRacimos} from 'src/app/models/inventarioRacimo';
+import { InventarioService } from '../../services/inventario/inventario.service';
 
 // eslint-disable-next-line new-cap
 @Component({
@@ -91,6 +92,7 @@ export class RacimoComponent implements OnInit {
    * params:
    */
   ngOnInit(): void {
+    this.cargarInvetario();
   }
   /**
   * @return {array} Una lista de datos filtrados.
@@ -125,12 +127,13 @@ export class RacimoComponent implements OnInit {
   resetData():void {
     this.semanafb.enable();
     this.semanafb.setValue( {'rango': 'Entre', 'minimo': '', 'maximo': ''});
-    // const data = [];
+    const data = [];
     this.cargarInvetario();
   }
   /**
    * params
    */
   cargarInvetario() {
+   
   }
 }
