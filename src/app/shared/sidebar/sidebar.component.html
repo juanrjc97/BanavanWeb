@@ -12,11 +12,11 @@
         <i nz-icon nzType="container"></i>
         <span> <a [routerLink]="['inventario']" routerLinkActive="active" ></a>Inventario</span>
     </li>
-    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' " id="sidebar-respaldo">
         <i nz-icon nzType="save"></i>
         <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
-    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' " id="sidebar-solicitud">
         <i nz-icon nzType="mail"></i>
         <span><a [routerLink]="['solicitud-personal']" routerLinkActive="active"  ></a> Solicitudes</span>
     </li>
