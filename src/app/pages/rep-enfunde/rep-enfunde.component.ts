@@ -13,9 +13,9 @@ export class RepEnfundeComponent implements OnInit {
   date = null;
 
   public lineChartData: ChartDataSets[] = [
-    /*{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Lote 2' },
-    { data: [180, 480, 770, 90, 750, 270, 400], label: 'Lote 3' },
+    /*{ data: [ 480, 0,,,, 0, 150 ,,,,, 150 ,,, 12 , 25,32], label: 'Lote 3' },
     { data: [35, 200, 770, 90, 625, 270, 400], label: 'Lote 4' },
     { data: [35, 100, 770, 90, 122, 270, 550], label: 'Lote 5' },
     { data: [45, 300, 150, 90, 373, 270, 400], label: 'Lote 6' },
@@ -95,7 +95,7 @@ export class RepEnfundeComponent implements OnInit {
   cargarReportesEnfundados(): void {
     this.RepEnfundadoSemanaService.cargarReporteEnfundado().subscribe(
       (resp: any) => {
-        this.lineChartData = resp;
+        //this.lineChartData = resp;
       },
       (error) => {
         console.log(error);
@@ -104,8 +104,16 @@ export class RepEnfundeComponent implements OnInit {
   }
 
   cargarSemanas(): void {
-    for (let index = 0; index < 20; ++index) {
-      this.lineChartLabels[index] = index + 1;
+    let semanasL: Array<any> = new Array();
+    semanasL.push(0);
+    semanasL.push(3);
+    semanasL.push(2);
+    semanasL.push(8);
+    semanasL.push(18);
+    semanasL.push(21);
+    semanasL.push(30);
+    for (let index = 0; index < semanasL.length ; ++index) {
+      this.lineChartLabels[index] = semanasL[index];
     }
   }
 

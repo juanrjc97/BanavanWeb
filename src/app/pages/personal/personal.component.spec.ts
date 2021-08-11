@@ -44,9 +44,9 @@ describe('PersonalComponent', () => {
         nombres: 'juan',
         apellidos: 'jimenez',
         cedula: '12323434',
-        correo: 'jj@gmail.com',
+        email: 'jj@gmail.com',
         rol: 'admin',
-        activo: true,
+        activo: "1",
         username: 'juanj'
       }   
     ]
@@ -78,9 +78,9 @@ describe('PersonalComponent', () => {
         nombres: 'juan',
         apellidos: 'jimenez',
         cedula: '12323434',
-        correo: 'jj@gmail.com',
+        email: 'jj@gmail.com',
         rol: 'admin',
-        activo: true,
+        activo: "1",
         username: 'juanj'
       }   
     

@@ -53,13 +53,13 @@ export class SemanaComponent implements OnInit {
           for (let index = 0; index < resp.semanas.length; index++) {
             let element = resp.semanas[index];
             element.name_color = this.getColorId(element.color_id);
-            console.log(element);
+            //console.log(element);
             this.listOfWeeks = resp.semanas;
           }
 
           this.updateEditCache();
         }
-        console.log(this.listOfWeeks);
+        //console.log(this.listOfWeeks);
       },
       (error) => {
         console.log(error);
@@ -98,7 +98,7 @@ export class SemanaComponent implements OnInit {
     this.SemanasService.actualizarSemanas(semana).subscribe(
       (resp: any) => {
         this.rellenar_lista();
-        console.log(semana);
+        //console.log(semana);
         Swal.fire('Cinta de semana actualizada', resp.message, 'success');
       },
       (err) => {
@@ -150,7 +150,7 @@ export class SemanaComponent implements OnInit {
     console.log(semana_seleccionada);
     this.SemanasService.actualizarSemanas(semana_seleccionada).subscribe(
       (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
         Swal.fire('Única semana modificada', '', 'success');
         Object.assign(this.listOfWeeks[index], this.editCache[id].data);
         this.rellenar_lista();

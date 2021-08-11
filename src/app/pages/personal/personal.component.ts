@@ -100,7 +100,7 @@ export class PersonalComponent implements OnInit {
   actualizarPersonal(Personal: Personal, id: number, index: number) {
     this.PersonalService.actualizarPersonal(Personal).subscribe(
       (resp: any) => {
-        console.log(Personal);
+        //console.log(Personal);
         this.alerta.createBasicNotification(this.succesPut);
         Object.assign(this.listOfPersonal[index], this.editCache[id].data);
         this.editCache[id].edit = false;
@@ -128,7 +128,7 @@ export class PersonalComponent implements OnInit {
 
   startEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
-    console.log(this.listOfPersonal[index]);
+    //console.log(this.listOfPersonal[index]);
 
     this.editCache[id].edit = true;
   }

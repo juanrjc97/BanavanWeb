@@ -37,6 +37,10 @@ export class RolService {
       id: 7,
       nombre: 'Calibrador',
     },
+    {
+      id: 8,
+      nombre: 'Trabajador',
+    },
   ];
 
   constructor(private http: HttpClient) {}
