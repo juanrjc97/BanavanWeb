@@ -1,13 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import {Rol} from "src/app/models/rol";
+/* eslint-disable require-jsdoc */
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {environment} from 'src/environments/environment';
+import {Rol} from 'src/app/models/rol';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RolService {
-  //public get_roles = environment.get_rol;
+  // public get_roles = environment.get_rol;
   public listOfRol: Rol[] = [
     {
       id: 1,
@@ -43,7 +44,7 @@ export class RolService {
     },
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   cargarRol() {
     return this.listOfRol;

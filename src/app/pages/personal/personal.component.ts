@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable require-jsdoc */
+import {Component, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Alerta } from 'src/app/models/alert';
-import { Rol } from 'src/app/models/rol';
-import { PersonalService } from 'src/app/services/personal/personal.service';
-import { RolService } from 'src/app/services/rol/rol.service';
-import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
+import {Alerta} from 'src/app/models/alert';
+import {Rol} from 'src/app/models/rol';
+import {PersonalService} from 'src/app/services/personal/personal.service';
+import {RolService} from 'src/app/services/rol/rol.service';
+import {AlertsComponent} from 'src/app/shared/alerts/alerts.component';
 import {Personal} from '../../models/personal';
 
 @Component({
@@ -54,7 +55,7 @@ export class PersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private PersonalService: PersonalService,
-    private RolService: RolService
+    private RolService: RolService,
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +74,7 @@ export class PersonalComponent implements OnInit {
 
   cargarRoles() {
     this.listOfRol = this.RolService.cargarRol();
-    /*this.RolService.cargarRol().subscribe((resp: any) => {
+    /* this.RolService.cargarRol().subscribe((resp: any) => {
       this.listOfRol = resp;
       console.log(resp);
     });*/
@@ -81,13 +82,13 @@ export class PersonalComponent implements OnInit {
 
   cargarPersonal() {
     this.PersonalService.cargarPersonal().subscribe(
-      (resp: any) => {
-        this.listOfPersonal = resp;
-        this.updateEditCache();
-      },
-      (err) => {
-        console.log(err);
-      }
+        (resp: any) => {
+          this.listOfPersonal = resp;
+          this.updateEditCache();
+        },
+        (err) => {
+          console.log(err);
+        },
     );
   }
 
@@ -99,17 +100,17 @@ export class PersonalComponent implements OnInit {
    */
   actualizarPersonal(Personal: Personal, id: number, index: number) {
     this.PersonalService.actualizarPersonal(Personal).subscribe(
-      (resp: any) => {
-        //console.log(Personal);
-        this.alerta.createBasicNotification(this.succesPut);
-        Object.assign(this.listOfPersonal[index], this.editCache[id].data);
-        this.editCache[id].edit = false;
-        console.log(resp);
-      },
-      (err) => {
-        console.log(err);
-        this.alerta.createBasicNotification(this.errorPut);
-      }
+        (resp: any) => {
+        // console.log(Personal);
+          this.alerta.createBasicNotification(this.succesPut);
+          Object.assign(this.listOfPersonal[index], this.editCache[id].data);
+          this.editCache[id].edit = false;
+          console.log(resp);
+        },
+        (err) => {
+          console.log(err);
+          this.alerta.createBasicNotification(this.errorPut);
+        },
     );
   }
 
@@ -123,12 +124,12 @@ export class PersonalComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
-      this.validateForm.reset();
+    this.validateForm.reset();
   }
 
   startEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
-    //console.log(this.listOfPersonal[index]);
+    // console.log(this.listOfPersonal[index]);
 
     this.editCache[id].edit = true;
   }
@@ -136,7 +137,7 @@ export class PersonalComponent implements OnInit {
   cancelEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
     this.editCache[id] = {
-      data: { ...this.listOfPersonal[index] },
+      data: {...this.listOfPersonal[index]},
       edit: false,
     };
   }
@@ -144,7 +145,7 @@ export class PersonalComponent implements OnInit {
   saveEdit(id: number): void {
     const index = this.listOfPersonal.findIndex((item) => item.id === id);
     this.actualizarPersonal(this.editCache[id].data, id, index);
-    /*Object.assign(this.listOfPersonal[index], this.editCache[id].data);
+    /* Object.assign(this.listOfPersonal[index], this.editCache[id].data);
     this.editCache[id].edit = false;*/
   }
 
@@ -152,12 +153,12 @@ export class PersonalComponent implements OnInit {
     this.listOfPersonal.forEach((item) => {
       this.editCache[item.id] = {
         edit: false,
-        data: { ...item }, // con los 3 puntos se genera un copia completa del objeto al cual se le
+        data: {...item}, // con los 3 puntos se genera un copia completa del objeto al cual se le
         // esta iterando (crea otro elemento igual) es como una copia sin referencia
-        //al objeto anterior
+        // al objeto anterior
       };
     });
-    //console.log(this.editCache);
+    // console.log(this.editCache);
   }
 
   /** Crea el Personal con los datos del Form.
@@ -169,16 +170,16 @@ export class PersonalComponent implements OnInit {
     };
     console.log(personal);
     this.PersonalService.crearPersonal(personal).subscribe(
-      (resp: any) => {
-        console.log(resp);
-        this.cargarPersonal();
-        this.validateForm.reset();
-        this.alerta.createBasicNotification(this.successPersonal);
-      },
-      (err) => {
-        console.log(err);
-        this.alerta.createBasicNotification(this.errorPersonal);
-      }
+        (resp: any) => {
+          console.log(resp);
+          this.cargarPersonal();
+          this.validateForm.reset();
+          this.alerta.createBasicNotification(this.successPersonal);
+        },
+        (err) => {
+          console.log(err);
+          this.alerta.createBasicNotification(this.errorPersonal);
+        },
     );
   }
 
@@ -196,15 +197,15 @@ export class PersonalComponent implements OnInit {
   updateConfirmValidator(): void {
     /** wait for refresh value */
     Promise.resolve().then(() =>
-      this.validateForm.controls.checkPassword.updateValueAndValidity()
+      this.validateForm.controls.checkPassword.updateValueAndValidity(),
     );
   }
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
-      return { required: true };
+      return {required: true};
     } else if (control.value !== this.validateForm.controls.contrasena.value) {
-      return { confirm: true, error: true };
+      return {confirm: true, error: true};
     }
     return {};
   };

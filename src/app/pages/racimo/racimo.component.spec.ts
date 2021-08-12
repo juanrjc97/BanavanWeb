@@ -1,16 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
-import { RacimoComponent } from './racimo.component';
+import {RacimoComponent} from './racimo.component';
 
 describe('RacimoComponent', () => {
   let component: RacimoComponent;
   let fixture: ComponentFixture<RacimoComponent>;
 
+ 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RacimoComponent ]
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
+      declarations: [RacimoComponent],
     })
-    .compileComponents();
+        .compileComponents();
+  });
+  beforeEach(() => {
+    component = new RacimoComponent(new FormBuilder());
   });
 
   beforeEach(() => {

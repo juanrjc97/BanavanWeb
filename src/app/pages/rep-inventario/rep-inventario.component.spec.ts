@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepInventarioComponent } from './rep-inventario.component';
@@ -8,7 +10,9 @@ describe('RepInventarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RepInventarioComponent ]
+      imports: [HttpClientTestingModule],
+      declarations: [RepInventarioComponent],
+      providers: [DatePipe],
     })
     .compileComponents();
   });

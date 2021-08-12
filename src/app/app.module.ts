@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import * as Sentry from '@sentry/angular';
 //rutas
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,7 @@ registerLocaleData(es);
     HttpClientModule,
     WelcomeModule,
     LoginModule,
+    RouterModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
