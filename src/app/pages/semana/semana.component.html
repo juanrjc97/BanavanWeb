@@ -23,8 +23,8 @@
                 </td>
             </ng-container>
             <ng-template #editTemplate>
-                <td>{{ data.numero }}</td>
-                <td>{{ data.fecha_inicio }}</td>
+                <td class="text-center">{{ data.numero }}</td>
+                <td class="text-center">{{ data.fecha_inicio }}</td>
                 <td>
                     <nz-select nzPlaceHolder="Selecciona una  cinta" [(ngModel)]="editCache[data.id].data.name_color">
                         <nz-option *ngFor="let cinta of listOfCinta" [nzLabel]="cinta.nombre" [nzValue]="cinta.id"></nz-option>
@@ -43,8 +43,8 @@
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Cambiar color de las semanas" [nzFooter]=null (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
     <ng-container *nzModalContent>
+        <div class="text-center pb-3">¿Deseas actualizar para todos los años? <input type="checkbox" [(ngModel)]="checkedSemana"></div>
         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-            <p class="text-center text-secondary">Cambia el color de cinta de las semanas desde una semana especificada.</p>
             <nz-form-item>
                 <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="semana">Seleccionar semana inicial</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor selecciona una semana!">

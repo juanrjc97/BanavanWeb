@@ -18,6 +18,8 @@ export class SemanaComponent implements OnInit {
   selectedValueCinta = null;
   listOfWeeks: Semana[] = [];
   listOfCinta: Color[] = [];
+  checkedSemana = false;
+
   public editCache: { [key: number]: { edit: boolean; data: Semana } } = {};
 
   constructor(
@@ -95,6 +97,14 @@ export class SemanaComponent implements OnInit {
     const semana: any = {
       ...this.validateForm.value,
     };
+    if (this.checkedSemana) {
+      semana.semana_id = 1;
+    } else {
+      semana.semana_id = semana.semana;
+    }
+    /*console.log(semana);
+    console.log('Es checked?: ' + this.checkedSemana);*/
+
     this.SemanasService.actualizarSemanas(semana).subscribe(
       (resp: any) => {
         this.rellenar_lista();
