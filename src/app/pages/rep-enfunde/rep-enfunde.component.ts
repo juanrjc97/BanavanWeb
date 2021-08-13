@@ -15,11 +15,11 @@ export class RepEnfundeComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Lote 2' },
-    /*{ data: [ 480, 0,,,, 0, 150 ,,,,, 150 ,,, 12 , 25,32], label: 'Lote 3' },
+    { data: [ 480, 0,,,, 0, 150 ,,,,, 150 ,,, 12 , 25,32], label: 'Lote 3' },
     { data: [35, 200, 770, 90, 625, 270, 400], label: 'Lote 4' },
     { data: [35, 100, 770, 90, 122, 270, 550], label: 'Lote 5' },
     { data: [45, 300, 150, 90, 373, 270, 400], label: 'Lote 6' },
-    { data: [35, 200, 300, 90, 224, 270, 400], label: 'Lote 7' },*/
+    { data: [35, 200, 300, 90, 224, 270, 400], label: 'Lote 7' },
   ];
 
   public lineChartOptions: any = {

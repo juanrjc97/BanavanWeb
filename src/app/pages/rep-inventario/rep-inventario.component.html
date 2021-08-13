@@ -1,12 +1,15 @@
 <div class="container">
     <h1>Reporte racimos cosechados por semana</h1>
-    <div class="row">
+    <div class="row">    
+        <div class="col-1 d-flex align-items-center">
+            <span>Racimos cosechados</span>
+        </div>
         <div class="col-md-8">
             <div style="display: block;">
                 <canvas baseChart width="100" height="100" [datasets]="lineChartData" [options]="lineChartOptions" [labels]="lineChartLabels" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3 text-center">
             <p>Filtro por lotes:</p>
             <nz-select nzMode="tags" nzPlaceHolder="Seleccione el número de lotes" [(ngModel)]="listOfTagOptions">
                 <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
@@ -15,5 +18,7 @@
             <button class="btn btn-primary block" (click)="randomize()">RANDOM</button>
         </div>
     </div>
-
+    <div class="text-center">
+        <span>Semanas</span>
+    </div>
 </div>

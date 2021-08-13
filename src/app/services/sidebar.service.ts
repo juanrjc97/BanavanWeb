@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class SidebarService {
-  public userRole: string = '' ;
+  public userRole: string = 'admin' ;
   public menu: any[] = []
 
   constructor() {

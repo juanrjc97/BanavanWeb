@@ -102,9 +102,6 @@ export class SemanaComponent implements OnInit {
     } else {
       semana.semana_id = semana.semana;
     }
-    /*console.log(semana);
-    console.log('Es checked?: ' + this.checkedSemana);*/
-
     this.SemanasService.actualizarSemanas(semana).subscribe(
       (resp: any) => {
         this.rellenar_lista();
