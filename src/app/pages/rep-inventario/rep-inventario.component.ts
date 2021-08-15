@@ -13,6 +13,7 @@ export class RepInventarioComponent implements OnInit {
   date = null;
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfTagOptions = [];
+  listaOriginal = [];
 
   public lineChartData: ChartDataSets[] = [
     /*{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
@@ -100,6 +101,7 @@ export class RepInventarioComponent implements OnInit {
     this.RepRacimoSemanaService.cargarReporteEnfundado().subscribe(
       (resp: any) => {
         this.lineChartData = resp;
+        this.listaOriginal = resp;
       },
       (error) => {
         console.log(error);
@@ -108,7 +110,7 @@ export class RepInventarioComponent implements OnInit {
   }
 
   cargarSemanas(): void {
-    for (let index = 0; index < 20; ++index) {
+    for (let index = 0; index < 3; ++index) {
       this.lineChartLabels[index] = index + 1;
     }
   }
@@ -143,24 +145,33 @@ export class RepInventarioComponent implements OnInit {
    * Aqui recibiria el anio por el que desea filtrar.
    * Solicita de nuevo los datos
    */
-  public randomize(): void {
-    let _lineChartData: Array<any> = new Array(this.lineChartData.length);
+  public filtrar_lote(): void {
+    let lotesEscogidos: Array<any> = this.listOfTagOptions;
+    let listaFiltro: Array<any> = new Array();
+    console.log(lotesEscogidos);
 
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      let lengthDataSpecific = this.lineChartData[i].data?.length;
-      if (lengthDataSpecific != undefined) {
-        _lineChartData[i] = {
-          data: new Array(lengthDataSpecific),
-          label: this.lineChartData[i].label,
-        };
-        for (let j = 0; j < lengthDataSpecific; j++) {
-          _lineChartData[i].data[j] = Math.floor(Math.random() * 100 + 1);
-          console.log(_lineChartData[i].data[j]);
+    if (lotesEscogidos.length == 0) {
+      this.lineChartData = this.listaOriginal;
+    } else {
+      let indice = 0;
+      for (let index = 0; index < this.lineChartData.length; index++) {
+        console.log(this.lineChartData[index].label);
+        let labelLine = this.lineChartData[index].label;
+        if (labelLine != undefined) {
+          let lastChar = labelLine[labelLine.length - 1];
+          if (lotesEscogidos.includes(lastChar)) {
+            console.log('ads');
+            listaFiltro[indice] = {
+              data: this.lineChartData[index].data,
+              label: this.lineChartData[index].label,
+            };
+            console.log(listaFiltro[index]);
+            indice++;
+          }
         }
       }
+      console.log(listaFiltro);
+      this.lineChartData = listaFiltro;
     }
-
-    this.lineChartData = _lineChartData;
-    console.log(_lineChartData);
   }
 }

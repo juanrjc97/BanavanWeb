@@ -11,11 +11,11 @@
         </div>
         <div class="col-md-3 text-center">
             <p>Filtro por lotes:</p>
-            <nz-select nzMode="tags" nzPlaceHolder="Seleccione el número de lotes" [(ngModel)]="listOfTagOptions">
+            <nz-select [nzAllowClear]="true" nzMode="tags" nzPlaceHolder="Seleccione el número de lotes" [(ngModel)]="listOfTagOptions">
                 <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
             </nz-select>
             <br />
-            <button class="btn btn-primary block" (click)="randomize()">RANDOM</button>
+            <button class="btn btn-primary block mt-3" (click)="filtrar_lote()">Filtrar</button>
         </div>
     </div>
     <div class="text-center">

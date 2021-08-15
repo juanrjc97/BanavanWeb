@@ -6,8 +6,8 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class SidebarService {
-  public userRole: string = 'admin' ;
-  public menu: any[] = []
+  public userRole: string = '';
+  public menu: any[] = [];
 
   constructor() {
     if (this.userRole === 'admin') {
@@ -16,19 +16,19 @@ export class SidebarService {
           title: 'Inventarios',
           icon: 'container',
           submenu: [
-            {title: 'Semanal', icon: 'table', path: 'inventario'},
-            {title: 'Enfundados', icon: 'file-done', path: 'racimo'},
-            {title: 'Apuntalado', icon: 'schedule', path: 'apuntalado'},
+            { title: 'Semanal', icon: 'table', path: 'inventario' },
+            { title: 'Enfundados', icon: 'file-done', path: 'racimo' },
+            { title: 'Apuntalado', icon: 'schedule', path: 'apuntalado' },
           ],
         },
         {
           title: 'Reportes',
           icon: 'fund',
           submenu: [
-            {title: 'Racimos', icon: 'table', path: 'inventarioRacimos'},
-            {title: 'Enfunde', icon: 'file-done', path: 'enfunde'},
-            {title: 'Semanas', icon: 'schedule', path: 'semanasRacimos'},
-            {title: 'Perdidos', icon: 'stop', path: 'racimosPerdidos'},
+            { title: 'Racimos', icon: 'table', path: 'inventarioRacimos' },
+            { title: 'Enfunde', icon: 'file-done', path: 'enfunde' },
+            { title: 'Semanas', icon: 'schedule', path: 'semanasRacimos' },
+            { title: 'Perdidos', icon: 'stop', path: 'racimosPerdidos' },
           ],
         },
       ];
@@ -39,10 +39,10 @@ export class SidebarService {
           title: 'Finca',
           icon: 'dashboard',
           submenu: [
-            {title: 'Lote', icon: 'table', path: 'lote'},
-            {title: 'Cinta', icon: 'bg-colors', path: 'cinta'},
-            {title: 'Semana', icon: 'schedule', path: 'semana'},
-            {title: 'Motivo', icon: 'message', path: 'motivo'},
+            { title: 'Lote', icon: 'table', path: 'lote' },
+            { title: 'Cinta', icon: 'bg-colors', path: 'cinta' },
+            { title: 'Semana', icon: 'schedule', path: 'semana' },
+            { title: 'Motivo', icon: 'message', path: 'motivo' },
           ],
         },
       ];
