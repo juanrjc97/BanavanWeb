@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -10,8 +10,11 @@ export class RepEnfundadoSemanaService {
 
   constructor(private http: HttpClient) {}
 
-  cargarReporteEnfundado() {
-    return this.http.get(this.getRepEnfundado);
+  cargarReporteEnfundado(year: number) {
+    let options = {
+      params: new HttpParams().append('anho', year + ''),
+    };
+    return this.http.get(this.getRepEnfundado, options);
   }
 
 

@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class SidebarService {
-  public userRole: string = '';
+  public userRole: string = 'admin';
   public menu: any[] = [];
 
   constructor() {
@@ -27,8 +27,6 @@ export class SidebarService {
           submenu: [
             { title: 'Racimos', icon: 'table', path: 'inventarioRacimos' },
             { title: 'Enfunde', icon: 'file-done', path: 'enfunde' },
-            { title: 'Semanas', icon: 'schedule', path: 'semanasRacimos' },
-            { title: 'Perdidos', icon: 'stop', path: 'racimosPerdidos' },
           ],
         },
       ];

@@ -39,5 +39,5 @@ export const environment = {
   get_tipoSolicitud: BASE_URL + '/tipoSolicitud/get',
 
   // Reporte Enfundado x semana
-  get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',
+  get_reporte_enfundado_semana: BASE_URL + '/reporte/enfundeXsemana',
 };

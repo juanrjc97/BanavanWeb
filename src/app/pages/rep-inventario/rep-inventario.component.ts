@@ -110,7 +110,7 @@ export class RepInventarioComponent implements OnInit {
   }
 
   cargarSemanas(): void {
-    for (let index = 0; index < 3; ++index) {
+    for (let index = 0; index < 20; ++index) {
       this.lineChartLabels[index] = index + 1;
     }
   }

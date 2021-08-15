@@ -3,11 +3,11 @@
     <div class="col-7 mx-0">
         <div class=" d-flex justify-content-start align-items-center">
             <h4 class="text-wrap" style="width: 12rem;">Fecha del último respaldo:</h4>
-            <h5 nz-typography nzType="secondary">Viernes, 1 de Mayo del 2021, 04:09pm</h5>
+            <h5 nz-typography nzType="secondary">{{fecha_respaldo}}</h5>
         </div>
         <div class=" d-flex justify-content-start align-items-center">
             <h4>Tamaño:</h4>
-            <h5 nz-typography nzType="secondary">15 Mb</h5>
+            <h5 nz-typography nzType="secondary">{{megas_respaldo}}</h5>
         </div>
         <div class=" d-flex justify-content-start align-items-center">
             <h4>Guardado en:</h4>
@@ -16,10 +16,10 @@
         <div class=" d-flex justify-content-start align-items-center">
             <h4>Correo:</h4>
             <h5 nz-typography nzType="secondary">amaurivvan@gmail.com</h5>
-            <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+            <!--button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button-->
         </div>
         <div class=" d-flex justify-content-center align-items-center">
-            <button nz-button [nzSize]="size" nzType="primary" nzShape="round"><i nz-icon nzType="save"></i>Realizar respaldo</button>
+            <button nz-button [nzSize]="size" nzType="primary" nzShape="round" (click) = "realizar_respaldo()"><i nz-icon nzType="save"></i>Realizar respaldo</button>
         </div>
     </div>
     <div class="col-5">
