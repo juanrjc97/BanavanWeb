@@ -154,6 +154,7 @@ export class RepInventarioComponent implements OnInit {
       this.lineChartData = this.listaOriginal;
     } else {
       let indice = 0;
+      this.lineChartData = this.listaOriginal;
       for (let index = 0; index < this.lineChartData.length; index++) {
         console.log(this.lineChartData[index].label);
         let labelLine = this.lineChartData[index].label;
