@@ -1,7 +1,7 @@
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
-import * as Sentry from '@sentry/angular';
+//import * as Sentry from '@sentry/angular';
 //rutas
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,25 +33,7 @@ registerLocaleData(es);
     LoginModule,
     RouterModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: es_ES },
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: true,
-      }),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
-  ],
+  providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
