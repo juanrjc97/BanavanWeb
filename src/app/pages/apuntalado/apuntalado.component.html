@@ -1,1 +1,25 @@
-<p>apuntalado works!</p>
+<h1> Enfunde por Semana</h1>
+
+<div class="row animated fadein fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="spinner-border text-primary" role="status" aria-hidden="true"></i>
+            <p class="mb-0"></p>
+        </div>
+    </div>
+</div>
+
+
+<nz-table *ngIf="!cargando" #editRowTable nzBordered [nzData]="filas" [nzPageSize]="5" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th *ngFor="let item of titulos">{{item}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fila of editRowTable.data">
+            <td *ngFor="let value of fila"> {{value}}</td>
+        </tr>
+    </tbody>
+</nz-table>

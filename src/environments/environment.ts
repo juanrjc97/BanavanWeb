@@ -49,6 +49,8 @@ export const environment = {
   get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',
   // Reporte Racimo x semana
   get_reporte_racimo_semana: BASE_UR + '/api/get/repracimos',
+  // Inventario de enfunde
+  get_inventario_enfunde: BASE_URL + '/reporte/enfunde',
 };
 
 /*

@@ -38,6 +38,9 @@ export const environment = {
   update_solicitud: BASE_URL + '/solicitud/respond',
   get_tipoSolicitud: BASE_URL + '/tipoSolicitud/get',
 
+  // Inventario de enfunde
+  get_inventario_enfunde: BASE_URL + '/reporte/enfunde',
+
   // Reporte Enfundado x semana
   get_reporte_enfundado_semana: BASE_UR + '/api/get/repenfundados',
 };
