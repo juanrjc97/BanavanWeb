@@ -27,8 +27,6 @@ export class SidebarService {
           submenu: [
             { title: 'Racimos', icon: 'table', path: 'inventarioRacimos' },
             { title: 'Enfunde', icon: 'file-done', path: 'enfunde' },
-            { title: 'Semanas', icon: 'schedule', path: 'semanasRacimos' },
-            { title: 'Perdidos', icon: 'stop', path: 'racimosPerdidos' },
           ],
         },
       ];

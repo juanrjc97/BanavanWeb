@@ -47,7 +47,7 @@ describe('ColorComponent', () => {
     expect(component.validateForm.invalid).toBeTruthy();
   });
 
-  it('Init shoud load ribbons', () => {
+  it('Init should load ribbons', () => {
     const listOfCinta: Color[] = [
       {
         id: 1,
