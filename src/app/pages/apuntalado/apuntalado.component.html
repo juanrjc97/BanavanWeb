@@ -1,6 +1,29 @@
 <h1> Enfunde por Semana</h1>
 
-<div class="row animated fadein fast" *ngIf="cargando">
+<form nz-form style="width: 500px;" [formGroup]="filterForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Número de Semana</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el número de semana!">
+            <input type="number" width="50px" nz-input id="idSemana" formControlName="semana" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Ingrese un Año </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el año!">
+            <input type="number" width="50px" nz-input id="superficie" formControlName="anho" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+        <nz-form-control class="text-center" [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary">Obtener Datos</button>
+        </nz-form-control>
+    </nz-form-item>
+
+</form>
+
+<div class="row animated fadein fast" *ngIf="cargando && filterForm.valid">
     <div class="col-12">
         <div class="alert alert-info text-center">
             <h4 class="alert-heading">Cargando</h4>
