@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Reporte enfundados por semana</h1>
+    <h1>Reporte enfundados por semana - {{anioLabel}}</h1>
     <div class="row">
         <div class="col-1 d-flex align-items-center">
             <span>Enfundados</span>
@@ -14,6 +14,7 @@
             <nz-date-picker nzMode="year" [(ngModel)]="date" [nzInputReadOnly]=true (ngModelChange)="onChange($event)"></nz-date-picker>
             <br />
             <button class="btn btn-primary block" (click)="filtro_anio()">Filtrar</button>
+            <div class="text-center pt-5">¿Deseas recibir por hectárea los datos?<input type="checkbox" [(ngModel)]="isHectarea" (ngModelChange)="onChangeHectarea($event)"></div>
         </div>
     </div>
     <div class="text-center">
