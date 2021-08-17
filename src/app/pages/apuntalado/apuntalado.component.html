@@ -1,6 +1,6 @@
 <h1> Enfunde por Semana</h1>
 
-<form nz-form style="width: 500px;" [formGroup]="filterForm" (ngSubmit)="submitForm()">
+<form nz-form nzLayout="inline" [formGroup]="filterForm" (ngSubmit)="submitForm()">
     <nz-form-item>
         <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Número de Semana</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el número de semana!">
@@ -22,7 +22,8 @@
     </nz-form-item>
 
 </form>
-
+<br>
+<br>
 <div class="row animated fadein fast" *ngIf="cargando && filterForm.valid">
     <div class="col-12">
         <div class="alert alert-info text-center">
