@@ -10,12 +10,12 @@ export class RepEnfundadoSemanaService {
 
   constructor(private http: HttpClient) {}
 
-  cargarReporteEnfundado(year: number) {
+  cargarReporteEnfundado(year: number, hectarea: number) {    
     let options = {
-      params: new HttpParams().append('anho', year + ''),
+      params: new HttpParams()
+        .append('anho', year + '')
+        .append('hectarea', hectarea + ''),
     };
     return this.http.get(this.getRepEnfundado, options);
   }
-
-
 }

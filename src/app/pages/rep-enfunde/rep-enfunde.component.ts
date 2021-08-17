@@ -11,8 +11,11 @@ import { Color } from 'ng2-charts';
 })
 export class RepEnfundeComponent implements OnInit {
   date = null;
-  public latest_date : any = 0;
-  public currentYear: number = 0;
+  public latest_date: any = 0;
+  public currentYear: number = new Date().getFullYear();
+  public isHectarea: number = 0;
+
+  public anioLabel: number = 0;
 
   public lineChartData: ChartDataSets[] = [
     /*{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
@@ -85,8 +88,9 @@ export class RepEnfundeComponent implements OnInit {
   public lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
-    this.cargarReportesEnfundados(this.currentYear); //Cambiar al anio actual
+    //this.currentYear = new Date().getFullYear();
+    this.anioLabel = this.currentYear;
+    this.cargarReportesEnfundados(this.currentYear, 0); //Cambiar al anio actual
   }
 
   constructor(
@@ -94,13 +98,16 @@ export class RepEnfundeComponent implements OnInit {
     public datepipe: DatePipe
   ) {}
 
-  cargarReportesEnfundados(year: number): void {
-    this.RepEnfundadoSemanaService.cargarReporteEnfundado(year).subscribe(
+  cargarReportesEnfundados(year: number, isHectarea: number): void {
+    this.RepEnfundadoSemanaService.cargarReporteEnfundado(
+      year,
+      isHectarea
+    ).subscribe(
       (resp: any) => {
         //this.lineChartData = resp;
-        let respuestaDataset  = resp["dataset"];
+        let respuestaDataset = resp['dataset'];
         this.formatResponse(respuestaDataset);
-        this.lineChartLabels = resp["semanas"];
+        this.lineChartLabels = resp['semanas'];
       },
       (error) => {
         console.log(error);
@@ -108,11 +115,11 @@ export class RepEnfundeComponent implements OnInit {
     );
   }
 
-  formatResponse(response: any){
+  formatResponse(response: any) {
     let _lineChartData: Array<any> = new Array();
     let indice = 0;
 
-    for (let objetos in response){
+    for (let objetos in response) {
       let objeto = response[objetos];
       let data = Object.values(objeto['data']);
       let label = objeto['label'];
@@ -134,9 +141,23 @@ export class RepEnfundeComponent implements OnInit {
    */
   onChange(result: Date): void {
     this.latest_date = this.datepipe.transform(result, 'yyyy');
-    //this.latest_date = anio_escogido != null ? anio_escogido : this.currentYear;
-    if (this.latest_date == null) this.latest_date = this.currentYear;
+    if (this.latest_date == null || this.latest_date == 0) {
+      this.latest_date = this.currentYear;
+    }
     //console.log('onChange: ' + latest_date);
+  }
+
+  onChangeHectarea(result: boolean): void {
+    if (result) {
+      this.isHectarea = 1;
+      //console.log('Es hectarea? :' + this.isHectarea);
+    } else {
+      this.isHectarea = 0;
+      //console.log('Es hectarea? :' + this.isHectarea);
+    }
+    this.validarAnioEscogido();
+    //console.log(this.latest_date);
+    
   }
 
   /**
@@ -144,6 +165,16 @@ export class RepEnfundeComponent implements OnInit {
    * Solicita de nuevo los datos
    */
   public filtro_anio(): void {
-    this.cargarReportesEnfundados(this.latest_date);
+    this.validarAnioEscogido();
+  }
+
+  private validarAnioEscogido(): void{
+    if (this.latest_date == 0 || this.latest_date == null) {
+      this.anioLabel = this.currentYear;
+      this.cargarReportesEnfundados(this.currentYear, this.isHectarea);
+    } else {      
+      this.anioLabel = this.latest_date;
+      this.cargarReportesEnfundados(this.latest_date, this.isHectarea);
+    }
   }
 }
