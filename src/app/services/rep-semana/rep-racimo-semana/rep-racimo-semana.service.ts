@@ -13,7 +13,7 @@ export class RepRacimoSemanaService {
   cargarReporteCosechadoso() {
     let currentYear = new Date().getFullYear();
     let options = {
-      params: new HttpParams().append('anho', 2019 + ''),
+      params: new HttpParams().append('anho', currentYear + ''),
     };
     return this.http.get(this.getRepRacimo, options);
   }
