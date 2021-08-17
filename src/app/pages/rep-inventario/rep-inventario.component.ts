@@ -13,7 +13,8 @@ export class RepInventarioComponent implements OnInit {
   date = null;
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfTagOptions = [];
-  listaOriginal = [];
+  listaOriginal : any= [];
+  year = new Date().getFullYear();
 
   public lineChartData: ChartDataSets[] = [
     /*{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Lote 1' },
@@ -86,7 +87,6 @@ export class RepInventarioComponent implements OnInit {
   public lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
-    this.cargarSemanas();
     this.cargarReportesEnfundados();
     this.cargarLotes();
   }
@@ -98,10 +98,11 @@ export class RepInventarioComponent implements OnInit {
   ) {}
 
   cargarReportesEnfundados(): void {
-    this.RepRacimoSemanaService.cargarReporteEnfundado().subscribe(
+    this.RepRacimoSemanaService.cargarReporteCosechadoso().subscribe(
       (resp: any) => {
-        this.lineChartData = resp;
-        this.listaOriginal = resp;
+        let respuestaDataset = resp['dataset'];
+        this.formatResponse(respuestaDataset);
+        this.lineChartLabels = resp['semanas'];        
       },
       (error) => {
         console.log(error);
@@ -109,10 +110,23 @@ export class RepInventarioComponent implements OnInit {
     );
   }
 
-  cargarSemanas(): void {
-    for (let index = 0; index < 20; ++index) {
-      this.lineChartLabels[index] = index + 1;
+  formatResponse(response: any) {
+    let _lineChartData: Array<any> = new Array();
+    let indice = 0;
+
+    for (let objetos in response) {
+      let objeto = response[objetos];
+      let data = Object.values(objeto['data']);
+      let label = objeto['label'];
+
+      _lineChartData[indice] = {
+        data: data,
+        label: label,
+      };
+      indice++;
     }
+    this.lineChartData = _lineChartData;
+    this.listaOriginal = _lineChartData;
   }
 
   cargarLotes() {
@@ -127,18 +141,6 @@ export class RepInventarioComponent implements OnInit {
       }
       this.listOfOption = children;
     });
-  }
-
-  /**
-   * Aqui debe ir funcion por la que cada vez que haga un filtro,
-   * se actualice el array ChartDataSets[].
-   * Deberia tambien recibir las semanas de ese anio.
-   * @param result Envio del anio por filtrar.
-   */
-  onChange(result: Date): void {
-    let latest_date = this.datepipe.transform(result, 'yyyy');
-    if (latest_date == null) latest_date = '2021';
-    console.log('onChange: ' + latest_date);
   }
 
   /**
@@ -159,14 +161,12 @@ export class RepInventarioComponent implements OnInit {
         console.log(this.lineChartData[index].label);
         let labelLine = this.lineChartData[index].label;
         if (labelLine != undefined) {
-          let lastChar = labelLine[labelLine.length - 1];
-          if (lotesEscogidos.includes(lastChar)) {
-            console.log('ads');
+          var numeroLote = labelLine.replace(/[^0-9]/g, '');
+          if (numeroLote.length>0 && lotesEscogidos.includes(numeroLote)) {
             listaFiltro[indice] = {
               data: this.lineChartData[index].data,
               label: this.lineChartData[index].label,
             };
-            console.log(listaFiltro[index]);
             indice++;
           }
         }
