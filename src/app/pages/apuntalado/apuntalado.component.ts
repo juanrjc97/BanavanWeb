@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-invalid-this */
 /* eslint-disable max-len */
@@ -117,4 +118,5 @@ submitForm() {
       this.filterForm.get('anho')?.value );
   console.log(this.filterForm.value);
 }
+
 }

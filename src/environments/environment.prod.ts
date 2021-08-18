@@ -40,6 +40,8 @@ export const environment = {
 
   // Inventario de enfunde
   get_inventario_enfunde: BASE_URL + '/reporte/enfunde',
+  get_inventario_lote: BASE_URL + '/reporte/acumuladoXlote',
+  get_inventerio_semana: BASE_URL+ '/reporte/acumuladoXsemana',
 
   // Reporte Enfundado x semana
   get_reporte_enfundado_semana: BASE_URL + '/reporte/enfundeXsemana',

@@ -17,8 +17,8 @@ export class SidebarService {
           icon: 'container',
           submenu: [
             { title: 'Semanal', icon: 'table', path: 'inventario' },
-            { title: 'Enfundados', icon: 'file-done', path: 'racimo' },
-            { title: 'Apuntalado', icon: 'schedule', path: 'apuntalado' },
+            { title: 'Acumulado', icon: 'file-done', path: 'racimo' },
+            { title: 'Enfundado', icon: 'schedule', path: 'apuntalado' },
           ],
         },
         {

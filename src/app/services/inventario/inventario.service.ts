@@ -13,6 +13,8 @@ export class InventarioService {
 
   public path: string = 'http://demo5983135.mockable.io/inventario';
   public pathEnfunde: string = environment.get_inventario_enfunde;
+  public pathLote: string = environment.get_inventario_lote;
+  public pathSemana: string = environment.get_inventerio_semana;
 
   constructor( private http: HttpClient) { }
 
@@ -35,4 +37,31 @@ export class InventarioService {
     };
     return this.http.get(this.pathEnfunde, options);
   }
+
+  cargarxLote(anho?:number) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: `{
+        
+        "anho": ${anho}
+     }`,
+    };
+    return this.http.get(this.pathLote, options);
+  }
+  cargarxSemana(anho?:number) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: `{
+        "anho": ${anho}
+     }`,
+    };
+    return this.http.get(this.pathSemana, options);
+  }
+
+
+
 }

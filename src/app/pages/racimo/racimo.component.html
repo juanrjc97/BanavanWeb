@@ -1,6 +1,38 @@
-<h1> Acumulado por Lote </h1>
+<div class="row">
+    <div class="col-6">
+        <h1> Acumulado por Lote </h1>
+    </div>
+    <div class="col-6">
+        <form nz-form nzLayout="inline" [formGroup]="filterForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired>Ingrese un Año </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingresa el año!">
+                    <input type="number" width="50px" nz-input id="superficie" formControlName="anho" />
+                </nz-form-control>
+            </nz-form-item>
 
-<div nz-space [nzSize]="size">
+            <nz-form-item nz-row>
+                <nz-form-control class="text-center" [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button nzType="primary">Obtener Datos</button>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </div>
+</div>
+
+<div class="row animated fadein fast" *ngIf="cargando && filterForm.valid">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="spinner-border text-primary" role="status" aria-hidden="true"></i>
+            <p class="mb-0"></p>
+        </div>
+    </div>
+</div>
+
+
+<div nz-space [nzSize]="size" *ngIf="!cargando">
     <nz-input-group *nzSpaceItem nzCompact [formGroup]="semanafb">
         <nz-select formControlName="rango">
             <nz-option [nzLabel]="'Entre'" [nzValue]="'Entre'"></nz-option>
@@ -10,37 +42,31 @@
         <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
         <input formControlName="maximo" type="number" nz-input placeholder="Maximo" style="width:100px; text-align: center;" />
     </nz-input-group>
-
     <button *nzSpaceItem nz-button (click)="buscarSemana()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
     <button *nzSpaceItem [hidden]="semanafb.invalid" nz-button (click)="resetData()" type="submit" nzType="primary"><i nz-icon nzType="close" nzTheme="outline"></i></button>
     <br>
-    <br>
+    <nz-input-group *nzSpaceItem nzCompact [formGroup]="filterLote">
+        <input formControlName="numeroLote" type="number" nz-input placeholder="#Lote" style="width:100px; text-align: center;" />
+    </nz-input-group>
+    <button *nzSpaceItem nz-button (click)="filtrarLote()" type="submit" nzType="primary"><i nz-icon nzType="search"></i></button>
+    <button *nzSpaceItem [hidden]="filterLote.invalid" nz-button (click)="resetLotes()" type="submit" nzType="primary">
+            <i nz-icon nzType="close" nzTheme="outline">
+            </i>
+        </button>
 </div>
 
+<br>
+<br>
 
-<nz-table #TableData nzBordered [nzPageSize]="5" [nzData]="listOfData" nzTableLayout="fixed">
-
+<nz-table *ngIf="!cargando" #TableData nzBordered [nzPageSize]="5" [nzData]="filas" nzTableLayout="fixed">
     <thead>
         <tr>
-            <th nzWidth="10%">Color</th>
-            <th nzWidth="10%">Semana</th>
-            <th nzWidth="10%" [nzFilters]="filterlote" [nzFilterFn]="loteFilterFn">
-                Lote
-
-            </th>
-            <th nzWidth="10%">Enfundado</th>
-            <th nzWidth="10%">Cosechado</th>
-            <th nzWidth="10%">Cantidad Perdida</th>
+            <th *ngFor="let item of titulos">{{item}}</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of TableData.data">
-            <td>{{data.color }}</td>
-            <td>{{data.semana }}</td>
-            <td>{{data.lote}} </td>
-            <td>{{data.enfundado }}</td>
-            <td>{{data.cosechado }}</td>
-            <td>{{data.cPerdida}} </td>
+        <tr *ngFor="let fila of TableData.data">
+            <td *ngFor="let value of fila"> {{value}}</td>
         </tr>
     </tbody>
 </nz-table>
