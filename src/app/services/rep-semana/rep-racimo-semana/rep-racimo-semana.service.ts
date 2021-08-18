@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +10,11 @@ export class RepRacimoSemanaService {
 
   constructor(private http: HttpClient) {}
 
-  cargarReporteEnfundado() {
-    return this.http.get(this.getRepRacimo);
+  cargarReporteCosechadoso() {
+    let currentYear = new Date().getFullYear();
+    let options = {
+      params: new HttpParams().append('anho', currentYear + ''),
+    };
+    return this.http.get(this.getRepRacimo, options);
   }
 }
