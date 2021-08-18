@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class SidebarService {
-  public userRole: string = 'admin';
+  public userRole: string = '';
   public menu: any[] = [];
 
   constructor() {
@@ -16,17 +16,17 @@ export class SidebarService {
           title: 'Inventarios',
           icon: 'container',
           submenu: [
-            { title: 'Semanal', icon: 'table', path: 'inventario' },
-            { title: 'Acumulado', icon: 'file-done', path: 'racimo' },
-            { title: 'Enfundado', icon: 'schedule', path: 'apuntalado' },
+            {title: 'Semanal', icon: 'table', path: 'inventario'},
+            {title: 'Acumulado', icon: 'file-done', path: 'racimo'},
+            {title: 'Enfundado', icon: 'schedule', path: 'apuntalado'},
           ],
         },
         {
           title: 'Reportes',
           icon: 'fund',
           submenu: [
-            { title: 'Racimos', icon: 'table', path: 'inventarioRacimos' },
-            { title: 'Enfunde', icon: 'file-done', path: 'enfunde' },
+            {title: 'Racimos', icon: 'table', path: 'inventarioRacimos'},
+            {title: 'Enfunde', icon: 'file-done', path: 'enfunde'},
           ],
         },
       ];
@@ -37,10 +37,10 @@ export class SidebarService {
           title: 'Finca',
           icon: 'dashboard',
           submenu: [
-            { title: 'Lote', icon: 'table', path: 'lote' },
-            { title: 'Cinta', icon: 'bg-colors', path: 'cinta' },
-            { title: 'Semana', icon: 'schedule', path: 'semana' },
-            { title: 'Motivo', icon: 'message', path: 'motivo' },
+            {title: 'Lote', icon: 'table', path: 'lote'},
+            {title: 'Cinta', icon: 'bg-colors', path: 'cinta'},
+            {title: 'Semana', icon: 'schedule', path: 'semana'},
+            {title: 'Motivo', icon: 'message', path: 'motivo'},
           ],
         },
       ];

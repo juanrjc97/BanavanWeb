@@ -1,17 +1,11 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-invalid-this */
 /* eslint-disable require-jsdoc */
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Inventario} from 'src/app/models/inventario';
+import Swal from 'sweetalert2';
 import {InventarioService} from '../../services/inventario/inventario.service';
-
-// para la tabla
-interface ItemData {
-  Semana: number;
-  enfundado: number;
-  Cosechado: number;
-  CPerdida: number;
-  fecha: string;
-}
 
 @Component({
   selector: 'app-inventario',
@@ -21,6 +15,9 @@ interface ItemData {
 
 
 export class InventarioComponent implements OnInit {
+  public titulos:any = [];
+  public filas:any = [];
+  public cargando = true;
   public size = 20;
   public formSummitted = true;
   public semanafb: FormGroup = this.fb.group({
@@ -28,6 +25,9 @@ export class InventarioComponent implements OnInit {
     minimo: ['', [Validators.required]],
     maximo: ['', [Validators.required]],
   }) ;
+  public filterForm: FormGroup = this.fb.group({
+    anho: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
+  });
 
   public listOfData: Inventario[] = [];
   // public dataFiltrada: Inventario[] =[];
@@ -37,41 +37,79 @@ export class InventarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cargarInvetario();
   }
 
   buscarSemana() {
     if (!this.semanafb.valid ||
-        this.semanafb.get('minimo')?.value === this.semanafb.get('maximo')?.value ||
-        this.semanafb.get('minimo')?.value <0 ||
-        this.semanafb.get('maximo')?.value <0 ||
-        this.semanafb.get('maximo')?.value > this.listOfData.length) {
-      return this.listOfData;
+        this.semanafb.get('minimo')?.value === this.semanafb
+            .get('maximo')?.value ||
+        this.semanafb.get('minimo')?.value <=0 ||
+        this.semanafb.get('maximo')?.value <=0 ||
+        this.semanafb.get('maximo')?.value > 52) {
+      Swal.fire('Warning', 'Verifique que los datos sean correctos', 'warning');
+      return this.filas;
     } else if (this.semanafb.get('rango')?.value ==='Entre') {
-      if (this.semanafb.get('maximo')?.value < this.listOfData.length ) {
+      if (this.semanafb.get('maximo')?.value < 52 ) {
         this.semanafb.disable();
-        return this.listOfData = this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
-            this.semanafb.get('maximo')?.value );
-      } else {
-        this.semanafb.disable();
-        return this.listOfData = this.listOfData.slice(this.semanafb.get('minimo')?.value -1,
-            this.semanafb.get('maximo')?.value);
+        const temporal:any[] = [];
+        this.filas.forEach((iterador:any) => {
+          console.log(parseInt(iterador[1]));
+          if ( parseInt(iterador[1]) > this.semanafb.get('minimo')?.value -1 &&
+               parseInt(iterador[1])< this.semanafb.get('maximo')?.value ) {
+            temporal.push(iterador);
+          }
+        });
+        return this.filas = temporal;
       }
     } else {
-      return this.listOfData;
+      return this.filas;
     }
   }
 
   resetData():void {
     this.semanafb.enable();
     this.semanafb.setValue( {'rango': 'Entre', 'minimo': '', 'maximo': ''});
-    const data = [];
+    this.filas = [];
     this.cargarInvetario();
   }
 
-  cargarInvetario() {
-    this.inventarioService.cargarInventario().subscribe(
-        (inventarioSem)=> this.listOfData = inventarioSem,
+  formatearResp(resp: any) {
+    this.titulos = resp.headers;
+    Object['values'](resp.dataset).forEach((element:any) => {
+      this.filas.push(Object['values'](element));
+    });
+    console.log(this.filas);
+  }
+
+  cargarInvetario(anho?:number) {
+    const today = new Date();
+    const year = today.getFullYear();
+    if (anho!> year) {
+      Swal.fire('Warning', 'Revise el año que ingreso', 'warning');
+      return;
+    }
+    this.filas = [];
+    this.cargando =true;
+    this.inventarioService.cargarxSemana(anho).subscribe(
+        (resp:any)=>{
+          this.formatearResp(resp);
+          this.cargando =false;
+        }, (error)=>{
+          Swal.fire('Ocurrio un error inesperado', '', 'error');
+        },
     );
+  }
+
+  submitForm() {
+    if (this.filterForm.invalid) {
+      for (const i in this.filterForm.controls) {
+        this.filterForm.controls[i].markAsDirty();
+        this.filterForm.controls[i].updateValueAndValidity();
+      }
+      return;
+    }
+
+    this.cargarInvetario(this.filterForm.get('anho')?.value );
+    console.log(this.filterForm.value);
   }
 }

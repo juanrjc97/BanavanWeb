@@ -14,66 +14,8 @@ import {InventarioService} from '../../services/inventario/inventario.service';
   styleUrls: ['./racimo.component.css'],
 })
 export class RacimoComponent implements OnInit {
-  public listOfData: inventarioRacimos[] = [
-    {
-      color: 'Amarillo',
-      semana: 1,
-      lote: 1,
-      enfundado: 100,
-      cosechado: 200,
-      cPerdida: 100,
-    },
-    {
-      color: 'Azul',
-      semana: 2,
-      lote: 2,
-      enfundado: 300,
-      cosechado: 500,
-      cPerdida: 200,
-    },
-    {
-      color: 'Rojo',
-      semana: 3,
-      lote: 4,
-      enfundado: 400,
-      cosechado: 800,
-      cPerdida: 400,
-    },
-    {
-      color: 'Rojo',
-      semana: 4,
-      lote: 4,
-      enfundado: 400,
-      cosechado: 800,
-      cPerdida: 400,
-    },
-    {
-      color: 'Rojo',
-      semana: 5,
-      lote: 4,
-      enfundado: 400,
-      cosechado: 800,
-      cPerdida: 400,
-    },
-    {
-      color: 'Rojo',
-      semana: 6,
-      lote: 4,
-      enfundado: 400,
-      cosechado: 800,
-      cPerdida: 400,
-    },
-  ];
-  public filterlote = [
-    {text: '1', value: 1},
-    {text: '2', value: 2},
-    {text: '3', value: 3},
-    {text: '4', value: 4},
-    {text: '5', value: 5},
-    {text: '6', value: 6},
-    {text: '7', value: 7},
-    {text: '8', value: 8},
-  ];
+ 
+
   public size = 20;
   public formSummitted = true;
   public titulos:any = [];
@@ -84,10 +26,6 @@ export class RacimoComponent implements OnInit {
     minimo: ['', [Validators.required]],
     maximo: ['', [Validators.required]],
   }) ;
-  public loteFilterFn = (list: string[], item: inventarioRacimos) => list.some(
-      (lote) => item.lote.toString().indexOf(lote) !== -1,
-      this.semanafb.disable(),
-  );
   public filterForm: FormGroup = this.fb.group({
     anho: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
   });
