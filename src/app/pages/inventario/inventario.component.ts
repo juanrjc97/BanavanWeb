@@ -92,6 +92,7 @@ export class InventarioComponent implements OnInit {
     this.cargando =true;
     this.inventarioService.cargarxSemana(anho).subscribe(
         (resp:any)=>{
+          console.log(resp);
           this.formatearResp(resp);
           this.cargando =false;
         }, (error)=>{

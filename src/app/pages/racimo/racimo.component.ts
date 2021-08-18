@@ -114,7 +114,6 @@ export class RacimoComponent implements OnInit {
     Object['values'](resp.dataset).forEach((element:any) => {
       this.filas.push(Object['values'](element));
     });
-    console.log(this.filas);
   }
   /**
    * params
@@ -130,6 +129,7 @@ export class RacimoComponent implements OnInit {
     this.cargando =true;
     this.inventarioService.cargarxLote(anho).subscribe(
         (resp:any)=>{
+          console.log(resp);
           this.formatearResp(resp);
           this.cargando =false;
         }, (error)=>{

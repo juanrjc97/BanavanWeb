@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
@@ -26,42 +26,13 @@ export class InventarioService {
   }
 
   cargarEnfundado(idSemana:number, anho:number) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: `{
-        "semana": ${idSemana}
-        "anho": ${anho}
-     }`,
-    };
-    return this.http.get(this.pathEnfunde, options);
+    return this.http.get(`${this.pathEnfunde}?semana=${idSemana}&anho=${anho}`);
   }
 
   cargarxLote(anho?:number) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: `{
-        
-        "anho": ${anho}
-     }`,
-    };
-    return this.http.get(this.pathLote, options);
+    return this.http.get(`${this.pathLote}?anho=${anho}`);
   }
   cargarxSemana(anho?:number) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: `{
-        "anho": ${anho}
-     }`,
-    };
-    return this.http.get(this.pathSemana, options);
+    return this.http.get(`${this.pathSemana}?anho=${anho}`);
   }
-
-
-
 }
