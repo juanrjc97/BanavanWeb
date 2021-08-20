@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Lote} from 'src/app/models/lote';
 import {environment} from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 //  <Summary>
 //  Author: juan jiménez
@@ -19,7 +20,13 @@ export class LoteService {
   public postLoteUrl: string = environment.post_lote;
   public deleteLoteUrl : string = environment.delete_lote;
   public updateLoteUrl : string = environment.put_lote;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
+  public options = {
+    headers: new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${this.auth.getToken()}`,
+    }),
+  };
 
   //  <Summary>
   //  Author: juan jiménez
@@ -28,7 +35,7 @@ export class LoteService {
   //  params: no params
   //  </summary>
   cargarLotes() {
-    return this.http.get(this.getLoteUrl);
+    return this.http.get(this.getLoteUrl, this.options);
   }
   //  <Summary>
   //  Author: juan jiménez
@@ -37,7 +44,7 @@ export class LoteService {
   //  params: recibe una instancia de lote
   //  </summary>
   crearLote(lote: Lote) {
-    return this.http.post(this.postLoteUrl, lote);
+    return this.http.post(this.postLoteUrl, lote, this.options);
   }
   //  <Summary>
   //  Author: juan jiménez
@@ -46,7 +53,7 @@ export class LoteService {
   //  params: recibe una instancia de lote
   //  </summary>
   actualizarLote(lote: Lote) {
-    return this.http.put(this.updateLoteUrl, lote);
+    return this.http.put(this.updateLoteUrl, lote, this.options);
   }
   //  <Summary>
   //  Author: juan jiménez
@@ -58,6 +65,8 @@ export class LoteService {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.auth.getToken()}`,
       }),
       body: `{
         "id": ${id}

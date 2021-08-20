@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,24 +16,31 @@ export class InventarioService {
   public pathEnfunde: string = environment.get_inventario_enfunde;
   public pathLote: string = environment.get_inventario_lote;
   public pathSemana: string = environment.get_inventerio_semana;
+  public options = {
+    headers: new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${this.auth.getToken()}`,
+    }),
+  };
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private auth: AuthService) { }
 
   cargarInventario() {
-    return this.http.get(this.path)
+    return this.http.get(this.path, this.options)
         .pipe(
             map((resp:any) => resp['inventarioSem']),
         );
   }
 
   cargarEnfundado(idSemana:number, anho:number) {
-    return this.http.get(`${this.pathEnfunde}?semana=${idSemana}&anho=${anho}`);
+    return this.http.get(`${this.pathEnfunde}?semana=${idSemana}&anho=${anho}`,
+        this.options);
   }
 
   cargarxLote(anho?:number) {
-    return this.http.get(`${this.pathLote}?anho=${anho}`);
+    return this.http.get(`${this.pathLote}?anho=${anho}`, this.options);
   }
   cargarxSemana(anho?:number) {
-    return this.http.get(`${this.pathSemana}?anho=${anho}`);
+    return this.http.get(`${this.pathSemana}?anho=${anho}`, this.options);
   }
 }

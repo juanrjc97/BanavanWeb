@@ -53,7 +53,7 @@ export class InventarioComponent implements OnInit {
         this.semanafb.disable();
         const temporal:any[] = [];
         this.filas.forEach((iterador:any) => {
-          console.log(parseInt(iterador[1]));
+         
           if ( parseInt(iterador[1]) > this.semanafb.get('minimo')?.value -1 &&
                parseInt(iterador[1])< this.semanafb.get('maximo')?.value ) {
             temporal.push(iterador);
@@ -70,7 +70,7 @@ export class InventarioComponent implements OnInit {
     this.semanafb.enable();
     this.semanafb.setValue( {'rango': 'Entre', 'minimo': '', 'maximo': ''});
     this.filas = [];
-    this.cargarInvetario();
+    this.cargarInvetario(this.filterForm.get('anho')?.value);
   }
 
   formatearResp(resp: any) {

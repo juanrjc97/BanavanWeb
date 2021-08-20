@@ -1,8 +1,11 @@
+/* eslint-disable require-jsdoc */
+/* eslint-disable guard-for-in */
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {PersonalService} from '../../services/personal/personal.service';
 import Swal from 'sweetalert2';
+import {AuthService} from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +15,16 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
   // validateForm!: FormGroup;
   public validateForm = this.fb.group({
-    userName: [null, [Validators.required, Validators.minLength(3)]],
+    email: [null, [Validators.required, Validators.email,
+      Validators.minLength(3)]],
     password: [null, [Validators.required, Validators.minLength(3)]],
   });
 
 
-  constructor(private fb: FormBuilder, private router: Router, private personalService: PersonalService) {}
+  constructor(private fb: FormBuilder, private router: Router,
+    private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.personalService.getCoockie().subscribe();
   }
 
   submitForm(): void {
@@ -30,8 +34,13 @@ export class LoginComponent implements OnInit {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     } else {
-      this.personalService.login(this.validateForm.value)
+      const data = {
+        email: this.validateForm.get('email')?.value,
+        password: this.validateForm.get('password')?.value,
+      };
+      this.auth.login(data)
           .subscribe( (resp) =>{
+            console.log(resp);
             this.router.navigateByUrl('/');
           }, (err)=>{
             Swal.fire('Error', 'error al iniciar sesión', 'error');

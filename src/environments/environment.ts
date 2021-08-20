@@ -16,7 +16,7 @@ export const environment = {
   get_personal: BASE_URL + '/personnel/get?isActive=0',
   post_personal: BASE_URL + '/personnel/hire',
   update_personal: BASE_URL + '/personnel/update',
-  login: BASE_URL + 'login',
+  login: BASE_URL + '/authentication/login',
   getCookie: BASE_URL + 'sanctum/csrf-cookie',
 
   // Color

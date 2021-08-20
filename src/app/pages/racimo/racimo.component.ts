@@ -61,7 +61,6 @@ export class RacimoComponent implements OnInit {
         this.semanafb.disable();
         const temporal:any[] = [];
         this.filas.forEach((iterador:any) => {
-          console.log(parseInt(iterador[1]));
           if ( parseInt(iterador[1]) > this.semanafb.get('minimo')?.value -1 &&
                parseInt(iterador[1])< this.semanafb.get('maximo')?.value ) {
             temporal.push(iterador);
@@ -83,7 +82,6 @@ export class RacimoComponent implements OnInit {
       this.filterLote.disable();
       const temporal:any[] = [];
       this.filas.forEach((iterador:any) => {
-        console.log(parseInt(iterador[2]));
         if ( parseInt(iterador[2]) ===
              this.filterLote.get('numeroLote')?.value ) {
           temporal.push(iterador);
@@ -99,14 +97,14 @@ export class RacimoComponent implements OnInit {
     this.semanafb.enable();
     this.semanafb.setValue( {'rango': 'Entre', 'minimo': '', 'maximo': ''});
     this.filas = [];
-    this.cargarInvetario();
+    this.cargarInvetario(this.filterForm.get('anho')?.value);
   }
 
   resetLotes():void {
     this.filterLote.enable();
     this.filterLote.setValue( {'numeroLote': ''});
     this.filas = [];
-    this.cargarInvetario();
+    this.cargarInvetario(this.filterForm.get('anho')?.value);
   }
 
   formatearResp(resp: any) {

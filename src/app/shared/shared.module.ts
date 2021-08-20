@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 
 
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule,
+    NzButtonModule,
   ],
   exports: [
     HeaderComponent,

@@ -13,7 +13,6 @@ import {InventarioService} from '../../services/inventario/inventario.service';
   styleUrls: ['./apuntalado.component.css'],
 })
 export class ApuntaladoComponent implements OnInit {
-
 public titulos:any = [];
 public filas:any = [];
 public cargando = true;
@@ -34,7 +33,6 @@ cargarInventario(idSemana: number, anho:number) {
   this.cargando =true;
   this.inventarioService.cargarEnfundado(idSemana, anho).subscribe(
       (resp:any)=>{
-        console.log(resp);
         this.formatearResp(resp);
         this.cargando =false;
       },
@@ -59,7 +57,5 @@ submitForm() {
 
   this.cargarInventario(this.filterForm.get('semana')?.value,
       this.filterForm.get('anho')?.value );
-  console.log(this.filterForm.value);
 }
-
 }
