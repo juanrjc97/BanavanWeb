@@ -2,6 +2,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/services/auth/auth.service';
 import {ToggleService} from '../../services/toggle/toggle.service';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,18 +12,14 @@ import {ToggleService} from '../../services/toggle/toggle.service';
 export class HeaderComponent implements OnInit {
   isCollapsed : boolean = false;
 
-  constructor(private serviceToggle: ToggleService,
+  constructor(private sidebarService: SidebarService,
       private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  changeCollapsed() {
-    this.isCollapsed = !this.isCollapsed;
-    this.serviceToggle.changeStateSide(this.isCollapsed);
-  }
-
   logout() {
     this.auth.logout();
+    this.sidebarService.menu = [];
   }
 }

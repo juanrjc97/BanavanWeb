@@ -16,14 +16,16 @@ export class PersonalService {
   public getPersonal: string = environment.get_personal;
   public postPersonal: string = environment.post_personal;
   public updatePersonal: string = environment.update_personal;
+  public options:any ;
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
-  public options = {
-    headers: new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${this.auth.getToken()}`,
-    }),
-  };
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.options = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.auth.getToken()}`,
+      }),
+    };
+  }
   cargarPersonal() {
     return this.http.get(this.getPersonal, this.options)
         .pipe(map((resp: any) => resp));

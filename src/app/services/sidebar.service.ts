@@ -1,16 +1,22 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable new-cap */
 import {Injectable} from '@angular/core';
+import {AuthService} from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SidebarService {
-  public userRole: string = 'admin';
+  public userRole?: string;
   public menu: any[] = [];
 
-  constructor() {
-    if (this.userRole === 'admin') {
+  constructor(private auth: AuthService) {
+    this.cargarMenu();
+  }
+
+  cargarMenu() {
+    this.userRole = this.auth.getRol();
+    if (this.userRole === 'Administrador') {
       const items = [
         {
           title: 'Inventarios',
@@ -31,7 +37,7 @@ export class SidebarService {
         },
       ];
       this.menu = items;
-    } else {
+    } else if (this.userRole === 'Gerente') {
       const items = [
         {
           title: 'Finca',

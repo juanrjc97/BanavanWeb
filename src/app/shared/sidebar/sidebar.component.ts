@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarService } from 'src/app/services/sidebar.service';
-import { ToggleService } from '../../services/toggle/toggle.service';
+/* eslint-disable require-jsdoc */
+import {Component, OnInit} from '@angular/core';
+import {SidebarService} from 'src/app/services/sidebar.service';
+import {ToggleService} from '../../services/toggle/toggle.service';
+import {AuthService} from '../../services/auth/auth.service';
 
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  
   isCollapsed = false;
+  public userRol :string = 'Gerente';
   menuItems: any[];
-  constructor(private  serviceToggle:ToggleService, public sidebarService: SidebarService) {
+  constructor(
+     public sidebarService: SidebarService, private auth: AuthService) {
     this.menuItems = sidebarService.menu;
-   }
-
-  ngOnInit(): void {
-    this.serviceToggle.updateStateSide$.subscribe((value)=>{
-      this.isCollapsed = value;
-    })
   }
 
-
-
+  ngOnInit(): void {
+  }
 }

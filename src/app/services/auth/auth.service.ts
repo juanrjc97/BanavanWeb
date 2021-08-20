@@ -29,7 +29,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('rol');
   }
- 
+
   login(data: any) {
     console.log(data);
     return this.http.post(this.path, data)

@@ -3,20 +3,19 @@
     <h1 class="sidebar-logo h1">Banavan S.A.</h1>
 </div>
 <ul nz-menu nzTheme="dark" nzMode="inline">
-    <!-- [nzInlineCollapsed]="isCollapsed"-->
-    <li [hidden]="sidebarService.userRole ==='admin' " nz-menu-item>
+    <li *ngIf="sidebarService.userRole === userRol" nz-menu-item>
         <i nz-icon nzType="user"></i>
         <span><a  [routerLink]="['/dashboard']" routerLinkActive="active" >Personal</a></span>
     </li>
-    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' ">
+    <li nz-menu-item *ngIf="sidebarService.userRole === userRol">
         <i nz-icon nzType="container"></i>
         <span> <a [routerLink]="['inventario']" routerLinkActive="active" ></a>Inventario</span>
     </li>
-    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' " id="sidebar-respaldo">
+    <li nz-menu-item *ngIf="sidebarService.userRole === userRol" id="sidebar-respaldo">
         <i nz-icon nzType="save"></i>
         <span><a [routerLink]="['respaldo']" routerLinkActive="active"  ></a> Respaldo</span>
     </li>
-    <li nz-menu-item [hidden]="sidebarService.userRole ==='admin' " id="sidebar-solicitud">
+    <li nz-menu-item *ngIf="sidebarService.userRole === userRol" id="sidebar-solicitud">
         <i nz-icon nzType="mail"></i>
         <span><a [routerLink]="['solicitud-personal']" routerLinkActive="active"  ></a> Solicitudes</span>
     </li>

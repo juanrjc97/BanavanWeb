@@ -18,32 +18,44 @@ import {RepInventarioComponent} from './rep-inventario/rep-inventario.component'
 import {RepEnfundeComponent} from './rep-enfunde/rep-enfunde.component';
 import {RepSemanasComponent} from './rep-semanas/rep-semanas.component';
 import {RepRacimosPComponent} from './rep-racimos-p/rep-racimos-p.component';
+import {AuthGuard} from '../guards/auth.guard';
+import {GerenteGuard} from '../guards/gerente.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
 
   {path: 'dashboard', component: WelcomeComponent,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
-    // eslint-disable-next-line max-len
-    // { path: '', loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)},
-      {path: '', component: PersonalComponent},
-      {path: 'inventario', component: InventarioComponent},
-      {path: 'respaldo', component: RespaldoComponent},
-      {path: 'lote', component: LoteComponent},
-      {path: 'cinta', component: ColorComponent},
-      {path: 'semana', component: SemanaComponent},
-      {path: 'motivo', component: MotivoComponent},
-      {path: 'cosecha', component: CosechaComponent},
-      {path: 'solicitud-personal', component: SolpersonalComponent},
+      {path: '', canActivate: [GerenteGuard], component: PersonalComponent},
+      {path: 'inventario',
+        component: InventarioComponent},
+      {path: 'respaldo',
+        canActivate: [GerenteGuard], component: RespaldoComponent},
+      {path: 'lote', canActivate: [GerenteGuard], component: LoteComponent},
+      {path: 'cinta', canActivate: [GerenteGuard], component: ColorComponent},
+      {path: 'semana', canActivate: [GerenteGuard], component: SemanaComponent},
+      {path: 'motivo', canActivate: [GerenteGuard], component: MotivoComponent},
+      {path: 'cosecha',
+        canActivate: [GerenteGuard], component: CosechaComponent},
+      {path: 'solicitud-personal',
+        canActivate: [GerenteGuard], component: SolpersonalComponent},
 
-      // admin pages //revisar el login y la pantalla que se muestra al iniciar
-      {path: 'racimo', component: RacimoComponent},
-      {path: 'enfudado', component: EnfundadoComponent},
-      {path: 'apuntalado', component: ApuntaladoComponent},
-      {path: 'inventarioRacimos', component: RepInventarioComponent},
-      {path: 'enfunde', component: RepEnfundeComponent},
-      {path: 'semanasRacimos', component: RepSemanasComponent},
-      {path: 'racimosPerdidos', component: RepRacimosPComponent},
+      {path: 'racimo', canActivate: [AdminGuard],component: RacimoComponent},
+      {path: 'enfudado', canActivate: [AdminGuard],
+        component: EnfundadoComponent},
+      {path: 'apuntalado',canActivate: [AdminGuard],
+        component: ApuntaladoComponent},
+      {path: 'inventarioRacimos',canActivate: [AdminGuard],
+        component: RepInventarioComponent},
+      {path: 'enfunde', canActivate: [AdminGuard],
+        component: RepEnfundeComponent},
+      {path: 'semanasRacimos', canActivate: [AdminGuard],
+        component: RepSemanasComponent},
+      {path: 'racimosPerdidos',canActivate: [AdminGuard],
+        component: RepRacimosPComponent},
 
     ],
   },
