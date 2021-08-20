@@ -24,8 +24,8 @@ let expect = chai.expect;
   });
 
   Then('I should see a {string} button', function (title) {
-    var article = element(by.id('btn-register-user'));
-    return expect(article.getText()).to.eventually.eql(title);
+    var btn_register = element(by.id('btn-register-user'));
+    return expect(btn_register.getText()).to.eventually.eql(title);
   });
 
    // Go to Solicitudes Page
@@ -48,4 +48,64 @@ let expect = chai.expect;
    Then('the h1 should be {string}', function (title) {
      var h1respaldo = element(by.id('title-respaldo'));
      return expect(h1respaldo.getText()).to.eventually.eql(title);
+   });
+
+   Then('the Backup button should be {string}', function (title) {
+     var btnBackUp = element(by.buttonText('Realizar respaldo'));
+     return expect(btnBackUp.getText()).to.eventually.eql(title);
+   });
+
+   // Edit ribbon
+   When('I click the Edit on the first row on table in Ribbon Table', function () {
+     var buttonEdit = element(by.className('editRibbon-1'));
+     return buttonEdit.click();
+   });
+
+   Then('the button save should be {string}', function (title) {
+     var btnSave = element(by.css('[nztype="save"]'));
+     return expect(btnSave.getAttribute('nztype')).to.eventually.eql(title);
+   });
+
+   Then('the button cancel should be {string}', function (title) {
+     var btnCancel = element(by.css('[nztype="close-circle"]'));
+     return expect(btnCancel.getAttribute('nztype')).to.eventually.eql(title);
+   });
+
+   Then('the color input should be {string}', function (title) {
+     var inputRibbon = element(by.className('inputRibbon-1'));
+     return expect(inputRibbon.getAttribute('value')).to.eventually.eql(title);
+   });
+
+   // Go to reports of harvested bunches
+   When('I navigate to ReporteRacimo {string}', function (site) {
+     return browser.get(site);
+   });
+
+   Then('the title should show the present year {string}', function (title) {
+     let lastH1 = element.all(by.css('h1')).last();
+     return expect(lastH1.getText()).to.eventually.eql(title);
+   });
+
+   Then('the Racimo graphic should be {string}', function (title) {
+     let report = element(by.className('graphic-harvested-bunches'));
+     return expect(report.getAttribute('class')).to.eventually.eql(title);
+   });
+
+   Then('the name of the filter button should be {string}', function (title) {
+     let btnFiltrar = element(by.buttonText('Filtrar'));
+     return expect(btnFiltrar.getText()).to.eventually.eql(title);
+   });
+
+   // Go to reports of sheated bunches
+   When('I navigate to ReporteEnfundado {string}', function (site) {
+     return browser.get(site);
+   });
+
+   Then('the Enfundado graphic should be {string}', function (title) {
+     let report = element(by.className('graphic-sheated-bunches'));
+     return expect(report.getAttribute('class')).to.eventually.eql(title);
+   });
+
+   Then('the name of the filter text should be {string}', function (title) {
+     return expect(element(by.tagName('p')).getText()).to.eventually.eql(title);
    });

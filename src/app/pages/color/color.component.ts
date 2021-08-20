@@ -142,7 +142,9 @@ export class ColorComponent implements OnInit {
       },
       (err) => {
         this.alerta.createBasicNotification(this.errorDelete);
-        console.log('Error al elminar el color' + id + '\n' + err);
+        console.log('Error al elminar el color' + id );
+        console.log(err);
+        
       }
     );
   }
