@@ -174,6 +174,7 @@ export class PersonalComponent implements OnInit {
           console.log(resp);
           this.cargarPersonal();
           this.validateForm.reset();
+          this.isVisible = false;
           this.alerta.createBasicNotification(this.successPersonal);
         },
         (err) => {

@@ -105,6 +105,7 @@ export class SemanaComponent implements OnInit {
     this.SemanasService.actualizarSemanas(semana).subscribe(
       (resp: any) => {
         this.rellenar_lista();
+        this.isVisible = false;
         //console.log(semana);
         Swal.fire('Cinta de semana actualizada', resp.message, 'success');
       },

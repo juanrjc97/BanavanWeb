@@ -75,9 +75,10 @@ export class ColorComponent implements OnInit {
       (resp: any) => {
         console.log(resp);
         this.validateForm.reset();
+        this.isVisible = false;
         Swal.fire(
           'Nueva cinta Agregada',
-          `La cinta  se ha creado con exito`,
+          `La cinta  se ha creado con éxito`,
           'success'
         );
         this.cargarCinta();
