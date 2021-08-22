@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
       };
       this.auth.login(data)
           .subscribe( (resp) =>{
-            console.log(resp);
+            //console.log(resp);
             if (resp.rol ==='Gerente') {
               this.router.navigateByUrl('/');
             } else if (resp.rol === 'Administrador') {
               this.router.navigateByUrl('dashboard/inventarioRacimos');
             }
           }, (err)=>{
-            Swal.fire('Error', 'error al iniciar sesión', 'error');
+            Swal.fire('Error', 'Error al iniciar sesión', 'error');
           });
     }
   }

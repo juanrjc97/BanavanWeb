@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import Swal from 'sweetalert2';
+import { RespaldoService } from 'src/app/services/respaldo/respaldo.service';
 
 @Component({
   selector: 'app-respaldo',
@@ -9,14 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class RespaldoComponent implements OnInit {
   size: NzButtonSize = 'large';
-  fecha_respaldo: string = 'Viernes, 13 de Agosto del 2021';
-  megas_respaldo: string = '0.58 Mb';
 
-  constructor() {}
+  constructor( private respaldoService: RespaldoService) {}
 
   ngOnInit(): void {}
 
-  realizar_respaldo(){
+  realizar_respaldo() {
     Swal.fire({
       title: '¿Deseas realizar el respaldo de la base de datos?',
       text: 'Se almacenarán en tu cuenta de Google Drive',
@@ -25,10 +24,27 @@ export class RespaldoComponent implements OnInit {
       cancelButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Respaldo exitoso!', '', 'success');
-        this.fecha_respaldo = 'Domingo, 15 de Agosto del 2021';
-        this.megas_respaldo = '0.71 Mb';
+        this.respaldoService.crearBackup().subscribe(
+          (resp : any) =>{
+            console.log("Respaldo respuesta: ");
+            console.log(resp);
+            if(resp.status){
+              Swal.fire('Respaldo exitoso!', '', 'success');
+            }else{
+              Swal.fire('Ocurrió un error!', 'Lamentamos inconvenientes', 'error');
+            }
+          },
+          (err) =>{
+            console.log(err);            
+              Swal.fire(
+                'Ocurrió un error general!',
+                'Lamentamos inconvenientes',
+                'error'
+              );
+          }
+        )
+        //Swal.fire('Respaldo exitoso!', '', 'success');
       }
     });
-  };
+  }
 }

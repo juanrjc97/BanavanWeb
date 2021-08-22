@@ -37,11 +37,13 @@ export const environment = {
   get_solicitud: BASE_URL + '/solicitud/get',
   update_solicitud: BASE_URL + '/solicitud/respond',
   get_tipoSolicitud: BASE_URL + '/tipoSolicitud/get',
+  //Backup
+  post_backup: BASE_URL + '/backup/backup',
 
   // Inventario de enfunde
   get_inventario_enfunde: BASE_URL + '/reporte/enfunde',
   get_inventario_lote: BASE_URL + '/reporte/acumuladoXlote',
-  get_inventerio_semana: BASE_URL+ '/reporte/acumuladoXsemana',
+  get_inventerio_semana: BASE_URL + '/reporte/acumuladoXsemana',
 
   // Reporte Enfundado x semana
   get_reporte_enfundado_semana: BASE_URL + '/reporte/enfundeXsemana',
