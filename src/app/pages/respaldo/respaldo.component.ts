@@ -18,7 +18,7 @@ export class RespaldoComponent implements OnInit {
   realizar_respaldo() {
     Swal.fire({
       title: '¿Deseas realizar el respaldo de la base de datos?',
-      text: 'Se almacenarán en tu cuenta de Google Drive',
+      text: '',
       showCancelButton: true,
       confirmButtonText: `Respaldar`,
       cancelButtonText: `Cancelar`,
